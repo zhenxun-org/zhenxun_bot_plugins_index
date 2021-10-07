@@ -1,5 +1,6 @@
 from random import shuffle, randint
 import random
+import os
 from configs.config import NICKNAME
 from pathlib import Path
 from services.log import logger
@@ -8,23 +9,21 @@ from nonebot.typing import T_State
 from nonebot.adapters.cqhttp import Bot, Event, PrivateMessageEvent, GroupMessageEvent
 
 dir_path = Path(__file__).parent
-assets_path = dir_path / "assets"
+IMG_PATH = str((dir_path / "tarot").absolute()) + "/"
 
 __zx_plugin_name__ = "塔罗牌"
 __plugin_usage__ = """
 usage：
     抽取属于你的塔罗牌
     指令：
-        塔罗
+        塔罗/塔罗牌/tarot/Tarot
 """.strip()
 __plugin_des__ = "哔哩哔哩主题塔罗牌抽签"
 __plugin_cmd__ = [
-    "塔罗",
-    "塔罗牌",
-    "tarot",
+    "塔罗/塔罗牌/tarot/Tarot",
 ]
 __plugin_type__ = ("群内小游戏",)
-__plugin_version__ = 0.1
+__plugin_version__ = 0.2
 __plugin_author__ = "AkashiCoin"
 __plugin_settings__ = {
     "level": 5,
@@ -34,11 +33,12 @@ __plugin_settings__ = {
         "塔罗",
         "塔罗牌",
         "tarot",
+        "Tarot",
     ],
 }
 __plugin_block_limit__ = {"rst": "你的塔罗牌正在抽取..."}
 
-tarot = on_command("塔罗牌", aliases={"tarot", "塔罗"}, priority=5, block=True)
+tarot = on_command("塔罗牌", aliases={"tarot", "塔罗", "Tarot"}, priority=5, block=True)
 
 
 @tarot.handle()
@@ -54,12 +54,12 @@ async def _(bot: Bot, event: Event, state: T_State):
         card_key = card_keys[index - 1]
         meaning_key = list(meanings.keys())[count]
         meaning_value = meanings[meaning_key]
-        image_file = f"file:///{assets_path}\{card_key}.jpg"
+        image_file = f"file:///{IMG_PATH}{card_key}.jpg"
 
         # 特殊规则：愚者有两张
         if card_key == "愚者":
             rand = randint(1, 2)
-            image_file = f"file:///{assets_path}\{card_key}{rand}.jpg"
+            image_file = f"file:///{IMG_PATH}{card_key}{rand}.jpg"
 
         # 特殊规则：小阿卡纳分正位逆位
         if isinstance(cards[card_key], dict):
