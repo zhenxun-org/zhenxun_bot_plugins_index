@@ -1,2 +1,0 @@
-# nonebot_plugins_zhenxun_bot
-真寻bot的插件库，稍微修改也可在nonebot2平台通用（如有侵权请告知
