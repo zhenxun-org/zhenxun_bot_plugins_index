@@ -8,11 +8,9 @@ from nonebot.adapters.cqhttp import (
     MessageEvent,
 )
 from nonebot.typing import T_State
-from utils.message_builder import record
-from configs.path_config import VOICE_PATH
 
 dir_path = Path(__file__).parent
-IMG_PATH = str((dir_path / "record").absolute()) + "/"
+VOICE_PATH = str((dir_path / "kfc").absolute()) + "/"
 
 __zx_plugin_name__ = "原神KFC语音"
 __plugin_usage__ = """
@@ -23,10 +21,11 @@ usage：
         KFC/kfc/原神KFC/原神kfc/二次元KFC/二次元kfc/异世相遇尽享美味
 """.strip()
 __plugin_des__ = "原神KFC语音插件（呐呐呐，服务员欧尼酱~~......异世相遇，尽享美味！）"
+__plugin_type__ = ("来点语音吧~",)
 __plugin_cmd__ = [
     "KFC/kfc/原神KFC/原神kfc/二次元KFC/二次元kfc/异世相遇尽享美味",
 ]
-__plugin_version__ = 0.1
+__plugin_version__ = 0.2
 __plugin_author__ = "梦璃雨落"
 __plugin_settings__ = {
     "level": 5,
