@@ -3,9 +3,9 @@ from nonebot import on_command
 from nonebot.typing import T_State
 
 from services.log import logger
-from nonebot.adapters.cqhttp import (
+from nonebot.adapters.onebot.v11 import (
     Bot,
-    Event,
+    MessageEvent,
     PrivateMessageEvent,
     GROUP,
 )
@@ -70,7 +70,7 @@ def genp(prop):
 
 
 @remake.handle()
-async def _(bot: Bot, event: Event, state: T_State):
+async def _(bot: Bot, event: MessageEvent, state: T_State):
     pic_list = []
     mes_list = []
 
