@@ -2,8 +2,8 @@ import os
 import random
 from pathlib import Path
 from nonebot import on_command
-from nonebot.adapters.cqhttp.message import MessageSegment
-from nonebot.adapters.cqhttp import (
+from nonebot.adapters.onebot.v11.message import MessageSegment
+from nonebot.adapters.onebot.v11 import (
     Bot,
     MessageEvent,
 )
