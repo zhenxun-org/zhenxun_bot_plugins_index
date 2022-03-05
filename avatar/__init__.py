@@ -1,10 +1,10 @@
 import re
 from typing import Type
 from services.log import logger
-from nonebot import export, on_command
+from nonebot import on_command
 from nonebot.typing import T_State
 from nonebot.matcher import Matcher
-from nonebot.adapters.cqhttp import Bot, Event, PrivateMessageEvent
+from nonebot.adapters.onebot.v11 import Bot, Event, PrivateMessageEvent
 
 from .data_source import get_image
 
