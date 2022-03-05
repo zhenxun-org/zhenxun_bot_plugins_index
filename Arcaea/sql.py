@@ -87,7 +87,7 @@ class ARCSQL:
         try:
             conn = self.arc_conn()
             conn.execute(
-                f'UPDATE USER SET ARCNAME = "{arcname}", USER_ID = {user_id}, BIND_ID = {bind_id} WHERE ARCNAME = "{arcname}"'
+                f'UPDATE USER SET ARCNAME = "{arcname}", USER_ID = {user_id}, BIND_ID = "{bind_id}" WHERE ARCNAME = "{arcname}"'
             )
             conn.commit()
             self.__is_full__(bind_id)

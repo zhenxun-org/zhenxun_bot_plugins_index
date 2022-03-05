@@ -2,12 +2,14 @@ import asyncio
 from services.log import logger
 from nonebot.adapters.onebot.v11 import (
     Bot,
+    Message,
     MessageEvent,
     GroupMessageEvent,
 )
 from nonebot import on_command
 from nonebot.typing import T_State
 from nonebot.adapters.onebot.v11.permission import GROUP
+from nonebot.params import CommandArg, ArgStr
 
 from .sql import asql
 from .api import *
@@ -64,9 +66,9 @@ arcinfo = on_command("arcinfo", aliases={"ARCINFO", "Arcinfo"}, priority=5, bloc
 
 
 @arcinfo.handle()
-async def _(bot: Bot, event: MessageEvent, state: T_State):
+async def _(bot: Bot, event: MessageEvent, state: T_State, arg: Message = CommandArg()):
     qqid = event.user_id
-    msg = event.message.extract_plain_text().strip()
+    msg = arg.extract_plain_text().strip()
     msg_m = event.get_message()
     if isinstance(event, GroupMessageEvent):
         for msg_seg in msg_m:
@@ -94,10 +96,10 @@ arcre = on_command("arcre", aliases={"Arcre", "ARCRE"}, priority=5, block=True)
 
 
 @arcre.handle()
-async def _(bot: Bot, event: MessageEvent, state: T_State):
+async def _(bot: Bot, event: MessageEvent, state: T_State, arg: Message = CommandArg()):
     qqid = event.user_id
     est = False
-    msg = event.message.extract_plain_text().strip()
+    msg = arg.extract_plain_text().strip()
     msg_m = event.get_message()
     if isinstance(event, GroupMessageEvent):
         for msg_seg in msg_m:
@@ -145,8 +147,8 @@ arcrd = on_command("arcrd", aliases={"ARCRD", "Arcrd"}, priority=5, block=True)
 
 
 @arcrd.handle()
-async def _(bot: Bot, event: MessageEvent, state: T_State):
-    args: list[str] = event.message.extract_plain_text().strip().split()
+async def _(bot: Bot, event: MessageEvent, state: T_State, arg: Message = CommandArg()):
+    args: list[str] = arg.extract_plain_text().strip().split()
     diff = None
     if not args:
         await arcrd.finish("请输入定数", at_sender=False)
@@ -227,10 +229,10 @@ arcbind = on_command(
 
 
 @arcbind.handle()
-async def _(bot: Bot, event: GroupMessageEvent, state: T_State):
+async def _(bot: Bot, event: GroupMessageEvent, state: T_State, arg: Message = CommandArg()):
     qqid = event.user_id
     gid = event.group_id
-    arcid = event.message.extract_plain_text().strip().split()
+    arcid = arg.extract_plain_text().strip().split()
     try:
         if not arcid[0].isdigit() and len(arcid[0]) != 9:
             await arcbind.finish(

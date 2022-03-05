@@ -6,7 +6,7 @@ from pathlib import Path
 from services.log import logger
 from nonebot import on_command
 from nonebot.typing import T_State
-from nonebot.adapters.cqhttp import Bot, Event, PrivateMessageEvent, GroupMessageEvent
+from nonebot.adapters.onebot.v11 import Bot, Event, PrivateMessageEvent, GroupMessageEvent
 
 dir_path = Path(__file__).parent
 IMG_PATH = str((dir_path / "tarot").absolute()) + "/"

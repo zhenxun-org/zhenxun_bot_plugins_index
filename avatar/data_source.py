@@ -8,7 +8,7 @@ import traceback
 from pathlib import Path
 from nonebot.log import logger
 from PIL import Image, ImageDraw, ImageFilter
-from nonebot.adapters.cqhttp import MessageSegment
+from nonebot.adapters.onebot.v11 import MessageSegment
 
 dir_path = Path(__file__).parent
 image_path = dir_path / "images"
