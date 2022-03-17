@@ -7,6 +7,7 @@ from nonebot.adapters.onebot.v11 import (
     GroupMessageEvent,
 )
 from nonebot import on_command
+from nonebot.permission import SUPERUSER
 from nonebot.typing import T_State
 from nonebot.adapters.onebot.v11.permission import GROUP
 from nonebot.params import CommandArg, ArgStr
@@ -34,6 +35,7 @@ __plugin_superuser_usage__ = """
 usage：
     超级用户额外的 Arc 指令
     指令：
+        arclogin [bind_id](数字) [email] [password]  添加查分器账号
         arcup   查询用账号添加完好友，使用该指令绑定查询账号，添加成功即可使用arcre指令
 """.strip()
 __plugin_des__ = "Arcaea查分器"
@@ -209,10 +211,16 @@ async def _(bot: Bot, event: MessageEvent, state: T_State, arg: Message = Comman
     if not rating >= 70 and (diff == "2" or diff == "3"):
         await arcrd.finish("ftr | byd 难度没有定数小于7的曲目")
     msg = random_music(rating, plus, diff)
-    await arcrd.send(msg)
+    await arcrd.send(Message(msg))
 
 
-arcup = on_command("arcup", aliases={"arcupdate", "Arcup"}, priority=5, block=True)
+arcup = on_command(
+    "arcup",
+    permission=SUPERUSER,
+    aliases={"arcupdate", "Arcup"},
+    priority=5,
+    block=True,
+)
 
 
 @arcup.handle()
@@ -229,7 +237,9 @@ arcbind = on_command(
 
 
 @arcbind.handle()
-async def _(bot: Bot, event: GroupMessageEvent, state: T_State, arg: Message = CommandArg()):
+async def _(
+    bot: Bot, event: GroupMessageEvent, state: T_State, arg: Message = CommandArg()
+):
     qqid = event.user_id
     gid = event.group_id
     arcid = arg.extract_plain_text().strip().split()
@@ -256,6 +266,44 @@ async def _(bot: Bot, event: GroupMessageEvent, state: T_State, arg: Message = C
         user_id=int(list(bot.config.superusers)[0]),
         message=f"Code:{arcid[0]}\nName:{arcid[1]}\n申请加为好友",
     )
+
+
+arclogin = on_command(
+    "arclogin",
+    permission=SUPERUSER,
+    aliases={"ARCLOGIN", "Arclogin"},
+    priority=5,
+    block=True,
+)
+
+
+@arclogin.handle()
+async def _(bot: Bot, event: MessageEvent, state: T_State, arg: Message = CommandArg()):
+    if str(event.user_id) not in bot.config.superusers:
+        arclogin.finish("你没有权限添加查分账号哦~去联系管理员吧！")
+    login_info = arg.extract_plain_text().strip().split()
+    try:
+        if len(login_info) != 3 or not login_info[0].isdigit():
+            await arcbind.finish(
+                "请重新输入id和用户名密码\n例如：arclogin 1(纯数字) example@domain.com password"
+            )
+    except IndexError:
+        await arcbind.finish(
+            "请重新输入id和用户名密码\n例如：arclogin 1(纯数字) example@domain.com password"
+        )
+    bind_id = login_info[0]
+    email = login_info[1]
+    password = login_info[2]
+    res = await get_web_api(email=email, password=password)
+    if isinstance(res, str):
+        await arcbind.finish("用户名密码不正确，请重新输入用户名密码！")
+    res = asql.__get_login__(bind_id=bind_id)
+    if res:
+        await arcbind.finish("bind_id已存在，请重新输入！")
+    if asql.insert_check_user(bind_id=bind_id, email=email, password=password):
+        await arcbind.finish("添加成功！现在你可以使用查分器功能")
+    else:
+        await arcbind.finish("添加失败！数据库错误")
 
 
 arcun = on_command("arcun", aliases={"ARCUN", "Arcun"}, priority=5, block=True)
