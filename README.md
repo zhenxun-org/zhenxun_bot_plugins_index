@@ -8,6 +8,7 @@
 
 |                             名称                             |                          作者                          | 备注                                                         |
 | :----------------------------------------------------------: | :----------------------------------------------------: | :----------------------------------------------------------- |
+| [github订阅](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/github_sub) |          [@yajiwa](https://github.com/yajiwa)          | 推送github用户或仓库动态                                     |
 | [头像表情包](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot_plugin_petpet) |          [@yajiwa](https://github.com/yajiwa)          | 来自[wql](https://github.com/MeetWq/)的 [nonebot-plugin-petpet](https://github.com/MeetWq/nonebot-plugin-petpet) 并在其基础上对 zhenxun_bot 进行适配 |
 | [猜成语](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot_plugin_handle) |          [@yajiwa](https://github.com/yajiwa)          | 来自[wql](https://github.com/MeetWq/)的 [nonebot-plugin-handle](https://github.com/MeetWq/nonebot-plugin-handle) 并在其基础上对 zhenxun_bot 进行适配 |
 | [emoji合成器](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/blob/master/nonebot_plugin_emojimix) |          [@yajiwa](https://github.com/yajiwa)          | 来自[wql](https://github.com/MeetWq/)的 [nonebot-plugin-emojimix](https://github.com/MeetWq/nonebot-plugin-emojimix) 并在其基础上对 zhenxun_bot 进行适配 |
