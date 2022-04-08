@@ -1,9 +1,17 @@
-# cpÐ¡¹ÊÊÂ
-×Ô¶¨Òå×¨Êôcp(·Ö¹¥ÊÜ
+## cpå°æ•…äº‹
 
-    Ö¸Áî£º
-        cp <¹¥> <ÊÜ>
-        cp [@user] --×Ô¼ºÎª¹¥£¬±»@µÄÈËÎªÊÜ
-        cp [@user] [@user] --µÚÒ»¸öÈËÎª¹¥£¬µÚ¶þ¸öÈËÎªÊÜ
-# ±¾²å¼þÀ´Ô´ÓÚHoshinoBot
-±¾²å¼þÀ´Ô´ÓÚ¶ÔHoshinoBot²å¼þµÄ°áÔË£¬²¢ÔÚÆä»ù´¡ÉÏ×ö³öÐÞ¸Ä
+è‡ªå®šä¹‰ä¸“å±žcp(åˆ†æ”»å—
+
+    æŒ‡ä»¤ï¼š
+        cp <æ”»> <å—>
+        cp [@user] --è‡ªå·±ä¸ºæ”»ï¼Œè¢«@çš„äººä¸ºå—
+        cp [@user] [@user] --ç¬¬ä¸€ä¸ªäººä¸ºæ”»ï¼Œç¬¬äºŒä¸ªäººä¸ºå—
+## æœ¬æ’ä»¶æ¥æºäºŽHoshinoBot
+
+æœ¬æ’ä»¶æ¥æºäºŽå¯¹HoshinoBotæ’ä»¶çš„æ¬è¿ï¼Œå¹¶åœ¨å…¶åŸºç¡€ä¸Šåšå‡ºä¿®æ”¹
+
+### æ›´æ–°
+
+**2022/04/09**
+
+1. çœŸå¯»beta2é€‚é…

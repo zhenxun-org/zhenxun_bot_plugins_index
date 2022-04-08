@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
-from nonebot.adapters.cqhttp import Bot, Event
-from nonebot.plugin import on_command
-from nonebot.typing import T_State
-import ujson
 import os
 import random
+
+import ujson
+from nonebot.adapters.onebot.v11 import Bot, Event, Message
+from nonebot.params import CommandArg
+from nonebot.plugin import on_command
+from nonebot.typing import T_State
 
 __zx_plugin_name__ = "cp小故事"
 __plugin_usage__ = """
@@ -52,9 +54,9 @@ def getMessage(name_list):
 
 
 @cp.handle()
-async def _(bot: Bot, event: Event, state: T_State):
+async def _(bot: Bot, event: Event, state: T_State, args: Message = CommandArg()):
     msg = event.get_message()
-    msg_text = event.get_plaintext().strip()
+    msg_text = args.extract_plain_text().strip()
     name_list = [f"{event.user_id}"]
     for msg_seg in msg:
         if msg_seg.type == "at":

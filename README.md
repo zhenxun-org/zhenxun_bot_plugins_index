@@ -8,6 +8,8 @@
 
 |                             名称                             |                          作者                          | 备注                                                         |
 | :----------------------------------------------------------: | :----------------------------------------------------: | :----------------------------------------------------------- |
+| [MockingBird 语音](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/mockingbird) |      [@AkashiCoin](https://github.com/AkashiCoin)      | 可以让bot发送一条指定文本的语音，训练模型绝赞更新中...(咕咕咕) |
+| [超分](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/super_resolution) |      [@AkashiCoin](https://github.com/AkashiCoin)      | 获取图片更大的分辨率 ps:内存小的机器不建议使用               |
 | [github订阅](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/github_sub) |          [@yajiwa](https://github.com/yajiwa)          | 推送github用户动态或仓库动态                                 |
 | [头像表情包](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot_plugin_petpet) |          [@yajiwa](https://github.com/yajiwa)          | 来自[wql](https://github.com/MeetWq/)的 [nonebot-plugin-petpet](https://github.com/MeetWq/nonebot-plugin-petpet) 并在其基础上对 zhenxun_bot 进行适配 |
 | [猜成语](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot_plugin_handle) |          [@yajiwa](https://github.com/yajiwa)          | 来自[wql](https://github.com/MeetWq/)的 [nonebot-plugin-handle](https://github.com/MeetWq/nonebot-plugin-handle) 并在其基础上对 zhenxun_bot 进行适配 |
