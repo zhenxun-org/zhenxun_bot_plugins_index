@@ -12,7 +12,6 @@ usage：
         {emoji1}+{emoji2}
 """.strip()
 __plugin_des__ = "emoji合成器"
-__plugin_type__ = ("功能",)
 __plugin_cmd__ = ["{emoji1}+{emoji2}"]
 __plugin_version__ = 0.1
 __plugin_author__ = "MeetWq"
