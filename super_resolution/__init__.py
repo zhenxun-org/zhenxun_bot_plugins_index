@@ -81,7 +81,7 @@ def parse_image(key: str):
         state: T_State, img: Message = Arg(key)
     ):
         if not get_message_img(img):
-            await superResolution.finish(key, "格式错误，超分已取消...")
+            await superResolution.finish("格式错误，超分已取消...")
         state[key] = img
     return _key_parser
 
