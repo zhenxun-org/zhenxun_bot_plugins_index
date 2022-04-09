@@ -14,6 +14,8 @@ class GitHubSub(db.Model):
     # 地址
     sub_url = db.Column(db.String())
     update_time = db.Column(db.DateTime())
+    # etag
+    etag = db.Column(db.String())
 
     @classmethod
     async def add_github_sub(
@@ -30,7 +32,6 @@ class GitHubSub(db.Model):
             :param sub_type: 订阅类型
             :param sub_user: 订阅此条目的用户
             :param sub_url: 订阅地址
-            :param update_time: 更新时间
         """
         try:
             async with db.transaction():
@@ -108,6 +109,7 @@ class GitHubSub(db.Model):
             sub_url: Optional[str] = None,
             *,
             update_time: Optional[datetime] = None,
+            etag : Optional[str] = None,
     ) -> bool:
         """
         说明：
@@ -115,6 +117,7 @@ class GitHubSub(db.Model):
         参数：
             :param sub_url: 订阅地址
             :update_time: 更新时间
+            :etag: 更新标签
         """
         try:
             async with db.transaction():
@@ -123,7 +126,11 @@ class GitHubSub(db.Model):
                     await sub.update(
                         update_time=update_time
                         if update_time is not None
-                        else sub.update_time, ).apply()
+                        else sub.update_time,
+                        etag=etag
+                        if etag is not None
+                        else sub.etag
+                    ).apply()
                     return True
         except Exception as e:
             logger.info(f"github_sub 更新订阅错误 {type(e)}: {e}")

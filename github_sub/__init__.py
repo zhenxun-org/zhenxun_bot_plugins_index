@@ -37,7 +37,7 @@ usage：
 """.strip()
 __plugin_des__ = "github订阅推送"
 __plugin_cmd__ = ["添加github ['用户'/'仓库'] [用户名/{owner/repo}]", "删除github [用户名/{owner/repo}]", "查看github"]
-__plugin_version__ = 0.1
+__plugin_version__ = 0.2
 __plugin_author__ = "yajiwa"
 __plugin_settings__ = {
     "level": 5,
@@ -120,7 +120,7 @@ async def _(event: MessageEvent, arg: Message = CommandArg()):
         else f"{event.user_id}"
     )
     if await GitHubSub.delete_github_sub(msg, id_):
-        await del_sub.send(f"删除订github订阅：{msg} 成功...")
+        await del_sub.send(f"删除github订阅：{msg} 成功...")
         logger.info(
             f"(USER {event.user_id}, GROUP "
             f"{event.group_id if isinstance(event, GroupMessageEvent) else 'private'})"
@@ -174,7 +174,7 @@ async def _():
             sub = await sub_manager.random_sub_data()
             if sub:
                 logger.info(f"github开始检测：{sub.sub_url}")
-                rst = await get_sub_status(sub.sub_type, sub.sub_url, )
+                rst = await get_sub_status(sub.sub_type, sub.sub_url, etag=sub.etag)
                 await send_sub_msg(rst, sub, bot)
         except Exception as e:
             logger.error(f"github订阅推送发生错误 sub_url：{sub.sub_url if sub else 0} {type(e)}：{e}")

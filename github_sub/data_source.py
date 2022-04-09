@@ -9,9 +9,12 @@ from utils.http_utils import AsyncHttpx
 import random
 
 
-async def get_github_api(sub_type, sub_url):
-    headers = {"Accept": "application/vnd.github.v3+json",
-               'Authorization': 'token %s' % Config.get_config("github_sub", "GITHUB_TOKEN")}
+async def get_github_api(sub_type, sub_url, etag=None, token=None):
+    headers = {"Accept": "application/vnd.github.v3+json"}
+    if token:
+        headers['Authorization'] = 'token %s' % token
+    elif etag:
+        headers['if-none-match'] = '{}'.format(etag)
     if sub_type == "user":
         user_url_sub = "https://api.github.com/users/{}/events".format(sub_url)
         return await AsyncHttpx.get(user_url_sub, headers=headers, timeout=5)
@@ -60,14 +63,16 @@ async def add_user_sub(sub_type: str, sub_url: str, sub_user: str) -> str:
     return "添加订阅失败..."
 
 
-async def get_sub_status(sub_type: str, sub_url: str) -> Optional[str]:
+async def get_sub_status(sub_type: str, sub_url: str, etag=None):
     """
     获取订阅状态
     :param sub_type: 订阅类型
     :param sub_url: 订阅地址
+    :param etag: 检测标签
     """
     try:
-        response = await get_github_api(sub_type, sub_url)
+        token = Config.get_config("github_sub", "GITHUB_TOKEN")
+        response = await get_github_api(sub_type, sub_url, etag, token)
     except ResponseCodeException:
         return None
     if response.status_code == 304:
@@ -76,6 +81,10 @@ async def get_sub_status(sub_type: str, sub_url: str) -> Optional[str]:
         sub = await GitHubSub.get_sub(sub_url)
         old_time = sub.update_time
         json_response = response.json()
+        if not token:
+            new_etag = response.headers['ETag']
+            if etag == None or etag != str(new_etag):
+                await GitHubSub.update_sub_info(sub_url, etag=str(new_etag))
         if isinstance(json_response, dict):
             if "message" in json_response.keys():
                 if "API rate limit exceeded" in json_response["message"]:
