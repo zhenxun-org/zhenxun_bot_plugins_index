@@ -8,6 +8,7 @@
 
 |                             名称                             |                          作者                          | 备注                                                         |
 | :----------------------------------------------------------: | :----------------------------------------------------: | :----------------------------------------------------------- |
+| [语句抽象化](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/abstract) |          [@Copaan](https://github.com/Copaan)          | 抽象话翻译工具：把你打的字都给你emoji咯！                    |
 | [青年大学习](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/mockingbird) |          [@Copaan](https://github.com/Copaan)          | 基于nonebot2的青年大学习插件，用于获取最新一期青年大学习答案 |
 | [表情包制作](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/memes) |          [@Copaan](https://github.com/Copaan)          | [Nonebot2](https://github.com/nonebot/nonebot2) 插件，用于表情包制作 |
 | [MockingBird 语音](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/mockingbird) |      [@AkashiCoin](https://github.com/AkashiCoin)      | 可以让bot发送一条指定文本的语音，训练模型绝赞更新中...(咕咕咕) |
