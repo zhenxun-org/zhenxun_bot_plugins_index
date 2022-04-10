@@ -93,18 +93,25 @@ async def get_sub_status(sub_type: str, sub_url: str, etag=None):
                         logger.error("请设置 GitHub 用户名和 OAuth Token 以提高限制")
                 elif json_response["message"] == "Not Found":
                     logger.error(f"无法找到{sub_url}")
-        newest_json = json_response[0]
-        event_time = (datetime.strptime(newest_json['created_at'], '%Y-%m-%dT%H:%M:%SZ') + timedelta(hours=8))
-        if old_time < event_time:
+        json_response = [i for i in json_response if i['type'] != 'CreateEvent' and
+                         old_time < datetime.strptime(i['created_at'], '%Y-%m-%dT%H:%M:%SZ') + timedelta(hours=8)]
+        if json_response:
+            event_time = datetime.strptime(json_response[0]['created_at'], '%Y-%m-%dT%H:%M:%SZ') + timedelta(hours=8)
             await GitHubSub.update_sub_info(sub_url, update_time=event_time)
-            msg = generate_plain(newest_json)
-            if msg:
-                if sub_type == "user":
-                    star_str = "用户"
-                else:
-                    star_str = "仓库"
-                msg = f"{star_str}: {sub_url}\n" + msg + f"----------\n获取时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
-                return msg
+            msg_list = []
+            for newest_json in json_response:
+                msg = generate_plain(newest_json)
+                if msg:
+                    if sub_type == "user":
+                        star_str = "用户"
+                    else:
+                        star_str = "仓库"
+                    msg = f"{star_str} : {sub_url}\n" + msg + f"----------\n获取时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
+                    msg_list.append(msg)
+            if len(msg_list) == 1:
+                return msg_list[0]
+            elif len(msg_list) >= 2:
+                return msg_list
 
     return None
 
@@ -115,6 +122,8 @@ def generate_plain(event: dict):
         .strftime('%Y-%m-%d %H:%M:%S')
     resp = None
     if event['type'] == 'IssuesEvent':
+        if Config.get_config("github_sub", "GITHUB_ISSUE"):
+            return None
         if event['payload']['action'] == 'opened':
             title = event['payload']['issue']['title']
             number = event['payload']['issue']['number']
@@ -133,6 +142,8 @@ def generate_plain(event: dict):
                     f"时间：{event_time}\n"
                     f"链接：{link}\n")
     elif event['type'] == 'IssueCommentEvent':
+        if Config.get_config("github_sub", "GITHUB_ISSUE"):
+            return None
         if event['payload']['action'] == 'created':
             title = event['payload']['issue']['title']
             number = event['payload']['issue']['number']
@@ -175,6 +186,7 @@ def generate_plain(event: dict):
                     f"链接：{link}\n")
     elif event['type'] == 'PushEvent':
         commits = []
+        link = event['repo']['name']
         for commit in event['payload']['commits']:
             commits.append(f"· [{commit['author']['name']}] {commit['message']}")
         resp = (f"----------\n"
@@ -183,7 +195,8 @@ def generate_plain(event: dict):
                 f"\n"
                 f"提交数：{len(commits)}\n"
                 f"发布人：{actor}\n"
-                f"时间：{event_time}\n")
+                f"时间：{event_time}\n"
+                f"链接：https://github.com/{link}\n")
     elif event['type'] == 'CommitCommentEvent':
         body = event['payload']['comment']['body']
         if body:
@@ -193,6 +206,23 @@ def generate_plain(event: dict):
         link = event['payload']['comment']['html_url']
         resp = (f"----------\n"
                 f"[新 Comment]\n"
+                f"{body}"
+                f"\n"
+                f"发布人：{actor}\n"
+                f"时间：{event_time}\n"
+                f"链接：{link}\n")
+
+    elif event['type'] == 'ReleaseEvent':
+        body = event['payload']['release']['body']
+        if body:
+            if len(body) > 200:
+                body = body[:200] + "......"
+            body = body + "\n"
+        link = event['payload']['release']['html_url']
+        name = event['payload']['release']['name']
+        resp = (f"----------\n"
+                f"[新 Release]\n"
+                f"版本：{name}\n\n"
                 f"{body}"
                 f"\n"
                 f"发布人：{actor}\n"
