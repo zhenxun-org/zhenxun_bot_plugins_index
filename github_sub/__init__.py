@@ -1,3 +1,5 @@
+import asyncio
+
 from nonebot import on_command
 from nonebot.typing import T_State
 from nonebot.adapters.onebot.v11 import GroupMessageEvent, Message
@@ -13,7 +15,7 @@ from .data_source import (
 
 )
 from models.level_user import LevelUser
-from configs.config import Config
+from configs.config import Config, NICKNAME
 from utils.utils import scheduler, get_bot
 from typing import Optional
 from services.log import logger
@@ -58,6 +60,12 @@ Config.add_plugin_config(
     "GITHUB_TOKEN",
     None,
     help_="登陆github获取https://github.com/settings/tokens/new"
+)
+Config.add_plugin_config(
+    "github_sub",
+    "GITHUB_ISSUE",
+    True,
+    help_="是否不推送Issue"
 )
 
 add_sub = on_command("添加github订阅", aliases={"添加github", "添加gb订阅"}, priority=5, permission=GROUP, block=True)
@@ -175,7 +183,10 @@ async def _():
             if sub:
                 logger.info(f"github开始检测：{sub.sub_url}")
                 rst = await get_sub_status(sub.sub_type, sub.sub_url, etag=sub.etag)
-                await send_sub_msg(rst, sub, bot)
+                if isinstance(rst, list):
+                    await send_sub_msg_list(rst, sub, bot)
+                else:
+                    await send_sub_msg(rst, sub, bot)
         except Exception as e:
             logger.error(f"github订阅推送发生错误 sub_url：{sub.sub_url if sub else 0} {type(e)}：{e}")
 
@@ -184,7 +195,7 @@ async def send_sub_msg(rst: str, sub: GitHubSub, bot: Bot):
     """
     推送信息
     :param rst: 回复
-    :param sub: BilibiliSub
+    :param sub: GitHubSub
     :param bot: Bot
     """
     if rst:
@@ -196,5 +207,31 @@ async def send_sub_msg(rst: str, sub: GitHubSub, bot: Bot):
                     )
                 else:
                     await bot.send_private_msg(user_id=int(x), message=Message(rst))
+            except Exception as e:
+                logger.error(f"github订阅推送发生错误 sub_url：{sub.sub_url} {type(e)}：{e}")
+
+
+async def send_sub_msg_list(rst_list: list, sub: GitHubSub, bot: Bot ):
+    """
+    推送信息
+    :param rst_list: 回复列表
+    :param sub: GitHubSub
+    :param bot: Bot
+    """
+    if rst_list:
+        for x in sub.sub_users.split(",")[:-1]:
+            try:
+                mes_list = []
+                for img in rst_list:
+                    data = {
+                        "type": "node",
+                        "data": {"name": f"{NICKNAME}", "uin": f"{bot.self_id}", "content": img},
+                    }
+                    mes_list.append(data)
+                if ":" in x:
+                    await bot.send_group_forward_msg(
+                        group_id=int(x.split(":")[1]), messages=mes_list)
+                else:
+                    await bot.send_group_forward_msg(user_id=int(x), messages=mes_list)
             except Exception as e:
                 logger.error(f"github订阅推送发生错误 sub_url：{sub.sub_url} {type(e)}：{e}")
