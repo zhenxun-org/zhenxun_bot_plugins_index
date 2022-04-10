@@ -11,7 +11,7 @@
 | [AsoulCnki枝网查重插件](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/asoulcnki) |          [@Copaan](https://github.com/Copaan)          | 利用 [枝网查重](https://asoulcnki.asia/) 查找最相似的小作文，为防止文字太长刷屏，将内容转换为图片形式发出 |
 | [随机猫猫](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/random_cat_gif) |          [@Copaan](https://github.com/Copaan)          | 使用随机猫猫图网站http://edgecats.net/ 实现                  |
 | [语句抽象化](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/abstract) |          [@Copaan](https://github.com/Copaan)          | 抽象话翻译工具：把你打的字都给你emoji咯！                    |
-| [青年大学习](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/mockingbird) |          [@Copaan](https://github.com/Copaan)          | 基于nonebot2的青年大学习插件，用于获取最新一期青年大学习答案 |
+| [青年大学习](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/youthstudy) |          [@Copaan](https://github.com/Copaan)          | 基于nonebot2的青年大学习插件，用于获取最新一期青年大学习答案 |
 | [表情包制作](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/memes) |          [@Copaan](https://github.com/Copaan)          | [Nonebot2](https://github.com/nonebot/nonebot2) 插件，用于表情包制作 |
 | [MockingBird 语音](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/mockingbird) |      [@AkashiCoin](https://github.com/AkashiCoin)      | 可以让bot发送一条指定文本的语音，训练模型绝赞更新中...(咕咕咕) |
 | [超分](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/super_resolution) |      [@AkashiCoin](https://github.com/AkashiCoin)      | 获取图片更大的分辨率 ps:内存小的机器不建议使用               |
