@@ -8,6 +8,8 @@
 
 |                             名称                             |                          作者                          | 备注                                                         |
 | :----------------------------------------------------------: | :----------------------------------------------------: | :----------------------------------------------------------- |
+| [青年大学习](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/mockingbird) |          [@Copaan](https://github.com/Copaan)          | 基于nonebot2的青年大学习插件，用于获取最新一期青年大学习答案 |
+| [表情包制作](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/memes) |          [@Copaan](https://github.com/Copaan)          | [Nonebot2](https://github.com/nonebot/nonebot2) 插件，用于表情包制作 |
 | [MockingBird 语音](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/mockingbird) |      [@AkashiCoin](https://github.com/AkashiCoin)      | 可以让bot发送一条指定文本的语音，训练模型绝赞更新中...(咕咕咕) |
 | [超分](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/super_resolution) |      [@AkashiCoin](https://github.com/AkashiCoin)      | 获取图片更大的分辨率 ps:内存小的机器不建议使用               |
 | [github订阅](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/github_sub) |          [@yajiwa](https://github.com/yajiwa)          | 推送github用户动态或仓库动态                                 |

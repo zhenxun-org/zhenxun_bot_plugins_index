@@ -87,6 +87,8 @@ def parse_image(key: str):
 
 @superResolution.handle()
 async def _(bot: Bot, event: MessageEvent, state: T_State):
+    if event.reply:
+        state["img"] = event.reply.message
     if get_message_img(event.json()):
         state["img"] = event.message
 
@@ -101,7 +103,7 @@ async def _(
     img: Message = Arg("img"),
 ):
     global processing
-    img_url = get_message_img(event.message)[0]
+    img_url = get_message_img(img)[0]
     if processing:
         await superResolution.finish("有超分正在运行...此次请求已取消...")
     await mutex.acquire()

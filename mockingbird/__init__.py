@@ -1,21 +1,26 @@
 import asyncio
+import gc
 import os.path
 from functools import partial
+from multiprocessing import Event
 from pathlib import Path
 
+import langid
 import nonebot
+from configs.config import NICKNAME, Config
+from matplotlib.style import use
 from MockingBirdOnlyForUse import MockingBird, Params
 from MockingBirdOnlyForUse import logger as mocking_logger
 from nonebot import Driver, export, on_command
-from nonebot.adapters.onebot.v11 import Message, MessageSegment
+from nonebot.adapters.onebot.v11 import Message, MessageEvent, MessageSegment
 from nonebot.log import logger as nonebot_logger
 from nonebot.params import ArgStr, CommandArg
 from nonebot.permission import SUPERUSER
 from nonebot.rule import to_me
 from nonebot.typing import T_State
-from configs.config import NICKNAME, Config
 from utils.utils import is_number
 
+from .data_source import get_voice
 from .download import download_model
 
 __zx_plugin_name__ = "MockingBird语音"
@@ -35,6 +40,8 @@ usage：
     指令：
         显示模型
         修改模型 [序号]\[模型名称]
+        开启/关闭tts 切换使用腾讯TTS(需要配置secret_key)
+        重载模型 进行模型重载(并没有什么卵用，或许以后内存泄漏解决会有用？)
 """.strip()
 __plugin_version__ = 0.1
 __plugin_author__ = "AkashiCoin"
@@ -51,6 +58,14 @@ Config.add_plugin_config(
     help_="MockingBird 语音模型",
     default_value="azusa"
 )
+Config.add_plugin_config(
+    "mockingbird",
+    "USE_TTS",
+    False,
+    name="MockingBird 语音",
+    help_="是否使用TTS语音，需要配置secret_key",
+    default_value=False
+)
 
 root = Path() / "data" / "mockingbird"
 mocking_logger.logger = nonebot_logger  # 覆盖使用nonebot的logger
@@ -66,6 +81,7 @@ export = export()
 async def init_mockingbird():
     global part
     global export
+    global mockingbird
     model_name = Config.get_config("mockingbird", "MockingBird_Model")
     model_path = root / model_name
     try:
@@ -86,6 +102,8 @@ async def init_mockingbird():
             Params,
             recoder_path=Path(os.path.join(model_path, "recoder.wav")),
             synthesizer_path=Path(os.path.join(model_path, f"{model_name}.pt")),
+            accuracy=9,
+            steps=10,
             vocoder="HifiGan",
         )
         export.MockingBird = MockingBird
@@ -98,6 +116,8 @@ async def init_mockingbird():
 voice = on_command("说", aliases={"语音"}, block=True, rule=to_me(), priority=4)
 view_model = on_command("显示所有模型", aliases={"MockingBird模型", "显示模型", "所有模型"}, block=True, permission=SUPERUSER, priority=5)
 change_model = on_command("修改模型", aliases={"MockingBird模型修改"}, block=True, permission=SUPERUSER, priority=5)
+reload_mockingbird = on_command("重载模型", aliases={"MockingBird模型重载"}, block=True, permission=SUPERUSER, priority=5)
+switch_tts = on_command("开启tts", aliases={"关闭tts"}, block=True, permission=SUPERUSER, priority=5)
 
 @voice.handle()
 async def _(state:T_State, arg: Message = CommandArg()):
@@ -108,10 +128,21 @@ async def _(state:T_State, arg: Message = CommandArg()):
 @voice.got("words", prompt=f"想要让{NICKNAME}什么话呢?")
 async def _(state: T_State,  words: str = ArgStr("words")):
     global part
-    params = part(words)
-    params.text = words
-    loop = asyncio.get_event_loop()
-    await voice.finish(MessageSegment.record(await loop.run_in_executor(None, MockingBird.genrator_voice, params)))
+    words = words.strip().replace('\n', '').replace('\r', '')
+    if Config.get_config("mockingbird", "USE_TTS"):
+        record = await get_voice(words)
+        if record:
+            await voice.finish(MessageSegment.record(record))
+        else:
+            await voice.finish("出错了，请稍后再试")
+    if langid.classify(words)[0] == "ja":
+        record = await get_voice(words)
+    else:
+        params = part(words)
+        params.text = words
+        loop = asyncio.get_event_loop()
+        record = await loop.run_in_executor(None, MockingBird.genrator_voice, params)
+    await voice.finish(MessageSegment.record(record))
 
 @view_model.handle()
 async def _():
@@ -132,10 +163,31 @@ async def _(arg: Message = CommandArg()):
         await change_model.finish("该模型不存在...")
     else:
         if args == Config.get_config("mockingbird", "MockingBird_Model"):
-            change_model.finish("该模型正在使用，请勿重复加载...")
+            await change_model.finish("该模型正在使用，请勿重复加载...")
         Config.set_config("mockingbird", "MockingBird_Model", args)
+        gc.collect()
         msg = await init_mockingbird()
         if isinstance(msg, str):
             await change_model.finish(f"修改失败...错误信息:{msg}")
         else:
             await change_model.finish(f"修改MockingBird模型为{args}成功...")
+
+@reload_mockingbird.handle()
+async def _():
+    gc.collect()
+    msg = await init_mockingbird()
+    if isinstance(msg, str):
+        await change_model.finish(f"重载失败...错误信息:{msg}")
+    else:
+        await change_model.finish(f"重载MockingBird模型成功...")
+
+@switch_tts.handle()
+async def _(event: MessageEvent):
+    global use_tts
+    msg = event.get_plaintext().strip()
+    if msg.startswith("开启"):
+        Config.set_config("mockingbird", "USE_TTS", True)
+        await switch_tts.finish("已开启使用tts...")
+    else:
+        Config.set_config("mockingbird", "USE_TTS", False)
+        await switch_tts.finish("已关闭tts，使用MockingBird语音...")
