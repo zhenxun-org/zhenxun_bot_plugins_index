@@ -2,6 +2,14 @@
 
 真寻 bot 的插件库，稍微修改也可在 nonebot2 平台通用
 
+## 单个插件的下载方法
+
+> 在插件的地址栏链接前面加上`https://minhaskamal.github.io/DownGit/#/home?url=`
+>
+> 比如说 [https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/mockingbird](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/mockingbird)
+>
+> 回车就可以自动跳转单插件下载
+
 ## 插件索引（按时间倒序）
 
 <!-- 新内容请添加到首行 -->
