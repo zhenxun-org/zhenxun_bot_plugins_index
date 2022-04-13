@@ -44,22 +44,32 @@ def square(img: IMG) -> IMG:
 
 
 async def draw_text(
-    img: IMG,
-    pos: Tuple[float, float],
-    text: str,
-    font: FreeTypeFont,
-    fill=None,
-    spacing: int = 4,
-    align: Literal["left", "right", "center"] = "left",
-    stroke_width: int = 0,
-    stroke_fill=None,
+        img: IMG,
+        pos: Tuple[float, float],
+        text: str,
+        font: FreeTypeFont,
+        fill=None,
+        spacing: int = 4,
+        align: Literal["left", "right", "center"] = "left",
+        stroke_width: int = 0,
+        stroke_fill=None,
 ):
     if not text:
         return
-    lines = text.strip().split("\n")
+
     draw = ImageDraw.Draw(img)
-    max_w = font.getsize_multiline(text, spacing=spacing, stroke_width=stroke_width)[0]
-    current_x, current_y = pos
+    if all([char not in UNICODE_EMOJI["en"] for char in text]):
+        draw.multiline_text(
+            pos,
+            text,
+            font=font,
+            fill=fill,
+            spacing=spacing,
+            align=align,
+            stroke_width=stroke_width,
+            stroke_fill=stroke_fill,
+        )
+        return
 
     emoji_font_file = BytesIO(await get_font(EMOJI_FONT))
     emoji_font = ImageFont.truetype(emoji_font_file, 109, encoding="utf-8")
@@ -71,8 +81,27 @@ async def draw_text(
                 return True
         return False
 
+    lines = text.strip().split("\n")
+    max_w = font.getsize_multiline(text)[0]
+    current_x, current_y = pos
+    current_text = ""
+
+    def draw_current_text():
+        nonlocal current_x, current_text
+        if current_text:
+            draw.text(
+                (current_x, current_y),
+                current_text,
+                font=font,
+                fill=fill,
+                stroke_width=stroke_width,
+                stroke_fill=stroke_fill,
+            )
+            current_x += font.getsize(current_text)[0]
+            current_text = ""
+
     for line in lines:
-        line_w = font.getsize(line, stroke_width=stroke_width)[0]
+        line_w = font.getsize(line)[0]
         dw = max_w - line_w
         current_x = pos[0]
         if align == "center":
@@ -82,26 +111,20 @@ async def draw_text(
 
         for char in line:
             if char in UNICODE_EMOJI["en"] and has_emoji(char):
+                draw_current_text()
                 emoji_img = Image.new("RGBA", (150, 150))
                 emoji_draw = ImageDraw.Draw(emoji_img)
                 emoji_draw.text((0, 0), char, font=emoji_font, embedded_color=True)
                 emoji_img = emoji_img.crop(emoji_font.getbbox(char))
-                emoji_x, emoji_y = font.getsize(char, stroke_width=stroke_width)
+                emoji_x, emoji_y = font.getsize(char)
                 emoji_img = fit_size(
                     emoji_img, (emoji_x, emoji_y), FitSizeMode.INSIDE, FitSizeDir.SOUTH
                 )
                 img.paste(emoji_img, (int(current_x), int(current_y)), emoji_img)
                 current_x += emoji_x
             else:
-                draw.text(
-                    (current_x, current_y),
-                    char,
-                    font=font,
-                    fill=fill,
-                    stroke_width=stroke_width,
-                    stroke_fill=stroke_fill,
-                )
-                current_x += font.getsize(char, stroke_width=stroke_width)[0]
+                current_text += char
+        draw_current_text()
         current_y += font.getsize("A", stroke_width=stroke_width)[1] + spacing
 
 
@@ -125,7 +148,7 @@ class FitSizeDir(Enum):
 
 
 def limit_size(
-    img: IMG, size: Tuple[int, int], mode: FitSizeMode = FitSizeMode.INCLUDE
+        img: IMG, size: Tuple[int, int], mode: FitSizeMode = FitSizeMode.INCLUDE
 ) -> IMG:
     """
     调整图片到指定的大小，不改变长宽比（即返回的图片大小不一定是指定的size）
@@ -146,10 +169,10 @@ def limit_size(
 
 
 def cut_size(
-    img: IMG,
-    size: Tuple[int, int],
-    direction: FitSizeDir = FitSizeDir.CENTER,
-    bg_color: Union[str, float, Tuple[float, ...]] = (255, 255, 255, 0),
+        img: IMG,
+        size: Tuple[int, int],
+        direction: FitSizeDir = FitSizeDir.CENTER,
+        bg_color: Union[str, float, Tuple[float, ...]] = (255, 255, 255, 0),
 ) -> IMG:
     """
     裁剪图片到指定的大小，超出部分裁剪，不足部分设为指定颜色
@@ -177,11 +200,11 @@ def cut_size(
 
 
 def fit_size(
-    img: IMG,
-    size: Tuple[int, int],
-    mode: FitSizeMode = FitSizeMode.INCLUDE,
-    direction: FitSizeDir = FitSizeDir.CENTER,
-    bg_color: Union[str, float, Tuple[float, ...]] = (255, 255, 255, 0),
+        img: IMG,
+        size: Tuple[int, int],
+        mode: FitSizeMode = FitSizeMode.INCLUDE,
+        direction: FitSizeDir = FitSizeDir.CENTER,
+        bg_color: Union[str, float, Tuple[float, ...]] = (255, 255, 255, 0),
 ) -> IMG:
     """
     调整图片到指定的大小，超出部分裁剪，不足部分设为指定颜色
@@ -295,7 +318,7 @@ class Maker(Protocol):
 
 
 async def make_jpg_or_gif(
-    img: IMG, func: Maker, gif_zoom: float = 1, gif_max_frames: int = 50
+        img: IMG, func: Maker, gif_zoom: float = 1, gif_max_frames: int = 50
 ) -> BytesIO:
     """
     制作静图或者动图
@@ -362,13 +385,13 @@ def wrap_text(text: str, font: FreeTypeFont, max_width: float, **kwargs) -> List
 
 
 async def fit_font_size(
-    text: str,
-    max_width: float,
-    max_height: float,
-    fontname: str,
-    max_fontsize: int,
-    min_fontsize: int,
-    stroke_ratio: float = 0,
+        text: str,
+        max_width: float,
+        max_height: float,
+        fontname: str,
+        max_fontsize: int,
+        min_fontsize: int,
+        stroke_ratio: float = 0,
 ) -> int:
     fontsize = max_fontsize
     while True:

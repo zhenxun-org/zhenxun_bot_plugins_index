@@ -5,6 +5,7 @@ from .utils import to_image
 from .models import UserInfo, Command
 from .functions import *
 
+
 commands = [
     Command(("摸", "摸摸", "摸头", "摸摸头", "rua"), petpet, arg_num=1),
     Command(("亲", "亲亲"), kiss),
@@ -56,6 +57,10 @@ commands = [
     Command(("捶",), thump),
     Command(("需要", "你可能需要"), need),
     Command(("捂脸",), cover_face),
+    Command(("敲",), knock),
+    Command(("垃圾", "垃圾桶"), garbage),
+    Command(("为什么@我", "为什么at我"), whyatme),
+    Command(("像样的亲亲",), decent_kiss, convert=False),
 ]
 
 
