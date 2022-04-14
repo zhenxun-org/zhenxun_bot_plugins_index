@@ -225,47 +225,26 @@
      /** 使用形如 id=<块 ID> 的 URL 参数跳转到指定的块
       *  REF [leolee9086](https://github.com/leolee9086)
       */
-     function urlParser(url) {
-         url = url || '';
-         const queryObj = {};
-         const reg = /[?&]([^=&#]+)=([^&#]*)/g;
-         const queryArr = url.match(reg) || [];
-         // console.log(queryArr)
-         for (const i in queryArr) {
-             if (Object.hasOwnProperty.call(queryArr, i)) {
-                 const query = queryArr[i].split('=');
-                 const key = query[0].substr(1);
-                 const value = decodeURIComponent(query[1]);
-                 queryObj[key] ? queryObj[key] = [].concat(queryObj[key], value) : queryObj[key] = value;
-             }
-         }
-         console.log(queryObj)
-         return queryObj;
- 
-     }
      function goto(id) {
          let doc = window.document
          // console.log(doc)
-         let link = doc.createElement("span")
-         link.setAttribute("data-type", "block-ref")
-         link.setAttribute("data-id", id)
-         let target = doc.querySelector(".protyle-wysiwyg div[data-node-id] div[contenteditable]")
+         let target = doc.querySelector("div.protyle-wysiwyg div[data-node-id] div[contenteditable]")
          if (target) {
+             let link = doc.createElement("span")
+             link.setAttribute("data-type", "block-ref")
+             link.setAttribute("data-id", id)
              target.appendChild(link)
              link.click()
              link.remove()
          }
-         else {
-             setTimeout(async () => goto(id), 1000)
-         }
      }
-     async function jumpToID() {
-         let params = urlParser(window.location.href)
-         if (params) {
-             let id = params.id
-             if (id) {
-                 goto(id)
-             }
+ 
+     function jumpToID() {
+         let url = new URL(window.location.href);
+         let id = url.searchParams.get('id');
+ 
+         if (/\d{14}\-[0-9a-z]{7}/.test(id)) {
+             goto(id)
          }
      }
      window.onload = setTimeout(jumpToID, 0)
@@ -275,27 +254,62 @@
    - 表情 ID 与表情图片的映射关系可以从 [表情 CQ 码 ID 表](https://github.com/kyubotics/coolq-http-api/wiki/%E8%A1%A8%E6%83%85-CQ-%E7%A0%81-ID-%E8%A1%A8) 查看
    - 在思源笔记的工作空间中分别创建 `<工作空间>/data/emojis/qq-gif/` 与 `<工作空间>/data/emojis/qq-png/` 两个目录
    - 将打包下载的表情图片中所有 `*.gif` 动态表情图片与所有 `*.png` 静态表情图片分别上传到 `qq-gif` 与 `qq-png` 目录中
-8. 在 bot 访问的思源笔记本 Web 端中选择一个文档作为收集箱(选择笔记本内的一个文档而非笔记本), 并记录该文档的绝对路径
-   - 假设选择在 `收集箱` 笔记本内的 `Inbox` 文档作为收集箱, 该文档的 ID 为 `20220128203409-j5553g7` (可以从该文档的右键菜单中获取文档的 ID)
-   - 从文件系统中搜索 `20220128203409-j5553g7.sy` 文件, 并获得该文件相对于 `<工作空间>/data/` 目录的路径, 例如 `20220128203353-2p55r7q/20220128203409-j5553g7.sy`
-     - 其中 `20220128203353-2p55r7q/` 为 `收集箱` 笔记本的目录
-     - 其中 `20220128203409-j5553g7.sy` 为 `Inbox` 文档的数据文件
-9.  依次启动 `go-cqhttp`, `Postgresql` 与 `绪山真寻 bot`
-10.  使用超级用户账户向机器人账户发送如下命令进行收集箱管理
-   - `设置为收集箱 [文档完整路径] [群号]`
-     - 示例: `设置为收集箱 20220128203353-2p55r7q/20220128203409-j5553g7.sy 123456789`
-     - `[文档完整路径]` 需要填写第 8 步获得的文档完整路径, 由 `[笔记本ID/文档相对于笔记本的路径]` 组成, 这里是 `20220128203353-2p55r7q/20220128203409-j5553g7.sy`
-     - `[群号]` 需要填写作为收集箱的群号(机器人必须已经加入该群), 这里是 `123456789`, 该群与 ID 为 `20220128203409-j5553g7` 的文档绑定
-       - 注意: 一旦完成绑定, 该文档不可移动, 若需要移动则需要移除收集箱后重新添加收集箱
-     - 注: 添加到该收集箱的资源文件在这里会放置在 `20220128203353-2p55r7q/20220128203409-j5553g7/assets/` 目录下
-   - `从收集箱移除 *[群号]`
-     - 示例: `从收集箱移除 123456789 987654321`
-     - `*[群号]` 即为想要移除的、作为收集箱的群号列表, 多个群号中间使用空格隔开
-     - 注1: 将一个或多个群移除后已经添加到对应收集箱的内容不会随之删除
-     - 注2: 移除的群可以再次设置为收集箱
-   - `列出收集箱`
-     - 示例: `列出收集箱`
-     - 该命令会列出所有的作为收集箱的群号
+8. 为主题添加渲染表示昵称的块自定义属性 `custom-sender-nickname` 功能
+   - 将如下 css 片段添加至文件 `<工作空间>/conf/appearance/themes/<主题名>/theme.css` 末尾
+     ```css
+     /* 显示昵称 */
+     .protyle-wysiwyg div[data-node-id][custom-sender-nickname]::before {
+         content: attr(custom-sender-nickname);
+         font-size: 0.75em;
+         color: var( --b3-theme-on-surface);
+         text-align: left;
+         outline: 1px solid var( --b3-theme-on-surface);
+     }
+     ```
+9.  在 bot 访问的思源笔记本 Web 端中选择一个文档作为收集箱(选择笔记本内的一个文档而非笔记本), 并记录该文档的绝对路径
+    - 假设选择在 `收集箱` 笔记本内的 `Inbox` 文档作为收集箱, 该文档的 ID 为 `20220128203409-j5553g7` (可以从该文档的右键菜单中获取文档的 ID)
+    - 从文件系统中搜索 `20220128203409-j5553g7.sy` 文件, 并获得该文件相对于 `<工作空间>/data/` 目录的路径, 例如 `20220128203353-2p55r7q/20220128203409-j5553g7.sy`
+      - 其中 `20220128203353-2p55r7q/` 为 `收集箱` 笔记本的目录
+      - 其中 `20220128203409-j5553g7.sy` 为 `Inbox` 文档的数据文件
+10. 依次启动 `go-cqhttp`, `Postgresql` 与 `绪山真寻 bot`
+11. 使用配置文件进行收集箱管理(可选)
+    - 打开 `Bot根目录/data/siyuan.json` 文件, 如果没有则新建
+    - 参考如下示例进行收集箱配置
+      ```json
+      {
+          "inbox": {
+              "inbox_list": {
+                  "123456789": {
+                      "box": "20220128203353-2p55r7q",
+                      "path": "\/20220128203409-j5553g7.sy",
+                      "assets": "\/20220128203353-2p55r7q\/20220128203409-j5553g7\/assets\/ ",
+                      "parentID": "20220415000001-umfz7oe"
+                  }
+              }
+          }
+      }
+      ```
+      - `123456789` 为收集箱的群号
+      - `box` 字段的值为收集箱所在笔记本的 ID
+      - `path` 字段的值是收集箱顶层文档相对于笔记本根目录的路径
+      - `assets` 字段的值为群资源文件(图片 & 群文件)相对于思源 `data` 目录的存放路径
+      - `parentID` 字段的值为今天收集箱内容存放的文档, 将在每天凌晨 `00:00:01` 新建当日的文档并更新该字段的值
+    - 文件更改后需要重新 bot 或重新加载插件以载入配置
+12. 使用超级用户账户向机器人账户发送如下命令进行收集箱管理(可选)
+    - `设置为收集箱 [文档完整路径] [群号]`
+      - 示例: `设置为收集箱 20220128203353-2p55r7q/20220128203409-j5553g7.sy 123456789`
+      - `[文档完整路径]` 需要填写第 8 步获得的文档完整路径, 由 `[笔记本ID/文档相对于笔记本的路径]` 组成, 这里是 `20220128203353-2p55r7q/20220128203409-j5553g7.sy`
+      - `[群号]` 需要填写作为收集箱的群号(机器人必须已经加入该群), 这里是 `123456789`, 该群与 ID 为 `20220128203409-j5553g7` 的文档绑定
+        - 注意: 一旦完成绑定, 该文档不可移动, 若需要移动则需要移除收集箱后重新添加收集箱
+      - 注: 添加到该收集箱的资源文件在这里会放置在 `20220128203353-2p55r7q/20220128203409-j5553g7/assets/` 目录下
+    - `从收集箱移除 *[群号]`
+      - 示例: `从收集箱移除 123456789 987654321`
+      - `*[群号]` 即为想要移除的、作为收集箱的群号列表, 多个群号中间使用空格隔开
+      - 注1: 将一个或多个群移除后已经添加到对应收集箱的内容不会随之删除
+      - 注2: 移除的群可以再次设置为收集箱
+    - `列出收集箱`
+      - 示例: `列出收集箱`
+      - 该命令会列出所有的作为收集箱的群号
 
 ## 自定义配置 | CUSTOM CONFIG
 
@@ -330,10 +344,10 @@ siyuan:
     default_value: 0123456789ABCDEF
     level_module:
   SIYUAN_URL:
-    value: https://your.domain.name
+    value: https://your.domain.name:8443
     name: Token
     help: 思源笔记 URL
-    default_value: https://your.domain.name
+    default_value: https://your.domain.name:8443
     level_module:
 ```
 

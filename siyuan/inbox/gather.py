@@ -5,7 +5,7 @@ from nonebot import (
     on_notice,
 )
 from nonebot.typing import T_State
-from nonebot.adapters.cqhttp import (
+from nonebot.adapters.onebot.v11 import (
     Bot,
     GroupMessageEvent,
     GroupUploadNoticeEvent,
@@ -15,7 +15,7 @@ from services.log import logger
 from configs.config import Config
 from utils.utils import scheduler, get_bot
 
-from .rule import (
+from ..rule import (
     checkInboxMessage,
     checkInboxNotice,
 )
@@ -40,7 +40,7 @@ __zx_plugin_name__ = "思源收集箱 [Hidden]"
 
 __plugin_des__ = "将群里所有消息都发送到指定"
 
-__plugin_version__ = 0.1
+__plugin_version__ = 0.21
 __plugin_author__ = "Zuoqiu-Yingyi"
 
 __plugin_type__ = ('思源笔记', 1)
@@ -71,6 +71,7 @@ SIYUAN_URL = Config.get_config("siyuan", "SIYUAN_URL")
 )
 async def _():
     try:
+        error_info = None
         bot = get_bot()
         for group_id, config in siyuan_manager.inbox_list.items():
             # 获取该收集箱路径 -> 获取可读路径 -> 新建文档 -> 更新文档 ID
@@ -81,24 +82,32 @@ async def _():
             await siyuan_manager.updateParentID(group_id=group_id, doc_id=doc_id)
 
             message = f"收集箱 {group_id} 新建文档 {title} 成功 {SIYUAN_URL}/stage/build/desktop/?id={doc_id}"
-            logger.info(message)
+    except SiyuanAPIException as e:
+        error_info = f"思源 API 内核错误 e: {e.msg}"
+    except SiyuanAPIError as e:
+        error_info = f"思源 API HTTP 响应错误 e: {e}"
+    except Exception as e:
+        error_info = f"群消息处理错误 e: {e}"
+    else:
+        await bot.send_msg(
+            user_id=int(list(bot.config.superusers)[0]),
+            message=message,
+        )
+        logger.info(message)
+    finally:
+        if error_info is not None:
             await bot.send_msg(
                 user_id=int(list(bot.config.superusers)[0]),
-                message=message,
+                message=error_info,
             )
-
-    except SiyuanAPIError as e:
-        logger.error(f"思源 API HTTP 响应错误 e:{e}")
-    except SiyuanAPIException as e:
-        logger.error(f"思源 API 内核错误 e:{e}")
-    except Exception as e:
-        logger.error(f"新建今日文档错误 e:{e}")
+            logger.error(error_info)
 
 
 # 群文件
 @inbox_upload.handle()
 async def _(bot: Bot, event: GroupUploadNoticeEvent, state: T_State):
     try:
+        error_info = None
         event_body = await eventBodyParse(event.json())
         group_id = event_body.get('group_id')  # 群号
         _, _, uploadPath, parentID = siyuan_manager.getInboxInfo(group_id=str(group_id))
@@ -120,7 +129,7 @@ async def _(bot: Bot, event: GroupUploadNoticeEvent, state: T_State):
                 event=event_body,
                 is_message=False,
             )
-            # print(data)
+            print(data)
             r = await api.post(
                 url=api.url.appendBlock,
                 body={
@@ -134,21 +143,26 @@ async def _(bot: Bot, event: GroupUploadNoticeEvent, state: T_State):
 {SIYUAN_URL}/{v}
 {url}"""
             break
-
-        await inbox_upload.send(reply)
-        logger.info(reply.replace('\n', ' '))
-    except SiyuanAPIError as e:
-        logger.error(f"思源 API HTTP 响应错误 e:{e}")
     except SiyuanAPIException as e:
-        logger.error(f"思源 API 内核错误 e:{e}")
+        error_info = f"思源 API 内核错误 e: {e.msg}"
+    except SiyuanAPIError as e:
+        error_info = f"思源 API HTTP 响应错误 e: {e}"
     except Exception as e:
-        logger.error(f"群消息处理错误 e:{e}")
+        error_info = f"群消息处理错误 e: {e}"
+    else:
+        await inbox_upload.send(reply)
+        logger.info(reply)
+    finally:
+        if error_info is not None:
+            await inbox_upload.send(error_info)
+            logger.error(error_info)
 
 
 # 群消息
 @inbox_message.handle()
 async def _(bot: Bot, event: GroupMessageEvent, state: T_State):
     try:
+        error_info = None
         event_body = await eventBodyParse(event.json())
         group_id = event_body.get('group_id')  # 群号
         _, _, uploadPath, parentID = siyuan_manager.getInboxInfo(group_id=str(group_id))
@@ -179,7 +193,7 @@ async def _(bot: Bot, event: GroupMessageEvent, state: T_State):
             event=event_body,
             have_text=have_text,
         )
-        # print(data)
+        print(data)
         r = await api.post(
             url=api.url.appendBlock,
             body={
@@ -189,11 +203,16 @@ async def _(bot: Bot, event: GroupMessageEvent, state: T_State):
             },
         )
         reply = f"{SIYUAN_URL}/stage/build/desktop/?id={r.data[0]['doOperations'][0]['id']}"
-        await inbox_upload.send(reply)
-        logger.info(reply)
-    except SiyuanAPIError as e:
-        logger.error(f"思源 API HTTP 响应错误 e:{e}")
     except SiyuanAPIException as e:
-        logger.error(f"思源 API 内核错误 e:{e}")
+        error_info = f"思源 API 内核错误 e: {e.msg}"
+    except SiyuanAPIError as e:
+        error_info = f"思源 API HTTP 响应错误 e: {e}"
     except Exception as e:
-        logger.error(f"群消息处理错误 e:{e}")
+        error_info = f"群消息处理错误 e: {e}"
+    else:
+        await inbox_message.send(reply)
+        logger.info(reply)
+    finally:
+        if error_info is not None:
+            await inbox_message.send(error_info)
+            logger.error(error_info)
