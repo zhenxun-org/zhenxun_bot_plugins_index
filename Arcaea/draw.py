@@ -155,16 +155,17 @@ class Data:
         _song_img = os.path.join(
             self._song_dir, self.songid, "base.jpg" if self.difficulty != 3 else "3.jpg"
         )
-        _diff_img = os.path.join(
-            self._diff_dir, f"{self.diff(self.difficulty).upper()}.png"
-        )
+        # _diff_img = os.path.join(
+        #     self._diff_dir, f"{self.diff(self.difficulty).upper()}.png"
+        # )
+        _diff_img = os.path.join(self._recent_dir, f"{self.diff(self.difficulty)}.png")
         _new_img = os.path.join(self._img, "new.png")
 
         s_img = await self.async_img(_song_img, "songs", self.songid, self.difficulty)
         self.song_img = s_img.resize((175, 175))
         self.b30_img = self.open_img(_b30_img)
         self.rank_img = self.open_img(_rank_img).resize((70, 40))
-        self.diff_img = self.open_img(_diff_img)
+        self.diff_img = self.open_img(_diff_img).resize((175, 20))
         self.new_img = self.open_img(_new_img)
 
     def open_img(self, img: str) -> Image.Image:
@@ -476,8 +477,6 @@ async def draw_info(arcid: int) -> str:
 
             # 背景
             im.alpha_composite(data.b30_img, (bg_x + 40, bg_y))
-            # 难度
-            im.alpha_composite(data.diff_img, (bg_x + 40, bg_y + 25))
             # 曲绘
             im.alpha_composite(data.song_img, (bg_x + 70, bg_y + 50))
             # rank
@@ -489,11 +488,24 @@ async def draw_info(arcid: int) -> str:
             im.alpha_composite(data.rank_img, rank_xy)
             # 黑线
             im.alpha_composite(data.black_line, (bg_x + 70, bg_y + 48))
+            # 难度
+            im.alpha_composite(data.diff_img, (bg_x + 70, bg_y + 205))
             # 时间
             im.alpha_composite(data.time_img, (bg_x + 245, bg_y + 205))
 
             songinfo = asql.song_info(data.songid, data.diff(data.difficulty))
             title = songinfo[1] if songinfo[1] else songinfo[0]
+            if songinfo[3] == -1:
+                if data.rating > 0:
+                    songrating = calc_rating(2, score=data.score, rating=data.rating)
+                    asql.add_song_rating(
+                        data.songid, data.diff(data.difficulty), songrating * 10
+                    )
+                else:
+                    songrating = -1
+            else:
+                songrating = songinfo[3] / 10
+            diffi = data.diff(data.difficulty)
 
             im = DrawText(
                 im,
@@ -625,6 +637,16 @@ async def draw_info(arcid: int) -> str:
                 data.Exo_Regular,
                 (0, 0, 0, 255),
                 anchor="ls",
+            ).draw_text()
+            # Difficulty
+            im = DrawText(
+                im,
+                bg_x + 155,
+                bg_y + 215,
+                20,
+                f"{diffi.upper()} | {songrating}",
+                data.Exo_Regular,
+                anchor="mm",
             ).draw_text()
             # Rating
             im = DrawText(

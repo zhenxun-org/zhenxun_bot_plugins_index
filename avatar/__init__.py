@@ -1,10 +1,12 @@
 import re
 from typing import Type
-from services.log import logger
+
 from nonebot import on_command
-from nonebot.typing import T_State
+from nonebot.adapters.onebot.v11 import Bot, Event, Message, PrivateMessageEvent
 from nonebot.matcher import Matcher
-from nonebot.adapters.onebot.v11 import Bot, Event, PrivateMessageEvent
+from nonebot.params import ArgStr, CommandArg
+from nonebot.typing import T_State
+from services.log import logger
 
 from .data_source import get_image
 
@@ -69,10 +71,15 @@ support = on_command("精神支柱", priority=5, block=True)
 
 
 async def handle(
-    matcher: Type[Matcher], event: Event, command: str, type: str, reverse: bool = False
+    matcher: Type[Matcher],
+    event: Event,
+    command: str,
+    type: str,
+    reverse: bool = False,
+    arg: Message = CommandArg(),
 ):
     msg = event.get_message()
-    msg_text = event.get_plaintext().strip()
+    msg_text = arg.extract_plain_text().strip()
     self_id = event.user_id
     user_id = ""
 
@@ -117,50 +124,100 @@ async def handle(
 
 
 @petpet.handle()
-async def _(bot: Bot, event: Event, state: T_State):
-    await handle(petpet, event, "摸", "petpet")
+async def _(
+    bot: Bot,
+    event: Event,
+    state: T_State,
+    arg: Message = CommandArg(),
+):
+    await handle(petpet, event, "摸", "petpet", arg=arg)
 
 
 @cuo.handle()
-async def _(bot: Bot, event: Event, state: T_State):
-    await handle(cuo, event, "搓", "cuo")
+async def _(
+    bot: Bot,
+    event: Event,
+    state: T_State,
+    arg: Message = CommandArg(),
+):
+    await handle(cuo, event, "搓", "cuo", arg=arg)
 
 
 @tear.handle()
-async def _(bot: Bot, event: Event, state: T_State):
-    await handle(tear, event, "撕", "tear")
+async def _(
+    bot: Bot,
+    event: Event,
+    state: T_State,
+    arg: Message = CommandArg(),
+):
+    await handle(tear, event, "撕", "tear", arg=arg)
 
 
 @throw.handle()
-async def _(bot: Bot, event: Event, state: T_State):
-    await handle(throw, event, "丢", "throw")
+async def _(
+    bot: Bot,
+    event: Event,
+    state: T_State,
+    arg: Message = CommandArg(),
+):
+    await handle(throw, event, "丢", "throw", arg=arg)
 
 
 @crawl.handle()
-async def _(bot: Bot, event: Event, state: T_State):
-    await handle(crawl, event, "爬", "crawl")
+async def _(
+    bot: Bot,
+    event: Event,
+    state: T_State,
+    arg: Message = CommandArg(),
+):
+    await handle(crawl, event, "爬", "crawl", arg=arg)
 
 
 @kiss.handle()
-async def _(bot: Bot, event: Event, state: T_State):
-    await handle(kiss, event, "亲", "kiss")
+async def _(
+    bot: Bot,
+    event: Event,
+    state: T_State,
+    arg: Message = CommandArg(),
+):
+    await handle(kiss, event, "亲", "kiss", arg=arg)
 
 
 @kiss_me.handle()
-async def _(bot: Bot, event: Event, state: T_State):
-    await handle(kiss, event, "亲我", "kiss", reverse=True)
+async def _(
+    bot: Bot,
+    event: Event,
+    state: T_State,
+    arg: Message = CommandArg(),
+):
+    await handle(kiss, event, "亲我", "kiss", reverse=True, arg=arg)
 
 
 @rub.handle()
-async def _(bot: Bot, event: Event, state: T_State):
-    await handle(rub, event, "贴", "rub")
+async def _(
+    bot: Bot,
+    event: Event,
+    state: T_State,
+    arg: Message = CommandArg(),
+):
+    await handle(rub, event, "贴", "rub", arg=arg)
 
 
 @rub_me.handle()
-async def _(bot: Bot, event: Event, state: T_State):
-    await handle(rub, event, "贴我", "rub", reverse=True)
+async def _(
+    bot: Bot,
+    event: Event,
+    state: T_State,
+    arg: Message = CommandArg(),
+):
+    await handle(rub, event, "贴我", "rub", reverse=True, arg=arg)
 
 
 @support.handle()
-async def _(bot: Bot, event: Event, state: T_State):
-    await handle(support, event, "精神支柱", "support")
+async def _(
+    bot: Bot,
+    event: Event,
+    state: T_State,
+    arg: Message = CommandArg(),
+):
+    await handle(support, event, "精神支柱", "support", arg=arg)

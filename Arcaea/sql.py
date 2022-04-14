@@ -67,6 +67,20 @@ class ARCSQL:
         except Exception as e:
             logger.error(e)
 
+    # 添加查分账号
+    def insert_check_user(self, bind_id: int, email: str, password: str) -> bool:
+        try:
+            conn = self.arc_conn()
+            conn.execute(
+                f'INSERT INTO LOGIN VALUES (NULL, {bind_id}, "{email}", "{password}", 0)'
+            )
+            conn.commit()
+            self.__is_full__(bind_id)
+            return True
+        except Exception as e:
+            logger.error(e)
+            return False
+
     # 临时绑定账号
     def insert_temp_user(self, qqid: int, arcid: int, arcname: str, gid: int) -> bool:
         try:
@@ -87,7 +101,7 @@ class ARCSQL:
         try:
             conn = self.arc_conn()
             conn.execute(
-                f'UPDATE USER SET ARCNAME = "{arcname}", USER_ID = {user_id}, BIND_ID = {bind_id} WHERE ARCNAME = "{arcname}"'
+                f'UPDATE USER SET ARCNAME = "{arcname}", USER_ID = {user_id}, BIND_ID = "{bind_id}" WHERE ARCNAME = "{arcname}"'
             )
             conn.commit()
             self.__is_full__(bind_id)
@@ -166,7 +180,10 @@ class ARCSQL:
                 .execute(f"SELECT EMAIL, PASSWORD FROM LOGIN WHERE BIND_ID = {bind_id}")
                 .fetchall()
             )
-            return result[0][0], result[0][1]
+            if not result:
+                return False
+            else:
+                return result[0][0], result[0][1]
         except Exception as e:
             logger.error(e)
             return False
