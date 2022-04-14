@@ -2,16 +2,37 @@
 
 真寻 bot 的插件库，稍微修改也可在 nonebot2 平台通用
 
+## 单个插件的下载方法
+
+> 在插件的地址栏链接前面加上`https://minhaskamal.github.io/DownGit/#/home?url=`
+>
+> 比如说 [https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/mockingbird](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/mockingbird)
+>
+> 回车就可以自动跳转单插件下载
+
 ## 插件索引（按时间倒序）
 
 <!-- 新内容请添加到首行 -->
 
-| 名称                                                                                                            | 作者                                                   | 备注                                                                                                                         |
-| --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------- |
-| [思源笔记收集箱](https://github.com/Zuoqiu-Yingyi/zhenxun-bot-plugin-siyuan)                                    | [@Zuoqiu-Yingyi](https://github.com/Zuoqiu-Yingyi)     | 将某些群设置为收集箱, 并将群中所有消息与文件转存至 [思源笔记](https://github.com/siyuan-note/siyuan) 中                      |
-| [Arcaea 查分器](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot_plugin_atri)      | [@AkashiCoin](https://github.com/AkashiCoin)           | 基于 Arcaea [https://github.com/Yuri-YuzuChaN/Arcaea](https://github.com/Yuri-YuzuChaN/Arcaea)<br> 在其基础上对真寻进行适配  |
-| [可爱的 Atri 语言包](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot_plugin_atri) | [@AkashiCoin](https://github.com/AkashiCoin)           | 此语音来自 [FYWinds/nonebot-plugin-atri](https://github.com/FYWinds/nonebot-plugin-atri) 并在其基础上对 zhenxun_bot 进行适配 |
-| [原神 KFC 社死语言](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/genshinkfc)           | @梦璃雨落                                              | （异世相遇，尽享社死！）                                                                                                     |
-| [人生重开模拟器](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/lifeRestart)             | [@AkashiCoin](https://github.com/AkashiCoin)           | 转自 HoshinoBot                                                                                                              |
-| [随机塔罗牌](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/tarot)                       | [@AkashiCoin](https://github.com/AkashiCoin)           | 转自 HoshinoBot 的 b 站主题塔罗牌插件                                                                                        |
-| [头像相关表情生成](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/avatar)                | @梦璃雨落 [@AkashiCoin](https://github.com/AkashiCoin) | 恶搞群友的头像                                                                                                               |
+|                             名称                             |                          作者                          | 备注                                                         |
+| :----------------------------------------------------------: | :----------------------------------------------------: | :----------------------------------------------------------- |
+| [AsoulCnki枝网查重插件](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/asoulcnki) |          [@Copaan](https://github.com/Copaan)          | 利用 [枝网查重](https://asoulcnki.asia/) 查找最相似的小作文，为防止文字太长刷屏，将内容转换为图片形式发出 |
+| [随机猫猫](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/random_cat_gif) |          [@Copaan](https://github.com/Copaan)          | 使用随机猫猫图网站http://edgecats.net/ 实现                  |
+| [语句抽象化](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/abstract) |          [@Copaan](https://github.com/Copaan)          | 抽象话翻译工具：把你打的字都给你emoji咯！                    |
+| [青年大学习](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/youthstudy) |          [@Copaan](https://github.com/Copaan)          | 基于nonebot2的青年大学习插件，用于获取最新一期青年大学习答案 |
+| [表情包制作](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/memes) |          [@Copaan](https://github.com/Copaan)          | [Nonebot2](https://github.com/nonebot/nonebot2) 插件，用于表情包制作 |
+| [MockingBird 语音](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/mockingbird) |      [@AkashiCoin](https://github.com/AkashiCoin)      | 可以让bot发送一条指定文本的语音，训练模型绝赞更新中...(咕咕咕) |
+| [超分](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/super_resolution) |      [@AkashiCoin](https://github.com/AkashiCoin)      | 获取图片更大的分辨率 ps:内存小的机器不建议使用               |
+| [github订阅](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/github_sub) |          [@yajiwa](https://github.com/yajiwa)          | 推送github用户动态或仓库动态                                 |
+| [头像表情包](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot_plugin_petpet) |          [@yajiwa](https://github.com/yajiwa)          | 来自[wql](https://github.com/MeetWq/)的 [nonebot-plugin-petpet](https://github.com/MeetWq/nonebot-plugin-petpet) 并在其基础上对 zhenxun_bot 进行适配 |
+| [猜成语](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot_plugin_handle) |          [@yajiwa](https://github.com/yajiwa)          | 来自[wql](https://github.com/MeetWq/)的 [nonebot-plugin-handle](https://github.com/MeetWq/nonebot-plugin-handle) 并在其基础上对 zhenxun_bot 进行适配 |
+| [emoji合成器](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/blob/master/nonebot_plugin_emojimix) |          [@yajiwa](https://github.com/yajiwa)          | 来自[wql](https://github.com/MeetWq/)的 [nonebot-plugin-emojimix](https://github.com/MeetWq/nonebot-plugin-emojimix) 并在其基础上对 zhenxun_bot 进行适配 |
+| [Arcaea 查分器](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/Arcaea) |      [@AkashiCoin](https://github.com/AkashiCoin)      | 基于 Arcaea [https://github.com/Yuri-YuzuChaN/Arcaea](https://github.com/Yuri-YuzuChaN/Arcaea)<br> 在其基础上对真寻进行适配 |
+| [思源笔记](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/siyuan) |   [@Zuoqiu-Yingyi](https://github.com/Zuoqiu-Yingyi)   | 可爱的 QQ 机器人 [绪山真寻 Bot](https://hibikier.github.io/zhenxun_bot/) 的 [思源笔记](https://github.com/siyuan-note/siyuan) 插件, 可以将 QQ 群转化为思源笔记的收集箱 |
+| [可爱的 Atri 语言包](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot_plugin_atri) |      [@AkashiCoin](https://github.com/AkashiCoin)      | 此语音来自 [FYWinds/nonebot-plugin-atri](https://github.com/FYWinds/nonebot-plugin-atri) 并在其基础上对 zhenxun_bot 进行适配 |
+| [原神 KFC 社死语言](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/genshinkfc) |                       @梦璃雨落                        | （异世相遇，尽享社死！）                                     |
+| [cp小故事](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/blob/master/cp) |      [@AkashiCoin](https://github.com/AkashiCoin)      | 转自 HoshinoBot                                              |
+| [人生重开模拟器](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/lifeRestart) |      [@AkashiCoin](https://github.com/AkashiCoin)      | 转自 HoshinoBot                                              |
+| [随机塔罗牌](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/tarot) |      [@AkashiCoin](https://github.com/AkashiCoin)      | 转自 HoshinoBot 的 b 站主题塔罗牌插件                        |
+| [头像相关表情生成](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/avatar) | @梦璃雨落 [@AkashiCoin](https://github.com/AkashiCoin) | 恶搞群友的头像                                               |
+| [彩六查分](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot_plugin_r6s) |       [BalconyJH](https://github.com/BalconyJH)        | 彩虹六号围攻rank分查询                                       |
