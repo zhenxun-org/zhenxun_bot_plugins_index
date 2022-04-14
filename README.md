@@ -36,4 +36,3 @@
 | [随机塔罗牌](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/tarot) |      [@AkashiCoin](https://github.com/AkashiCoin)      | 转自 HoshinoBot 的 b 站主题塔罗牌插件                        |
 | [头像相关表情生成](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/avatar) | @梦璃雨落 [@AkashiCoin](https://github.com/AkashiCoin) | 恶搞群友的头像                                               |
 | [彩六查分](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot_plugin_r6s) |       [BalconyJH](https://github.com/BalconyJH)        | 彩虹六号围攻rank分查询                                       |
-| [哔哩哔哩订阅](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot_plugin_atri) |       [BalconyJH](https://github.com/BalconyJH)        | 不太好用，建议用zhenxun自带的                                |
