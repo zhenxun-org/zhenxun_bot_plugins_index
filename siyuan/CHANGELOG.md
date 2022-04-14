@@ -1,6 +1,14 @@
 # 更改日志 | CHANGE LOG
 
+- 调整自叙文档缩进样式
+
+## v0.2.1/2022-04-15
+
+- [v0.2.0 <=> v0.2.1](https://github.com/Zuoqiu-Yingyi/zhenxun-bot-plugin-siyuan/compare/v0.2.0...v0.2.1)
 - 添加在笔记中渲染昵称的 CSS 片段
+- 修复 `设置为收集箱` 命令解析问题
+- 优化错误信息输出内容
+- 完善手动配置配置文件 `siyuan.json` 教程
 
 ## v0.2.0/2022-03-10
 
