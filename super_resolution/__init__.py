@@ -71,7 +71,6 @@ upsampler = (
 
 max_size = 691200
 mutex = Semaphore(1)
-resize = True
 processing = False
 
 superResolution = on_command("超分", priority=5, block=True)
@@ -104,6 +103,7 @@ async def _(
 ):
     global processing
     img_url = get_message_img(img)[0]
+    resize = False
     if processing:
         await superResolution.finish("有超分正在运行...此次请求已取消...")
     await mutex.acquire()
@@ -122,8 +122,9 @@ async def _(
     start = time.time()
     image_size = image.size[0] * image.size[1]
     if image_size > max_size:
-        if not resize:
-            await superResolution.finish(f"图片尺寸过大！请发送720p以内即像素数小于 960×720=691200的照片！\n此图片尺寸为：{image.size[0]}×{image.size[1]}={image_size}！")
+        # if not resize:
+        #     await superResolution.finish(f"图片尺寸过大！请发送720p以内即像素数小于 960×720=691200的照片！\n此图片尺寸为：{image.size[0]}×{image.size[1]}={image_size}！")
+        resize = True
         length = 1
         for b in str(max_size / image_size).split(".")[1]:
             if b == "0":
