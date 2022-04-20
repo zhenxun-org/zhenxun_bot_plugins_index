@@ -1,10 +1,10 @@
 from io import BytesIO
 from typing import List, Union
+
 from .download import download_url, download_avatar
 from .utils import to_image
 from .models import UserInfo, Command
 from .functions import *
-
 
 commands = [
     Command(("摸", "摸摸", "摸头", "摸摸头", "rua"), petpet, arg_num=1),
@@ -61,6 +61,10 @@ commands = [
     Command(("垃圾", "垃圾桶"), garbage),
     Command(("为什么@我", "为什么at我"), whyatme),
     Command(("像样的亲亲",), decent_kiss, convert=False),
+    Command(("啾啾",), jiujiu, convert=False),
+    Command(("吸", "嗦"), suck),
+    Command(("锤",), hammer),
+    Command(("紧贴", "紧紧贴着"), tightly, convert=False),
 ]
 
 
