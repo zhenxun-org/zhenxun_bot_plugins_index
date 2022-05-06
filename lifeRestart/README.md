@@ -1,22 +1,22 @@
-# ÈËÉúÖØ¿ª - lifeRestart
+# äººç”Ÿé‡å¼€ - lifeRestart
 
-°²×°Ïà¹ØÒÀÀµ
+å®‰è£…ç›¸å…³ä¾èµ–
 
 ```
-pip install -r requirement.txt
+pip install -r requirements.txt
 ```
 
-ÕâÀ¬»øÈËÉúÊÇÒ»¿ÌÒ²²»Ïë´ô£¡
+è¿™åžƒåœ¾äººç”Ÿæ˜¯ä¸€åˆ»ä¹Ÿä¸æƒ³å‘†ï¼
 
-    remake/ÈËÉúÖØÀ´/ÈËÉúÖØ¿ª/ÈËÉúÖØÆô
-    ¼´¿ÉÔÙÀ´Ò»¶ÎÈËÉú
+    remake/äººç”Ÿé‡æ¥/äººç”Ÿé‡å¼€/äººç”Ÿé‡å¯
+    å³å¯å†æ¥ä¸€æ®µäººç”Ÿ
 
-## ¸üÐÂ
+## æ›´æ–°
 
 **2022/3/5**
 
-1. ¶ÔÕæÑ° beta2 ½øÐÐÁËÊÊÅä
+1. å¯¹çœŸå¯» beta2 è¿›è¡Œäº†é€‚é…
 
-## ±¾²å¼þÀ´Ô´ÓÚ HoshinoBot
+## æœ¬æ’ä»¶æ¥æºäºŽ HoshinoBot
 
-±¾²å¼þÀ´Ô´ÓÚ¶Ô HoshinoBot ²å¼þµÄ°áÔË£¬²¢ÔÚÆä»ù´¡ÉÏ×ö³öÐÞ¸Ä
+æœ¬æ’ä»¶æ¥æºäºŽå¯¹ HoshinoBot æ’ä»¶çš„æ¬è¿ï¼Œå¹¶åœ¨å…¶åŸºç¡€ä¸Šåšå‡ºä¿®æ”¹
