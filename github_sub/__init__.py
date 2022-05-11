@@ -39,7 +39,7 @@ usage：
 """.strip()
 __plugin_des__ = "github订阅推送"
 __plugin_cmd__ = ["添加github ['用户'/'仓库'] [用户名/{owner/repo}]", "删除github [用户名/{owner/repo}]", "查看github"]
-__plugin_version__ = 0.2
+__plugin_version__ = 0.4
 __plugin_author__ = "yajiwa"
 __plugin_settings__ = {
     "level": 5,
@@ -122,11 +122,10 @@ async def _(event: MessageEvent, arg: Message = CommandArg()):
     msg = arg.extract_plain_text().strip()
     if not msg:
         await del_sub.finish("请输入需要删除的用户或仓库", at_sender=True)
-    id_ = (
-        f"{event.user_id}:{event.group_id}"
-        if isinstance(event, GroupMessageEvent)
-        else f"{event.user_id}"
-    )
+    if isinstance(event, GroupMessageEvent):
+        id_ = f"{event.group_id}"
+    else:
+        id_ = f"{event.user_id}"
     if await GitHubSub.delete_github_sub(msg, id_):
         await del_sub.send(f"删除github订阅：{msg} 成功...")
         logger.info(
@@ -135,7 +134,7 @@ async def _(event: MessageEvent, arg: Message = CommandArg()):
             f" 删除订阅 {id_}"
         )
     else:
-        await del_sub.send(f"删除订阅id：{msg} 失败...")
+        await del_sub.send(f"删除订阅：{msg} 失败...")
 
 
 @show_sub_info.handle()

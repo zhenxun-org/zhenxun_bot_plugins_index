@@ -1,3 +1,5 @@
+import re
+
 from services.log import logger
 from services.db_context import db
 from datetime import datetime
@@ -74,9 +76,9 @@ class GitHubSub(db.Model):
                 )
                 if not query:
                     return False
+                strinfo = re.compile(f"\d*:{sub_user},")
                 await query.update(
-                    sub_users=query.sub_users.replace(f"{sub_user},", "")
-                ).apply()
+                    sub_users=strinfo.sub('', query.sub_users)).apply()
                 if not query.sub_users.strip():
                     await query.delete()
                 return True
@@ -109,7 +111,7 @@ class GitHubSub(db.Model):
             sub_url: Optional[str] = None,
             *,
             update_time: Optional[datetime] = None,
-            etag : Optional[str] = None,
+            etag: Optional[str] = None,
     ) -> bool:
         """
         说明：
