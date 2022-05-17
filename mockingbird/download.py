@@ -3,7 +3,7 @@ from pathlib import Path
 from nonebot.log import logger
 from utils.http_utils import AsyncHttpx
 
-base_url = "https://pan.yropo.workers.dev/source/mockingbird/"
+base_url = "https://pan.yropo.top/source/mockingbird/"
 
 
 async def download_url(url: str, path: Path) -> bool:
