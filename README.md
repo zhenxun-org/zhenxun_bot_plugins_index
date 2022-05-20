@@ -16,6 +16,7 @@
 
 |                             名称                             |                          作者                          | 备注                                                         |
 | :----------------------------------------------------------: | :----------------------------------------------------: | :----------------------------------------------------------- |
+| [ELF_RSS](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/ELF_RSS) |          [@mouhensama](https://github.com/mouhensama)          | 来自 [Quan666](https://github.com/Quan666) 的 [ELFRSS](https://github.com/Quan666/ELF_RSS)，并在其基础上进行了真寻适配的RSS订阅插件。 |
 | [色图生成插件](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot-plugin-color-main) |          [@neigui1](https://github.com/neigui1)          | 哎哟这个色啊，好色！|
 | [随机唐可可](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot_plugin_randomtkk) |          [@neigui1](https://github.com/neigui1)          | 找到唐可可，和她一起做学园偶像！|
 | [字符画](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot_plugin_charpic) |          [@neigui1](https://github.com/neigui1)          | 生成字符画支持gif|
