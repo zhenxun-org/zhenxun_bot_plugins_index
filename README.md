@@ -16,6 +16,7 @@
 
 |                             名称                             |                          作者                          | 备注                                                         |
 | :----------------------------------------------------------: | :----------------------------------------------------: | :----------------------------------------------------------- |
+| [ELF_RSS](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/ELF_RSS) |          [@mouhensama](https://github.com/mouhensama)          | 来自 [Quan666](https://github.com/Quan666) 的 [ELFRSS](https://github.com/Quan666/ELF_RSS)，并在其基础上进行了真寻适配的RSS订阅插件。 |
 | [彩云小梦AI续写插件](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/caiyunai) |          [@Copaan](https://github.com/Copaan)          | 利用 [彩云小梦](http://if.caiyunai.com/dream) ai续写，生成小作文 |
 | [Crazy Thursday🍗 天天疯狂 🍗](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/crazy_thursday) |          [@Copaan](https://github.com/Copaan)          | 天天疯狂！随机输出KFC疯狂星期四文案。 |
 | [成分姬插件](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/ddcheck) |          [@Copaan](https://github.com/Copaan)          | 利用 [vtbs](https://vtbs.moe/) 查询B站关注列表的VTuber成分，并以图片形式发出 |
