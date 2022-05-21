@@ -1,4 +1,3 @@
-from bilibili_api.exceptions.ResponseCodeException import ResponseCodeException
 from .model import GitHubSub
 from configs.config import Config
 from typing import Optional
@@ -46,7 +45,7 @@ async def add_user_sub(sub_type: str, sub_url: str, sub_user: str) -> str:
             return f"你无权访问该仓库{sub_url}"
         elif response.status_code == 404:
             return f"用户{sub_url}不存在！请重新发送或取消"
-    except ResponseCodeException:
+    except:
         return f"请求超时"
     try:
         async with db.transaction():
@@ -73,7 +72,7 @@ async def get_sub_status(sub_type: str, sub_url: str, etag=None):
     try:
         token = Config.get_config("github_sub", "GITHUB_TOKEN")
         response = await get_github_api(sub_type, sub_url, etag, token)
-    except ResponseCodeException:
+    except:
         return None
     if response.status_code == 304:
         return None
