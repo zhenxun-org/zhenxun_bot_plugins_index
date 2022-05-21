@@ -174,8 +174,7 @@ async def _(state: T_State, words: str = ArgStr("words")):
             Manager.get_config(config_name="voice_accuracy"),
             Manager.get_config(config_name="max_steps"),
         )
-        record = MessageSegment.record(record)
-    await voice.finish(record)
+    await voice.finish(MessageSegment.record(record))
 
 
 @view_model.handle()

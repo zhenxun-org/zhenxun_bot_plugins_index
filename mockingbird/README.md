@@ -59,6 +59,10 @@ ps: 其实是我踩过的坑。。`pytorch`的版本必须和`numpy`的版本严
 
 ### 更新
 
+**2022/05/22**
+
+* fix bug [#37](https://github.com/zhenxun-org/nonebot_plugins_zhenxun_bot/issues/37)
+
 **2022/05/21**\[1.0]
 
 * 更换使用MockingBirdForUse库
