@@ -63,7 +63,13 @@ ps: 其实是我踩过的坑。。`pytorch`的版本必须和`numpy`的版本严
 调整/修改句长 修改语音合成最大句长(对TTS无效)
 ```
 
-## 更新
+### 更新
+
+**2022/05/21**\[1.0]
+
+* 更换使用MockingBirdForUse库
+* 配置文件修改为~/data/mockingbird/config.json
+* 支持更新模型列表
 
 **2022/05/18**
 
@@ -88,3 +94,7 @@ ps: 其实是我踩过的坑。。`pytorch`的版本必须和`numpy`的版本严
 * 提供azusa --- 阿梓语音模型
 * 修改为异步加载
 * 添加热更换模型功能
+
+### 特别感谢
+
+* [MeetWq/MockingBirdForUse](https://github.com/MeetWq/MockingBirdForUse)

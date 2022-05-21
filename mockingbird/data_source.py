@@ -10,15 +10,11 @@ from typing import Optional, Union
 from pydub import AudioSegment
 from pydub.silence import detect_silence
 
+from configs.config import Config
 from tencentcloud.common import credential
 from tencentcloud.tts.v20190823 import tts_client, models
 
-from nonebot import get_driver
 from nonebot.log import logger
-
-from .config import Config
-
-tts_config = Config.parse_obj(get_driver().config.dict())
 
 
 async def get_voice(text, type=0) -> Optional[Union[str, BytesIO]]:
@@ -35,7 +31,7 @@ async def get_voice(text, type=0) -> Optional[Union[str, BytesIO]]:
 
 async def get_tx_voice(text, type=0) -> str:
     cred = credential.Credential(
-        tts_config.tencent_secret_id, tts_config.tencent_secret_key
+        Config.get_config("mockingbird","TENCENT_SECRET_ID"), Config.get_config("mockingbird","TENCENT_SECRET_KEY")
     )
     client = tts_client.TtsClient(cred, "ap-shanghai")
     req = models.TextToVoiceRequest()
@@ -50,7 +46,7 @@ async def get_tx_voice(text, type=0) -> str:
         "SessionId": str(uuid.uuid1()),
         "Volume": 5,
         "Speed": 1,
-        "ProjectId": int(tts_config.tts_project_id),
+        "ProjectId": int(4587666),
         "ModelType": 1,
         "VoiceType": voice_type,
     }

@@ -1,5 +1,7 @@
+import json
 from pathlib import Path
 
+import httpx
 from nonebot.log import logger
 from utils.http_utils import AsyncHttpx
 
@@ -45,3 +47,19 @@ async def check_resource(root: Path, model_name: str):
         if not (root / model_name / file_name).exists():
             return False
     return True
+
+# 更新模型列表
+def get_model_list_file(file_path: Path) -> None:
+    url = f"https://fastly.jsdelivr.net/gh/AkashiCoin/nonebot_plugin_mockingbird@master/nonebot_plugin_mockingbird/resource/model_list.json"
+    try:
+        with httpx.Client() as Client:
+            data = Client.get(url).json()
+            if data:
+                with open(file_path, "w", encoding="utf-8") as f:
+                    json.dump(data, f, ensure_ascii=False, indent=4)
+                    return True
+            else:
+                return "更新模型列表失败..."
+    except Exception as e:
+        logger.error(f"Error downloading {url} .. Error: {e}")
+        return "更新模型列表失败..."
