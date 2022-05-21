@@ -15,9 +15,8 @@
 <!-- 新内容请添加到首行 -->
 
 |                             名称                             |                          作者                          | 备注                                                         |
-| :----------------------------------------------------------: | :----------------------------------------------------: | :----------------------------------------------------------- |
+| :----------------------------------------------------------: | :----------------------------------------------------: | :-----------------------------------------------------------: |
 | [ELF_RSS](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/ELF_RSS) |          [@mouhensama](https://github.com/mouhensama)          | 来自 [Quan666](https://github.com/Quan666) 的 [ELFRSS](https://github.com/Quan666/ELF_RSS)，并在其基础上进行了真寻适配的RSS订阅插件。 |
-| [色图生成插件](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot-plugin-color-main) |          [@neigui1](https://github.com/neigui1)          | 哎哟这个色啊，好色！|
 | [随机唐可可](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot_plugin_randomtkk) |          [@neigui1](https://github.com/neigui1)          | 找到唐可可，和她一起做学园偶像！|
 | [字符画](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot_plugin_charpic) |          [@neigui1](https://github.com/neigui1)          | 生成字符画支持gif|
 | [缩写查询和梗百科](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/what) |          [@neigui1](https://github.com/neigui1)          | 缩写查询和梗百科|
@@ -25,11 +24,8 @@
 | [结巴分词](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/shuffle) |          [@neigui1](https://github.com/neigui1)          | 打乱句子|
 | [每日一句](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot_plugin_everyday_en) |          [@neigui1](https://github.com/neigui1)          | 每日一句英文句子|
 | [历史上的今天](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/todaybefore) |          [@neigui1](https://github.com/neigui1)          | 历史上的今天是什么呢|
-| [今日运势](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot_plugin_fortune) |          [@neigui1](https://github.com/neigui1)          | 抽签！抽取你的今日运势🙏|
 | [幻影坦克](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot_plugin_miragetank) |          [@neigui1](https://github.com/neigui1)          | 生成幻影坦克图片|
 | [CP文等多种短文生成](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/essay) |          [@neigui1](https://github.com/neigui1)          | CP文等多种短文生成|
-| [点歌](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot-plugin-simplemusic-main) |          [@neigui1](https://github.com/neigui1)          | 支持qq点歌/网易点歌/酷我点歌/酷狗点歌/咪咕点歌/b站点歌|
-| [答案之书](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot-plugin-answersbook-master) |          [@neigui1](https://github.com/neigui1)          | 愿一切无解都有解！解除你的迷惑，终结你的纠结|
 | [抽象话和火星文](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/text) |          [@neigui1](https://github.com/neigui1)          | 将文本抽象化和火星文|
 | [leetcode每日一题](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/leetcode) |          [@neigui1](https://github.com/neigui1)          | 力扣https://leetcode.cn/problemset/all/每日一题|
 | [Github仓库信息卡片](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/github) |          [@neigui1](https://github.com/neigui1)          | 当机器人接收到一个 Github 仓库链接时 会自动发送信息卡片 |
@@ -59,6 +55,5 @@
 | [原神 KFC 社死语言](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/genshinkfc) |                       @梦璃雨落                        | （异世相遇，尽享社死！）                                     |
 | [cp小故事](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/blob/master/cp) |      [@AkashiCoin](https://github.com/AkashiCoin)      | 转自 HoshinoBot                                              |
 | [人生重开模拟器](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/lifeRestart) |      [@AkashiCoin](https://github.com/AkashiCoin)      | 转自 HoshinoBot                                              |
-| [随机塔罗牌](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/tarot) |      [@AkashiCoin](https://github.com/AkashiCoin)      | 转自 HoshinoBot 的 b 站主题塔罗牌插件                        |
-| [头像相关表情生成](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/avatar) | @梦璃雨落 [@AkashiCoin](https://github.com/AkashiCoin) | 恶搞群友的头像                                               |
+| [随机塔罗牌](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/tarot) |      [@AkashiCoin](https://github.com/AkashiCoin)      | 转自 HoshinoBot 的 b 站主题塔罗牌插件                        |                              |
 | [彩六查分](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot_plugin_r6s) |       [BalconyJH](https://github.com/BalconyJH)        | 彩虹六号围攻rank分查询                                       |
