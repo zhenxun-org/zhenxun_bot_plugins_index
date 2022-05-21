@@ -4,14 +4,10 @@
 
 ### 食用方法
 
-**需要使用python3.9**
-
-> 如果你的python版本为3.8则不可以食用
-
 1. 首先使用命令安装mockingbirdonlyforuse:
 
 ``` 
-pip install mockingbirdonlyforuse
+pip install mockingbirdforuse
 ```
 
 **如有报错请为正常现象**
@@ -19,12 +15,10 @@ pip install mockingbirdonlyforuse
 2. 再使用requirements.txt文件，安装依赖:
 
 ```shell
-pip install -r requirements.txt # 利用requirements.txt文件安装
+pip install -r requirements.txt --ignore-installed # 利用requirements.txt文件安装
 # 或者
-pip install \
+pip install --ignore-installed \
 torch==1.10.1 \
-torchvision==0.11.2 \
-torchaudio==0.10.1 \
 numpy==1.21 \
 langid \
 pydub \
