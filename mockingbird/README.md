@@ -57,6 +57,23 @@ ps: 其实是我踩过的坑。。`pytorch`的版本必须和`numpy`的版本严
 调整/修改句长 修改语音合成最大句长(对TTS无效)
 ```
 
+### 欢迎pr提供模型和模型下载地址
+
+在 [nonebot_plugin_mockingbird/resource/model_list.json](https://github.com/AkashiCoin/nonebot_plugin_mockingbird/blob/master/nonebot_plugin_mockingbird/resource/model_list.json) 中添加
+
+json 模板
+```json
+{
+  "azusa": {
+    "nickname": "阿梓语音",
+    "url": {
+      "record_url": "https://pan.yropo.top/home/source/mockingbird/azusa/record.wav",
+      "model_url": "https://pan.yropo.top/home/source/mockingbird/azusa/azusa.pt"
+    }
+  }
+}
+```
+
 ### 更新
 
 **2022/05/22**

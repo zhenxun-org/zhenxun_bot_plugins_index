@@ -92,7 +92,7 @@ async def init_mockingbird():
             mocking_logger.info("MockingBird 模型不存在...开始下载模型...")
             model_path.parent.mkdir(parents=True, exist_ok=True)
         if not await check_resource(mockingbird_path, model_name):
-            if await download_resource(mockingbird_path, model_name):
+            if await download_resource(mockingbird_path, model_name, Manager.get_model_info(model_name)):
                 mocking_logger.info("模型下载成功...")
             else:
                 mocking_logger.error("模型下载失败，请检查网络...")
@@ -153,7 +153,6 @@ async def _(state: T_State, arg: Message = CommandArg()):
 
 @voice.got("words", prompt=f"想要让{NICKNAME}说什么话呢?")
 async def _(state: T_State, words: str = ArgStr("words")):
-    global model_path
     words = words.strip().replace("\n", "").replace("\r", "")
     if Config.get_config("mockingbird", "USE_TTS"):
         record = await get_voice(words)
@@ -185,24 +184,19 @@ async def _():
         Manager.get_config(config_name="max_steps"),
     )
     msg += "可以修改的模型列表:"
-    for i, model in Manager.model_list.items():
-        msg += "\n{}. {} --- {}".format(i, model[0], model[1])
+    for i, model_name in enumerate(Manager._list):
+        msg += "\n{}. {} --- {}".format(i, model_name, Manager.get_model_info(model_name)["nickname"])
     await view_model.finish(msg)
 
 
 @change_model.handle()
 async def _(arg: Message = CommandArg()):
     args = arg.extract_plain_text().strip()
-    if is_number(args):
-        args = Manager.model_list.get(args)
+    if args.isnumeric():
+        args = Manager._list[int(args)]
         if args is None:
             await change_model.finish("该模型不存在...")
-        else:
-            args = args[0]
-    models = []
-    for model in Manager.model_list.values():
-        models.append(model[0])
-    if args not in models:
+    if args not in list(Manager._list):
         await change_model.finish("该模型不存在...")
     else:
         if args == Manager.get_config(config_name="model"):
