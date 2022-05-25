@@ -36,7 +36,7 @@ async def _(event: MessageEvent, arg: Message = CommandArg()):
     message = demolish(number)
     if(message == ''):
         message = '需要一个数字，这事数字吗（恼）'
-    await cnumber.send(demolish(number))
+    await cnumber.send(message)
 
 Nums = {
     114514: "114514",
