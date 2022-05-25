@@ -16,7 +16,7 @@
 
 |                             名称                             |                        作者                        |                             备注                             |
 | :----------------------------------------------------------: | :------------------------------------------------: | :----------------------------------------------------------: |
-|  [成分姬](https://github.com/yajiwa/zhenxun_plugin_ddcheck)  |        [@yajiwa](https://github.com/yajiwa)        |        查询B站关注列表的VTuber成分，并以图片形式发出         |
+| [成分姬](https://github.com/yajiwa/zhenxun_plugin_ddcheck)  [点击下载](https://ghproxy.com/https://github.com/yajiwa/zhenxun_plugin_ddcheck/releases/download/v0.1.0/zhenxun_plugin_ddcheck.zip) |        [@yajiwa](https://github.com/yajiwa)        |        查询B站关注列表的VTuber成分，并以图片形式发出         |
 | [在线运行代码](https://github.com/MingxuanGame/zhenxun_plugin_code) |  [@MingxuanGame](https://github.com/MingxuanGame)  | 移植自 [yzyyz1387](https://github.com/yzyyz1387) 的 [nonebot_plugin_code](https://github.com/yzyyz1387/nonebot_plugin_code)，在 QQ 群内运行c/py/go等代码 |
 | [ELF_RSS](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/ELF_RSS) |    [@mouhensama](https://github.com/mouhensama)    | 来自 [Quan666](https://github.com/Quan666) 的 [ELFRSS](https://github.com/Quan666/ELF_RSS)，并在其基础上进行了真寻适配的RSS订阅插件。 |
 | [随机唐可可](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot_plugin_randomtkk) |       [@neigui1](https://github.com/neigui1)       |               找到唐可可，和她一起做学园偶像！               |
