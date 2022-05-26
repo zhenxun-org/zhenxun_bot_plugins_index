@@ -18,8 +18,9 @@
 
 |                             名称                             |                        作者                        |                             备注                             |
 | :----------------------------------------------------------: | :------------------------------------------------: | :----------------------------------------------------------: |
-| [Apex战绩查询](https://github.com/Josef1999/ApexLegends-QQ-Robot) | [@Josef1999](https://github.com/Josef1999) | 不止可以查战绩 |
-| [恶臭数字论证器](https://github.com/HiDolen/nonebot_plugin_homonumber)  |        [@HiDolen](https://github.com/HiDolen)        |        恶臭数字论证器插件，适配zhenxun_bot         |
+| [猜成语](https://github.com/yajiwa/zhenxun_plugin_handle)  [点击下载](https://github.com/yajiwa/zhenxun_plugin_handle/releases/download/v0.1/zhenxun_plugin_handle.zip) |        [@yajiwa](https://github.com/yajiwa)        |                      汉字Wordle 猜成语                       |
+| [Apex战绩查询](https://github.com/Josef1999/ApexLegends-QQ-Robot) |     [@Josef1999](https://github.com/Josef1999)     |                        不止可以查战绩                        |
+| [恶臭数字论证器](https://github.com/HiDolen/nonebot_plugin_homonumber) |       [@HiDolen](https://github.com/HiDolen)       |             恶臭数字论证器插件，适配zhenxun_bot              |
 | [成分姬](https://github.com/yajiwa/zhenxun_plugin_ddcheck)  [点击下载](https://ghproxy.com/https://github.com/yajiwa/zhenxun_plugin_ddcheck/releases/download/v0.2/zhenxun_plugin_ddcheck.zip) |        [@yajiwa](https://github.com/yajiwa)        |        查询B站关注列表的VTuber成分，并以图片形式发出         |
 | [在线运行代码](https://github.com/MingxuanGame/zhenxun_plugin_code) |  [@MingxuanGame](https://github.com/MingxuanGame)  | 移植自 [yzyyz1387](https://github.com/yzyyz1387) 的 [nonebot_plugin_code](https://github.com/yzyyz1387/nonebot_plugin_code)，在 QQ 群内运行c/py/go等代码 |
 | [ELF_RSS](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/ELF_RSS) |    [@mouhensama](https://github.com/mouhensama)    | 来自 [Quan666](https://github.com/Quan666) 的 [ELFRSS](https://github.com/Quan666/ELF_RSS)，并在其基础上进行了真寻适配的RSS订阅插件。 |
@@ -53,7 +54,6 @@
 | [超分](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/super_resolution) |    [@AkashiCoin](https://github.com/AkashiCoin)    |        获取图片更大的分辨率 ps:内存小的机器不建议使用        |
 | [github订阅](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/github_sub) |        [@yajiwa](https://github.com/yajiwa)        |                 推送github用户动态或仓库动态                 |
 | [头像表情包](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot_plugin_petpet) |        [@yajiwa](https://github.com/yajiwa)        | 来自[wql](https://github.com/MeetWq/)的 [nonebot-plugin-petpet](https://github.com/MeetWq/nonebot-plugin-petpet) 并在其基础上对 zhenxun_bot 进行适配 |
-| [猜成语](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot_plugin_handle) |        [@yajiwa](https://github.com/yajiwa)        | 来自[wql](https://github.com/MeetWq/)的 [nonebot-plugin-handle](https://github.com/MeetWq/nonebot-plugin-handle) 并在其基础上对 zhenxun_bot 进行适配 |
 | [emoji合成器](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/blob/master/nonebot_plugin_emojimix) |        [@yajiwa](https://github.com/yajiwa)        | 来自[wql](https://github.com/MeetWq/)的 [nonebot-plugin-emojimix](https://github.com/MeetWq/nonebot-plugin-emojimix) 并在其基础上对 zhenxun_bot 进行适配 |
 | [Arcaea 查分器](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/Arcaea) |    [@AkashiCoin](https://github.com/AkashiCoin)    | 基于 Arcaea [https://github.com/Yuri-YuzuChaN/Arcaea](https://github.com/Yuri-YuzuChaN/Arcaea)<br> 在其基础上对真寻进行适配 |
 | [思源笔记](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/siyuan) | [@Zuoqiu-Yingyi](https://github.com/Zuoqiu-Yingyi) | 可爱的 QQ 机器人 [绪山真寻 Bot](https://hibikier.github.io/zhenxun_bot/) 的 [思源笔记](https://github.com/siyuan-note/siyuan) 插件, 可以将 QQ 群转化为思源笔记的收集箱 |
