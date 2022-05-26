@@ -18,6 +18,7 @@
 
 |                             名称                             |                        作者                        |                             备注                             |
 | :----------------------------------------------------------: | :------------------------------------------------: | :----------------------------------------------------------: |
+| [Apex战绩查询](https://github.com/Josef1999/ApexLegends-QQ-Robot) | [@Josef1999](https://github.com/Josef1999) | 不止可以查战绩 |
 | [恶臭数字论证器](https://github.com/HiDolen/nonebot_plugin_homonumber)  |        [@HiDolen](https://github.com/HiDolen)        |        恶臭数字论证器插件，适配zhenxun_bot         |
 | [成分姬](https://github.com/yajiwa/zhenxun_plugin_ddcheck)  [点击下载](https://ghproxy.com/https://github.com/yajiwa/zhenxun_plugin_ddcheck/releases/download/v0.2/zhenxun_plugin_ddcheck.zip) |        [@yajiwa](https://github.com/yajiwa)        |        查询B站关注列表的VTuber成分，并以图片形式发出         |
 | [在线运行代码](https://github.com/MingxuanGame/zhenxun_plugin_code) |  [@MingxuanGame](https://github.com/MingxuanGame)  | 移植自 [yzyyz1387](https://github.com/yzyyz1387) 的 [nonebot_plugin_code](https://github.com/yzyyz1387/nonebot_plugin_code)，在 QQ 群内运行c/py/go等代码 |
