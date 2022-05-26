@@ -2,6 +2,8 @@
 
 真寻 bot 的插件库，稍微修改也可在 nonebot2 平台通用
 
+如果您是开发者，可参考[贡献指南](./CONTRIBUTING.md)将插件上传至插件库
+
 ## 单个插件的下载方法
 
 > 在插件的地址栏链接前面加上`https://minhaskamal.github.io/DownGit/#/home?url=`
