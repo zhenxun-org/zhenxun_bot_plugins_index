@@ -18,6 +18,7 @@
 
 |                             名称                             |                        作者                        |                             备注                             |
 | :----------------------------------------------------------: | :------------------------------------------------: | :----------------------------------------------------------: |
+| [明日方舟工具箱](https://github.com/NumberSir/zhenxun_arktools) [点击下载](https://github.com/NumberSir/zhenxun_arktools/releases/download/v1.0.0/zhenxun_arktools.zip) | [@Number_Sir](https://github.com/NumberSir) | 明日方舟工具箱，整合一些有需求的资料查询功能 |
 | [猜成语](https://github.com/yajiwa/zhenxun_plugin_handle)  [点击下载](https://github.com/yajiwa/zhenxun_plugin_handle/releases/download/v0.1/zhenxun_plugin_handle.zip) |        [@yajiwa](https://github.com/yajiwa)        |                      汉字Wordle 猜成语                       |
 | [Apex战绩查询](https://github.com/Josef1999/ApexLegends-QQ-Robot) |     [@Josef1999](https://github.com/Josef1999)     |                        不止可以查战绩                        |
 | [恶臭数字论证器](https://github.com/HiDolen/nonebot_plugin_homonumber) |       [@HiDolen](https://github.com/HiDolen)       |             恶臭数字论证器插件，适配zhenxun_bot              |
