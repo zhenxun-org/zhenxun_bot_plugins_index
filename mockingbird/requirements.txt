@@ -1,5 +1,0 @@
-torch==1.10.1 
-numpy==1.21
-langid
-pydub
-tencentcloud-sdk-python
