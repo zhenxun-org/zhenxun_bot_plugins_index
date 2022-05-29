@@ -18,6 +18,7 @@
 
 |                             名称                             |                        作者                        |                             备注                             |
 | :----------------------------------------------------------: | :------------------------------------------------: | :----------------------------------------------------------: |
+| [Apex查询工具(图片版)](https://github.com/AreCie/Apex_Tool) |     [@AreCie](https://github.com/AreCie)     |   查询APEX中：地图轮换、制造轮换、猎杀信息、玩家信息   |
 | [猜成语](https://github.com/yajiwa/zhenxun_plugin_handle)  [点击下载](https://github.com/yajiwa/zhenxun_plugin_handle/releases/download/v0.1/zhenxun_plugin_handle.zip) |        [@yajiwa](https://github.com/yajiwa)        |                      汉字Wordle 猜成语                       |
 | [Apex战绩查询](https://github.com/Josef1999/ApexLegends-QQ-Robot) |     [@Josef1999](https://github.com/Josef1999)     |                        不止可以查战绩                        |
 | [恶臭数字论证器](https://github.com/HiDolen/nonebot_plugin_homonumber) |       [@HiDolen](https://github.com/HiDolen)       |             恶臭数字论证器插件，适配zhenxun_bot              |
