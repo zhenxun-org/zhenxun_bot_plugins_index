@@ -18,6 +18,7 @@
 
 |                             名称                             |                        作者                        |                             备注                             |
 | :----------------------------------------------------------: | :------------------------------------------------: | :----------------------------------------------------------: |
+| [查成分（适配win端）](https://github.com/po-lan/zhenxun-nonebot-plugin-ddcheck) |       [po-lan](https://github.com/po-lan)       |             成分姬的魔改版，不在依赖htmlrender插件，使其能在win端运行。              |
 | [猜成语](https://github.com/yajiwa/zhenxun_plugin_handle)  [点击下载](https://github.com/yajiwa/zhenxun_plugin_handle/releases/download/v0.1/zhenxun_plugin_handle.zip) |        [@yajiwa](https://github.com/yajiwa)        |                      汉字Wordle 猜成语                       |
 | [Apex战绩查询](https://github.com/Josef1999/ApexLegends-QQ-Robot) |     [@Josef1999](https://github.com/Josef1999)     |                        不止可以查战绩                        |
 | [恶臭数字论证器](https://github.com/HiDolen/nonebot_plugin_homonumber) |       [@HiDolen](https://github.com/HiDolen)       |             恶臭数字论证器插件，适配zhenxun_bot              |
