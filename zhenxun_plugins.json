@@ -1,18 +1,26 @@
 {
     "zhenxun_plugin_handle": {
-        "plugin_name": "猜成语",
-        "author": "yajiwa",
-        "version": 0.1,
-        "introduction": "汉字Wordle 猜成语",
-        "download_url": "https://github.com/yajiwa/zhenxun_plugin_handle/releases/download/v0.1/zhenxun_plugin_handle.zip",
+        "plugin_name": "猜成语", 
+        "author": "yajiwa", 
+        "version": 0.1, 
+        "introduction": "汉字Wordle 猜成语", 
+        "download_url": "https://github.com/yajiwa/zhenxun_plugin_handle/releases/download/v0.1/zhenxun_plugin_handle.zip", 
         "github_url": "https://github.com/yajiwa/zhenxun_plugin_handle"
-    },
+    }, 
     "zhenxun_plugin_ddcheck": {
-        "plugin_name": "成分姬",
-        "author": "yajiwa",
-        "version": 0.2,
-        "introduction": "查询B站关注列表的VTuber成分，并以图片形式发出",
-        "download_url": "https://github.com/yajiwa/zhenxun_plugin_ddcheck/releases/download/v0.2/zhenxun_plugin_ddcheck.zip",
+        "plugin_name": "成分姬", 
+        "author": "yajiwa", 
+        "version": 0.2, 
+        "introduction": "查询B站关注列表的VTuber成分，并以图片形式发出", 
+        "download_url": "https://github.com/yajiwa/zhenxun_plugin_ddcheck/releases/download/v0.2/zhenxun_plugin_ddcheck.zip", 
         "github_url": "https://github.com/yajiwa/zhenxun_plugin_ddcheck"
+    }, 
+    "zhenxun_plugin_petpet": {
+        "plugin_name": " 头像表情包", 
+        "author": "MeetWq", 
+        "version": 0.1, 
+        "introduction": "制作头像相关的表情包", 
+        "download_url": "https://github.com/yajiwa/zhenxun_plugin_petpet/releases/download/v0.1/zhenxun_plugin_petpet.zip", 
+        "github_url": "https://github.com/yajiwa/zhenxun_plugin_petpet"
     }
 }
