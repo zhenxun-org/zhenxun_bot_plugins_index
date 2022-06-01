@@ -10,9 +10,9 @@
     "zhenxun_plugin_ddcheck": {
         "plugin_name": "成分姬", 
         "author": "yajiwa", 
-        "version": 0.2, 
+        "version": 0.3, 
         "introduction": "查询B站关注列表的VTuber成分，并以图片形式发出", 
-        "download_url": "https://github.com/yajiwa/zhenxun_plugin_ddcheck/releases/download/v0.2/zhenxun_plugin_ddcheck.zip", 
+        "download_url": "https://github.com/yajiwa/zhenxun_plugin_ddcheck/releases/download/v0.3/zhenxun_plugin_ddcheck.zip", 
         "github_url": "https://github.com/yajiwa/zhenxun_plugin_ddcheck"
     }, 
     "zhenxun_plugin_petpet": {
