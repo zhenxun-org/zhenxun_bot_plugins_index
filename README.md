@@ -18,6 +18,7 @@
 
 |                             名称                             |                        作者                        |                             备注                             |
 | :----------------------------------------------------------: | :------------------------------------------------: | :----------------------------------------------------------: |
+| [原神角色卡片](https://github.com/CRAZYShimakaze/zhenxun_plugin_genshin_role_card) |       [@CRAZYShimakaze](https://github.com/CRAZYShimakaze)        |                     参考自 [zhenxun-plugin-almanac](https://github.com/zhenxun-org/zhenxun_bot-tg/tree/main/plugins/genshin/almanac)，展示橱窗中第一个角色的面板数据                  |
 | [头像表情包](https://github.com/yajiwa/zhenxun_plugin_petpet)  [点击下载](https://github.com/yajiwa/zhenxun_plugin_petpet/releases/download/v0.1/zhenxun_plugin_petpet.zip) |        [@yajiwa](https://github.com/yajiwa)        |                     制作头像相关的表情包                     |
 | [明日方舟工具箱](https://github.com/NumberSir/zhenxun_arktools) [点击下载](https://github.com/NumberSir/zhenxun_arktools/releases/download/v1.0.0/zhenxun_arktools.zip) |    [@Number_Sir](https://github.com/NumberSir)     |         明日方舟工具箱，整合一些有需求的资料查询功能         |
 | [查成分（适配win端）](https://github.com/po-lan/zhenxun-nonebot-plugin-ddcheck) |        [@po-lan](https://github.com/po-lan)        | 成分姬的魔改版，不在依赖htmlrender插件，使其能简单的在win端运行。 |
