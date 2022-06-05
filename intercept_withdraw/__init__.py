@@ -37,7 +37,6 @@ flash_pic = on_message(priority=1, block=False)  # 闪照事件监听
 @if_withdraw.handle()
 async def if_withdraw_handle(bot: Bot, event: GroupRecallNoticeEvent):  # 此处event不知道应该调用哪个，所以暂时不用
     if event.notice_type == "group_recall":
-        await if_withdraw.send(f"{event.user_id}撤回了一条消息")
         # 获取撤回消息的消息id
         recall_message_id = event.message_id
         # 获取撤回消息的消息内容
