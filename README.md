@@ -18,6 +18,7 @@
 
 |                             名称                             |                         作者                         |                             备注                             |
 | :----------------------------------------------------------: | :--------------------------------------------------: | :----------------------------------------------------------: |
+| [视频点歌](https://github.com/po-lan/zhenxun_plugin_VMusic) |         [@po-lan](https://github.com/po-lan)         | 点歌的魔改版，以视频的方式输出音乐来确保音质 |
 | [原神角色卡片](https://github.com/CRAZYShimakaze/zhenxun_extensive_plugin) | [@CRAZYShimakaze](https://github.com/CRAZYShimakaze) | 参考自 [zhenxun-plugin-almanac](https://github.com/zhenxun-org/zhenxun_bot-tg/tree/main/plugins/genshin/almanac)，展示橱窗中第一个角色的面板数据 |
 | [头像表情包](https://github.com/yajiwa/zhenxun_plugin_petpet)  [点击下载](https://github.com/yajiwa/zhenxun_plugin_petpet/releases/download/v0.4/zhenxun_plugin_petpet.zip) |         [@yajiwa](https://github.com/yajiwa)         |                     制作头像相关的表情包                     |
 | [明日方舟工具箱](https://github.com/NumberSir/zhenxun_arktools) [点击下载](https://github.com/NumberSir/zhenxun_arktools/releases/download/v1.0.0/zhenxun_arktools.zip) |     [@Number_Sir](https://github.com/NumberSir)      |         明日方舟工具箱，整合一些有需求的资料查询功能         |
