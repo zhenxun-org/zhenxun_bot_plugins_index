@@ -18,6 +18,10 @@
 
 |                             名称                             |                         作者                         |                             备注                             |
 | :----------------------------------------------------------: | :--------------------------------------------------: | :----------------------------------------------------------: |
+| [棋类游戏](https://github.com/xipesoy/nonebot_plugins_zhenxun_bot/tree/index/nonebot_plugin_boardgame) |      [@xipesoy](https://github.com/xipesoy)       | 棋类游戏(五子棋/围棋/国际象棋) |
+| [游戏王卡查](https://github.com/xipesoy/nonebot_plugins_zhenxun_bot/tree/index/youxiwang) |      [@xipesoy](https://github.com/xipesoy)       | 游戏王卡查 支持模糊查询 项目源地址 [nonebot_plugin_ygo](https://github.com/anlen123/nonebot_plugin_ygo) |
+| [微博推送](https://github.com/LambdaYH/zhenxun_plugin_weibo) |      [@LambdaYH](https://github.com/LambdaYH)       | 移植自 [KokkoroBot-Multi-Platform](https://github.com/zzbslayer/KokkoroBot-Multi-Platform) ，在群聊内推送特定的微博（可配置） |
+| [闪照捕获](https://github.com/HDU-Nbsp/zhenxun_plugin_intercept_withdraw) |      [@HDU-Nbsp](https://github.com/HDU-Nbsp)       |                    自动监听群内消息，将撤回消息与闪照（解析为图片后）反馈给超级用户 |
 | [表情包制作](https://github.com/yajiwa/zhenxun_plugin_memes)  [点击下载](https://github.com/yajiwa/zhenxun_plugin_memes/releases/download/v0.1/zhenxun_plugin_memes.zip) |         [@yajiwa](https://github.com/yajiwa)         |                      用于制作个性表情包                      |
 | [视频点歌](https://github.com/po-lan/zhenxun_plugin_VMusic)  |         [@po-lan](https://github.com/po-lan)         |         点歌的魔改版，以视频的方式输出音乐来确保音质         |
 | [原神角色卡片](https://github.com/CRAZYShimakaze/zhenxun_extensive_plugin) | [@CRAZYShimakaze](https://github.com/CRAZYShimakaze) | 参考自 [zhenxun-plugin-almanac](https://github.com/zhenxun-org/zhenxun_bot-tg/tree/main/plugins/genshin/almanac)，展示橱窗中第一个角色的面板数据 |
@@ -67,5 +71,3 @@
 | [人生重开模拟器](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/lifeRestart) |     [@AkashiCoin](https://github.com/AkashiCoin)     |                       转自 HoshinoBot                        |
 | [随机塔罗牌](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/tarot) |     [@AkashiCoin](https://github.com/AkashiCoin)     |            转自 HoshinoBot 的 b 站主题塔罗牌插件             |
 | [彩六查分](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot_plugin_r6s) |      [@BalconyJH](https://github.com/BalconyJH)       |                    彩虹六号围攻rank分查询                    |
-| [闪照捕获](https://github.com/HDU-Nbsp/zhenxun_plugin_intercept_withdraw) |      [@HDU-Nbsp](https://github.com/HDU-Nbsp)       |                    自动监听群内消息，将撤回消息与闪照（解析为图片后）反馈给超级用户 |
-| [微博推送](https://github.com/LambdaYH/zhenxun_plugin_weibo) |      [@LambdaYH](https://github.com/LambdaYH)       | 移植自 [KokkoroBot-Multi-Platform](https://github.com/zzbslayer/KokkoroBot-Multi-Platform) ，在群聊内推送特定的微博（可配置） |
