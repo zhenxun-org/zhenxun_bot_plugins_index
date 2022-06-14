@@ -66,4 +66,5 @@
 | [cp小故事](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/blob/master/cp) |     [@AkashiCoin](https://github.com/AkashiCoin)     |                       转自 HoshinoBot                        |
 | [人生重开模拟器](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/lifeRestart) |     [@AkashiCoin](https://github.com/AkashiCoin)     |                       转自 HoshinoBot                        |
 | [随机塔罗牌](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/tarot) |     [@AkashiCoin](https://github.com/AkashiCoin)     |            转自 HoshinoBot 的 b 站主题塔罗牌插件             |
-| [彩六查分](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot_plugin_r6s) |      [BalconyJH](https://github.com/BalconyJH)       |                    彩虹六号围攻rank分查询                    |
+| [彩六查分](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot_plugin_r6s) |      [@BalconyJH](https://github.com/BalconyJH)       |                    彩虹六号围攻rank分查询                    |
+| [闪照捕获](https://github.com/HDU-Nbsp/zhenxun_plugin_intercept_withdraw) |      [@HDU-Nbsp](https://github.com/HDU-Nbsp)       |                    自动监听群内消息，将撤回消息与闪照（解析为图片后）反馈给超级用户 |
