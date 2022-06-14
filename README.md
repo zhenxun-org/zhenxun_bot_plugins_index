@@ -68,3 +68,4 @@
 | [随机塔罗牌](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/tarot) |     [@AkashiCoin](https://github.com/AkashiCoin)     |            转自 HoshinoBot 的 b 站主题塔罗牌插件             |
 | [彩六查分](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot_plugin_r6s) |      [@BalconyJH](https://github.com/BalconyJH)       |                    彩虹六号围攻rank分查询                    |
 | [闪照捕获](https://github.com/HDU-Nbsp/zhenxun_plugin_intercept_withdraw) |      [@HDU-Nbsp](https://github.com/HDU-Nbsp)       |                    自动监听群内消息，将撤回消息与闪照（解析为图片后）反馈给超级用户 |
+| [微博推送](https://github.com/LambdaYH/zhenxun_plugin_weibo) |      [@LambdaYH](https://github.com/LambdaYH)       | 移植自 [KokkoroBot-Multi-Platform](https://github.com/zzbslayer/KokkoroBot-Multi-Platform) ，在群聊内推送特定的微博（可配置） |
