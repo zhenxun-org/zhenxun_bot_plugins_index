@@ -18,6 +18,7 @@
 
 |                             名称                             |                         作者                         |                             备注                             |
 | :----------------------------------------------------------: | :--------------------------------------------------: | :----------------------------------------------------------: |
+| [打工](https://github.com/CRAZYShimakaze/zhenxun_extensive_plugin/tree/main/work) |      [@CRAZYShimakaze](https://github.com/CRAZYShimakaze)       | 随机生成两位数加减法,在100秒内计算10道题来获取金币 |
 | [棋类游戏](https://github.com/xipesoy/nonebot_plugins_zhenxun_bot/tree/index/nonebot_plugin_boardgame) |      [@xipesoy](https://github.com/xipesoy)       | 棋类游戏(五子棋/围棋/国际象棋) |
 | [游戏王卡查](https://github.com/xipesoy/nonebot_plugins_zhenxun_bot/tree/index/youxiwang) |      [@xipesoy](https://github.com/xipesoy)       | 游戏王卡查 支持模糊查询 项目源地址 [nonebot_plugin_ygo](https://github.com/anlen123/nonebot_plugin_ygo) |
 | [微博推送](https://github.com/LambdaYH/zhenxun_plugin_weibo) |      [@LambdaYH](https://github.com/LambdaYH)       | 移植自 [KokkoroBot-Multi-Platform](https://github.com/zzbslayer/KokkoroBot-Multi-Platform) ，在群聊内推送特定的微博（可配置） |
