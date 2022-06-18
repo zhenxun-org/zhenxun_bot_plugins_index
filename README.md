@@ -18,7 +18,7 @@
 
 |                             名称                             |                         作者                         |                             备注                             |
 | :----------------------------------------------------------: | :--------------------------------------------------: | :----------------------------------------------------------: |
-| [24点](https://github.com/CRAZYShimakaze/zhenxun_extensive_plugin/tree/main/24_point) |      [@CRAZYShimakaze](https://github.com/CRAZYShimakaze)       | 24点游戏,使用给出的四个数字，利用加减乘除算出24(可使用括号)! |
+| [24点](https://github.com/CRAZYShimakaze/zhenxun_extensive_plugin/tree/main/24_point) |      [@CRAZYShimakaze](https://github.com/CRAZYShimakaze)       | 24点游戏,使用给出的四个数字，利用加减乘除算出24 |
 | [扫雷](https://github.com/CRAZYShimakaze/zhenxun_extensive_plugin/tree/main/minesweeper) |      [@CRAZYShimakaze](https://github.com/CRAZYShimakaze)       | 经典的扫雷游戏，移植自 [MeetWq](https://github.com/noneplugin/nonebot-plugin-minesweeper),适配真寻 |
 | [21点](https://github.com/CRAZYShimakaze/zhenxun_extensive_plugin/tree/main/21_point) |      [@CRAZYShimakaze](https://github.com/CRAZYShimakaze)       | 21点游戏，移植自 [yaowan233](https://github.com/yaowan233/nonebot-plugin-blackjack),适配真寻 |
 | [打工](https://github.com/CRAZYShimakaze/zhenxun_extensive_plugin/tree/main/work) |      [@CRAZYShimakaze](https://github.com/CRAZYShimakaze)       | 随机生成两位数加减法,在100秒内计算10道题来获取金币 |
