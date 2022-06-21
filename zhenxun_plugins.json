@@ -1,0 +1,50 @@
+{
+    "zhenxun_plugin_handle": {
+        "plugin_name": "猜成语",
+        "author": "yajiwa",
+        "version": 0.1,
+        "introduction": "汉字Wordle 猜成语",
+        "download_url": "https://github.com/yajiwa/zhenxun_plugin_handle/releases/download/v0.1/zhenxun_plugin_handle.zip",
+        "github_url": "https://github.com/yajiwa/zhenxun_plugin_handle"
+    },
+    "zhenxun_plugin_ddcheck": {
+        "plugin_name": "成分姬",
+        "author": "yajiwa",
+        "version": 0.3,
+        "introduction": "查询B站关注列表的VTuber成分，并以图片形式发出",
+        "download_url": "https://github.com/yajiwa/zhenxun_plugin_ddcheck/releases/download/v0.3/zhenxun_plugin_ddcheck.zip",
+        "github_url": "https://github.com/yajiwa/zhenxun_plugin_ddcheck"
+    },
+    "zhenxun_plugin_petpet": {
+        "plugin_name": " 头像表情包",
+        "author": "yajiwa",
+        "version": 0.4,
+        "introduction": "制作头像相关的表情包",
+        "download_url": "https://github.com/yajiwa/zhenxun_plugin_petpet/releases/download/v0.4/zhenxun_plugin_petpet.zip",
+        "github_url": "https://github.com/yajiwa/zhenxun_plugin_petpet"
+    },
+    "zhenxun_arktools": {
+        "plugin_name": " 明日方舟工具箱",
+        "author": "Number_Sir",
+        "version": 0.2,
+        "introduction": "明日方舟工具箱，整合一些有需求的资料查询功能",
+        "download_url": "https://github.com/NumberSir/zhenxun_arktools/releases/download/v1.0.0/zhenxun_arktools.zip",
+        "github_url": "https://github.com/NumberSir/zhenxun_arktools"
+    },
+    "zhenxun_plugin_siyuan": {
+        "plugin_name": "思源笔记",
+        "author": "Zuoqiu-Yingyi",
+        "version": 0.21,
+        "introduction": "将群转化为思源笔记的收集箱",
+        "download_url": "https://github.com/Zuoqiu-Yingyi/zhenxun-bot-plugin-siyuan/releases/download/v0.2.1/siyuan-v0.2.1.zip",
+        "github_url": "https://github.com/Zuoqiu-Yingyi/zhenxun-bot-plugin-siyuan"
+    },
+    "zhenxun_plugin_memes": {
+        "plugin_name": " 表情包制作",
+        "author": "yajiwa",
+        "version": 0.1,
+        "introduction": "用于制作个性表情包",
+        "download_url": "https://github.com/yajiwa/zhenxun_plugin_memes/releases/download/v0.1/zhenxun_plugin_memes.zip",
+        "github_url": "https://github.com/yajiwa/zhenxun_plugin_memes"
+    }
+}
