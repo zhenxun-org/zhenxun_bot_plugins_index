@@ -18,6 +18,7 @@
 
 |                             名称                             |                         作者                         |                             备注                             |
 | :----------------------------------------------------------: | :--------------------------------------------------: | :----------------------------------------------------------: |
+| [赛马](https://github.com/Evan8440/zhenxun_bot_HorseRace) | [@Evan8440](https://github.com/Evan8440) | 群赛马，支持自定义事件 |
 | [TZ插件合集](https://github.com/po-lan/zhenxun_plugins_TZseries)  [点击下载](https://github.com/po-lan/zhenxun_plugins_TZseries/releases/download/v0.1/zhenxun_plugins_TZseries.zip) |         [@po-lan](https://github.com/po-lan)         |     21点、银行、打劫、福利金、刮刮乐、小人举牌的插件合计     |
 | [24点](https://github.com/CRAZYShimakaze/zhenxun_extensive_plugin/tree/main/24_point) | [@CRAZYShimakaze](https://github.com/CRAZYShimakaze) |       24点游戏,使用给出的四个数字，利用加减乘除算出24        |
 | [扫雷](https://github.com/CRAZYShimakaze/zhenxun_extensive_plugin/tree/main/minesweeper) | [@CRAZYShimakaze](https://github.com/CRAZYShimakaze) | 经典的扫雷游戏，移植自 [MeetWq](https://github.com/noneplugin/nonebot-plugin-minesweeper),适配真寻 |
