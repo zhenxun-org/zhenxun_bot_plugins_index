@@ -18,9 +18,9 @@
     "zhenxun_plugin_petpet": {
         "plugin_name": " 头像表情包",
         "author": "yajiwa",
-        "version": 0.4,
+        "version": 0.5,
         "introduction": "制作头像相关的表情包",
-        "download_url": "https://github.com/yajiwa/zhenxun_plugin_petpet/releases/download/v0.4/zhenxun_plugin_petpet.zip",
+        "download_url": "https://github.com/yajiwa/zhenxun_plugin_petpet/releases/download/v0.5/zhenxun_plugin_petpet.zip",
         "github_url": "https://github.com/yajiwa/zhenxun_plugin_petpet"
     },
     "zhenxun_arktools": {
