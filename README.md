@@ -18,6 +18,7 @@
 
 |                             名称                             |                         作者                         |                             备注                             |
 | :----------------------------------------------------------: | :--------------------------------------------------: | :----------------------------------------------------------: |
+| [股海风云](https://github.com/RShock/zhenxun_plugin_stock_legend) |         [RShock](https://github.com/RShock)          |     适配真寻的炒股小游戏，使用真寻经济系统和真实股市数据     |
 | [每日发癫魔楞语录](https://github.com/xipesoy/zhenxun_plugin_meiriyiju) |        [@xipesoy](https://github.com/xipesoy)        |                各种发癫魔楞语言，支持替换主角                |
 |  [赛马](https://github.com/Evan8440/zhenxun_bot_HorseRace)   |       [@Evan8440](https://github.com/Evan8440)       |                    群赛马，支持自定义事件                    |
 | [TZ插件合集](https://github.com/po-lan/zhenxun_plugins_TZseries)  [点击下载](https://github.com/po-lan/zhenxun_plugins_TZseries/releases/download/v0.2/zhenxun_plugins_TZseries.zip) |         [@po-lan](https://github.com/po-lan)         |     21点、银行、打劫、福利金、刮刮乐、小人举牌的插件合集     |
