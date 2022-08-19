@@ -18,6 +18,7 @@
 
 |                             名称                             |                           作者                           |                             备注                             |
 | :----------------------------------------------------------: | :------------------------------------------------------: | :----------------------------------------------------------: |
+| [赛马娘工具包](https://github.com/shinianj/zhenxun_plugin_uma_mn) |         [@shinianj](https://github.com/shinianj)         |                     由hoshinobot适配的赛马娘工具包                     |
 | [海滨的灼热乱斗](https://github.com/sophisticate9008/fight)  | [@sophisticate9008](https://github.com/sophisticate9008) |                    崩坏三十二英桀战斗模拟                    |
 | [幸运球](https://github.com/fluoresce0/zhenxun_plugins_luckyball) |       [@fluoresce0](https://github.com/fluoresce0)       |                           模拟彩票                           |
 | [成语接龙](https://github.com/CRAZYShimakaze/zhenxun_extensive_plugin/tree/main/idiom_salon) |   [@CRAZYShimakaze](https://github.com/CRAZYShimakaze)   |               接尾字同音字开头的成语，1v1对抗                |
