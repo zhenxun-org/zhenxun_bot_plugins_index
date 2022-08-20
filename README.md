@@ -18,6 +18,9 @@
 
 |                             名称                             |                           作者                           |                             备注                             |
 | :----------------------------------------------------------: | :------------------------------------------------------: | :----------------------------------------------------------: |
+| [群管插件](https://github.com/luvsagiri/zhenxun_plugin_group_executive_manager)  [点击下载](https://github.com/luvsagiri/zhenxun_plugin_group_executive_manager/files/9387149/group_executive_manager.zip) |           [@luvsagiri](https://github.com/luvsagiri)           |     设置超过数量QQ限制的代理群管理员和简易群管功能     |
+| [反对禁言真寻](https://github.com/luvsagiri/zhenxun_plugin_oppose_ban)  [点击下载](https://github.com/luvsagiri/zhenxun_plugin_oppose_ban/files/9379801/oppose_ban.zip) |           [@luvsagiri](https://github.com/luvsagiri)           |     真寻被禁言后提醒超级管理员 默认开启自动退群和ban操作人     |
+| [wolframalpha科学计算](https://github.com/luvsagiri/zhenxun_plugin_wolframalpha)  [点击下载](https://github.com/luvsagiri/zhenxun_plugin_wolframalpha/files/9373604/wolfram.zip) |           [@luvsagiri](https://github.com/luvsagiri)           |     使用[wolframalpha](https://www.wolframalpha.com/)进行科学计算     |
 | [原神角色面板查询](https://github.com/CRAZYShimakaze/zhenxun_extensive_plugin/tree/main/genshin_role_info) |         [@CRAZYShimakaze](https://github.com/CRAZYShimakaze)         |                     移植自[LittlePaimon](https://github.com/CMHopeSunshine/LittlePaimon),展示角色的面板和伤害数据   
 | [赛马娘工具包](https://github.com/shinianj/zhenxun_plugin_uma_mn) |         [@shinianj](https://github.com/shinianj)         |                     由hoshinobot适配的赛马娘工具包                     |
 | [海滨的灼热乱斗](https://github.com/sophisticate9008/fight)  | [@sophisticate9008](https://github.com/sophisticate9008) |                    崩坏三十二英桀战斗模拟                    |
