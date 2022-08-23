@@ -18,6 +18,7 @@
 
 |                             名称                             |                           作者                           |                             备注                             |
 | :----------------------------------------------------------: | :------------------------------------------------------: | :----------------------------------------------------------: |
+| [VITS语音合成](https://github.com/ChthollyWn/zhenxun_plugins_moegoe) |         [@ChthollyWn](https://github.com/ChthollyWn)         |                     适配真寻的nonebot插件
 | [原神角色面板查询](https://github.com/CRAZYShimakaze/zhenxun_extensive_plugin/tree/main/genshin_role_info) |         [@CRAZYShimakaze](https://github.com/CRAZYShimakaze)         |                     移植自[LittlePaimon](https://github.com/CMHopeSunshine/LittlePaimon),展示角色的面板和伤害数据   
 | [赛马娘工具包](https://github.com/shinianj/zhenxun_plugin_uma_mn) |         [@shinianj](https://github.com/shinianj)         |                     由hoshinobot适配的赛马娘工具包                     |
 | [海滨的灼热乱斗](https://github.com/sophisticate9008/fight)  | [@sophisticate9008](https://github.com/sophisticate9008) |                    崩坏三十二英桀战斗模拟                    |
