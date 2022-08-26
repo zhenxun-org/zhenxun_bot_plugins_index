@@ -18,6 +18,7 @@
 
 |                             名称                             |                           作者                           |                             备注                             |
 | :----------------------------------------------------------: | :------------------------------------------------------: | :----------------------------------------------------------: |
+| [亡命神抽](https://github.com/YH1345246294/DeadMansDraw) |         [@YH1345246294](https://github.com/YH1345246294)         |                     亡命神抽，不是你死就是我亡                     |
 | [算卦](https://github.com/kuiiue/zhenxun-plugin-suangua) |         [@kui](https://github.com/kuiiue)         |                     算卦不算命，求己胜求人                     |
 | [看东方](https://github.com/CCYellowStar/zhenxun_plugin_looktouhou) |         [@CCYellowStar](https://github.com/CCYellowStar)         |                     使用[paulzzh东方API](https://img.paulzzh.com/)来获取对应角色图                     |
 | [wolframalpha科学计算](https://github.com/luvsagiri/zhenxun_plugin_wolframalpha) |           [@luvsagiri](https://github.com/luvsagiri)           |     使用[wolframalpha](https://www.wolframalpha.com/)进行科学计算     |
