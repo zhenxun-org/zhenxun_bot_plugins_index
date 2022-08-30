@@ -20,7 +20,7 @@
 
 |                             名称                             |                           作者                           |                             备注                             |
 | :----------------------------------------------------------: | :------------------------------------------------------: | :----------------------------------------------------------: |
-| [原神说](https://github.com/luvsagiri/zhenxun_plugin_genshin_speak) | [@luvsagiri](https://github.com/luvsagiri/) | 五十三位原神角色语音转换,调用[@w4123](https://github.com/w4123/vits)的api |
+| [原神说](https://github.com/luvsagiri/zhenxun_plugin_genshin_speak) | [@luvsagiri](https://github.com/luvsagiri/) | 五十三位原神角色语音合成,调用[@w4123](https://github.com/w4123/vits)的api |
 | [明日方舟助理抽取](https://github.com/sophisticate9008/draw_helper) |         [@sophisticate9008](https://github.com/sophisticate9008)         |                     抽取明日方舟助理，随机中文语音（转型为收藏小游戏）                     |
 | [亡命神抽](https://github.com/YH1345246294/DeadMansDraw) |         [@YH1345246294](https://github.com/YH1345246294)         |                     亡命神抽，不是你死就是我亡                     |
 | [算卦](https://github.com/kuiiue/zhenxun-plugin-suangua) |         [@kui](https://github.com/kuiiue)         |                     算卦不算命，求己胜求人                     |
