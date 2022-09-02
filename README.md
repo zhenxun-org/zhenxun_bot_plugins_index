@@ -20,6 +20,7 @@
 
 |                             名称                             |                           作者                           |                             备注                             |
 | :----------------------------------------------------------: | :------------------------------------------------------: | :----------------------------------------------------------: |
+| [抖音视频无水印分享](https://github.com/shinianj/zhenxun_plugin_DouyinShare) |         [@shinianj](https://github.com/shinianj)         |                     对发送出来的抖音分享链接进行自动解析，发送无水印视频                     |
 | [明日方舟助理抽取](https://github.com/sophisticate9008/draw_helper) |         [@sophisticate9008](https://github.com/sophisticate9008)         |                     抽取明日方舟助理，随机中文语音（转型为收藏小游戏）                     |
 | [亡命神抽](https://github.com/YH1345246294/DeadMansDraw) |         [@YH1345246294](https://github.com/YH1345246294)         |                     亡命神抽，不是你死就是我亡                     |
 | [算卦](https://github.com/kuiiue/zhenxun-plugin-suangua) |         [@kui](https://github.com/kuiiue)         |                     算卦不算命，求己胜求人                     |
