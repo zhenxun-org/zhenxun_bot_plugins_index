@@ -27,7 +27,6 @@
 | [算卦](https://github.com/kuiiue/zhenxun-plugin-suangua) |         [@kui](https://github.com/kuiiue)         |                     算卦不算命，求己胜求人                     |
 | [看东方](https://github.com/CCYellowStar/zhenxun_plugin_looktouhou) |         [@CCYellowStar](https://github.com/CCYellowStar)         |                     使用[paulzzh东方API](https://img.paulzzh.com/)来获取对应角色图                     |
 | [wolframalpha科学计算](https://github.com/luvsagiri/zhenxun_plugin_wolframalpha) |           [@luvsagiri](https://github.com/luvsagiri)           |     使用[wolframalpha](https://www.wolframalpha.com/)进行科学计算     |
-| [造老婆](https://github.com/shinianj/zhenxun_plugin_makewife) |         [@shinianj](https://github.com/shinianj)         |                     简易的造老婆工具（可能最后会沦为头像生成器……）                     |
 | [原神角色面板查询](https://github.com/CRAZYShimakaze/zhenxun_extensive_plugin/tree/main/genshin_role_info) |         [@CRAZYShimakaze](https://github.com/CRAZYShimakaze)         |                     移植自[LittlePaimon](https://github.com/CMHopeSunshine/LittlePaimon),展示角色的面板和伤害数据   
 | [赛马娘工具包](https://github.com/shinianj/zhenxun_plugin_uma_mn) |         [@shinianj](https://github.com/shinianj)         |                     由hoshinobot适配的赛马娘工具包                     |
 | [海滨的灼热乱斗](https://github.com/sophisticate9008/fight)  | [@sophisticate9008](https://github.com/sophisticate9008) |                    崩坏三十二英桀战斗模拟                    |
