@@ -20,6 +20,7 @@
 
 |                             名称                             |                           作者                           |                             备注                             |
 | :----------------------------------------------------------: | :------------------------------------------------------: | :----------------------------------------------------------: |
+| [动漫人物查询](https://github.com/itoukou1/zhenxun_plugin_animetrace) |           [@itoukou1](https://github.com/itoukou1)          |                 基于AnimeTrace API开发的以图识番插件，支持多可能性查询和单可能查询。                 |
 | [以文生图](https://github.com/CCYellowStar/zhenxun_plugin_TextToPic) |           [@CCYellowStar](https://github.com/CCYellowStar)           |                 使用wenxinApi(https://wenxin.baidu.com/moduleApi/ernieVilg)以文字描述生成各种风格图片的真寻插件                 |
 | [github订阅](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/github_sub) |           [@yajiwa](https://github.com/yajiwa)           |                 推送github用户动态或仓库动态                 |
 | [明日方舟助理抽取](https://github.com/sophisticate9008/draw_helper) |         [@sophisticate9008](https://github.com/sophisticate9008)         |                     抽取明日方舟助理，随机中文语音（转型为收藏小游戏）                     |
