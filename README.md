@@ -85,3 +85,5 @@
 | [人生重开模拟器](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/lifeRestart) |       [@AkashiCoin](https://github.com/AkashiCoin)       |                       转自 HoshinoBot                        |
 | [随机塔罗牌](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/tarot) |       [@AkashiCoin](https://github.com/AkashiCoin)       |            转自 HoshinoBot 的 b 站主题塔罗牌插件             |
 | [彩六查分](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot_plugin_r6s) |        [@BalconyJH](https://github.com/BalconyJH)        |                    彩虹六号围攻rank分查询                    |
+
+| [hoshino 清晰术](https://github.com/HibiKier/zhenxun_plugin_img2bigImg) |        [@HibiKier](https://github.com/HibiKier)        | hoshino 清晰术                                    |
