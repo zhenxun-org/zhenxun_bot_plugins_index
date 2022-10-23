@@ -4,7 +4,7 @@ from nonebot import on_command
 from nonebot.rule import to_me
 from nonebot.typing import T_State
 from nonebot.matcher import Matcher
-from nonebot.params import CommandArg, ArgPlainText, State
+from nonebot.params import CommandArg, ArgPlainText
 from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent, Message, MessageSegment
 from nonebot_plugin_htmlrender import text_to_pic
 
@@ -44,7 +44,7 @@ async def _(matcher: Matcher, msg: Message = CommandArg()):
 
 
 @novel.got("content", prompt="请发送要续写的内容")
-async def _(matcher: Matcher, content: str = ArgPlainText(), state: T_State = State()):
+async def _(matcher: Matcher, content: str = ArgPlainText(), state: T_State):
     matcher.set_arg("reply", Message(f"续写{content}"))
     caiyunai = CaiyunAi()
     state["caiyunai"] = caiyunai
@@ -54,7 +54,7 @@ async def _(matcher: Matcher, content: str = ArgPlainText(), state: T_State = St
 async def _(
     bot: Bot,
     event: GroupMessageEvent,
-    state: T_State = State(),
+    state: T_State,
     reply: str = ArgPlainText(),
 ):
     caiyunai: CaiyunAi = state["caiyunai"]

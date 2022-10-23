@@ -2,7 +2,7 @@ import base64
 from nonebot import on_command
 from nonebot.adapters.onebot.v11 import Bot, Event, MessageSegment, Message
 from nonebot.typing import T_State
-from nonebot.params import State, CommandArg
+from nonebot.params import CommandArg
 
 from .data_source import *
 
@@ -28,14 +28,14 @@ pic2text = on_command("字符画", priority=5, block=True)
 
 
 @pic2text.handle()
-async def _(args: Message = CommandArg(), state: T_State = State()):
+async def _(args: Message = CommandArg(), state: T_State):
     for seg in args:
         if seg.type == 'image':
             state['image'] = Message(seg)
 
 
 @pic2text.got('image', prompt='图呢？')
-async def generate_(bot: Bot, event: Event, state: T_State = State()):
+async def generate_(bot: Bot, event: Event, state: T_State):
     msg = state['image']
     if msg[0].type == "image":
         url = msg[0].data["url"]  # 图片链接
