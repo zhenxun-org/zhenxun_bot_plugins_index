@@ -3,7 +3,7 @@ from nonebot.adapters.onebot.v11.event import MessageEvent
 from nonebot.typing import T_State
 from nonebot.matcher import Matcher
 from nonebot.adapters.onebot.v11 import Message, MessageSegment, GroupMessageEvent
-from nonebot.params import Depends, CommandArg, State
+from nonebot.params import Depends, CommandArg
 from nonebot.rule import Rule
 from .handler import random_tkk_handler
 
@@ -85,7 +85,7 @@ async def _(matcher: Matcher, event: MessageEvent, args: Message = CommandArg())
     # 确保在此为send，超时回调内还需matcher.finish
     await matcher.send(f"将在 {waiting}s 后公布答案\n答案格式：[答案是][行][空格][列]\n例如：答案是114 514\n提前结束游戏请发起者输入[找不到唐可可/唐可可人呢]")
 
-async def get_user_guess(args: Message = CommandArg(), state: T_State = State()):
+async def get_user_guess(state: T_State, args: Message = CommandArg()):
     args = args.extract_plain_text().strip().split()
 
     if not args:
