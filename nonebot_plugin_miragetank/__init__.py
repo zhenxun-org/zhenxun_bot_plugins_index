@@ -3,7 +3,7 @@
 from nonebot import on_command
 from nonebot.adapters.onebot.v11 import Bot, Message, MessageSegment, MessageEvent
 from nonebot.adapters.onebot.v11.helpers import HandleCancellation
-from nonebot.params import CommandArg, State
+from nonebot.params import CommandArg
 from nonebot.typing import T_State
 
 from .data_source import color_car, get_img, gray_car
@@ -29,7 +29,7 @@ mirage_tank = on_command("幻影坦克", aliases={"miragetank"}, priority=5)
 
 @mirage_tank.handle()
 async def handle_first(
-    bot: Bot, event: MessageEvent, state: T_State = State(), args: Message = CommandArg()
+    bot: Bot, event: MessageEvent, state: T_State, args: Message = CommandArg()
 ):
     images = []
     for seg in args:
@@ -45,8 +45,8 @@ async def handle_first(
 
 @mirage_tank.got("mod", prompt="需要指定结果类型: gray | color")
 async def get_mod(
+    state: T_State,
     args: Message = CommandArg(),
-    state: T_State = State(),
     cancel=HandleCancellation("已取消"),
 ):
     mod = args.extract_plain_text().strip()
@@ -59,7 +59,7 @@ async def get_mod(
 @mirage_tank.got("img1", prompt="请发送两张图，按表里顺序")
 @mirage_tank.got("img2", prompt="还需要一张图")
 async def get_images(
-    state: T_State = State(), cancel=HandleCancellation("已取消")
+    state: T_State, cancel=HandleCancellation("已取消")
 ):
     img_urls = []
     mod = str(state["mod"])
