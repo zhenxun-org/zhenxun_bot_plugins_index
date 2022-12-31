@@ -20,6 +20,7 @@
 
 |                             名称                             |                           作者                           |                             备注                             |
 | :----------------------------------------------------------: | :------------------------------------------------------: | :----------------------------------------------------------: |
+| [Phigros查分器](https://github.com/SEVEN-6174/zhenxun_plugin_phigros) | [@SEVEN-6174](https://github.com/SEVEN-6174)          |                 勉强能用的查分器                 |
 | [只因进化录](https://github.com/RShock/ikun_evolution) |           [@RShock](https://github.com/RShock)          |                 q群大型挂机游戏                 | 
 | [动漫人物查询](https://github.com/itoukou1/zhenxun_plugin_animetrace) |           [@itoukou1](https://github.com/itoukou1)          |                 基于AnimeTrace API开发的以图识番插件，支持多可能性查询和单可能查询。                 | 
 | [以文生图](https://github.com/CCYellowStar/zhenxun_plugin_TextToPic) |           [@CCYellowStar](https://github.com/CCYellowStar)           |                 使用wenxinApi(https://wenxin.baidu.com/moduleApi/ernieVilg)以文字描述生成各种风格图片的真寻插件                 |
