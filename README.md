@@ -20,6 +20,7 @@
 
 |                             名称                             |                           作者                           |                             备注                             |
 | :----------------------------------------------------------: | :------------------------------------------------------: | :----------------------------------------------------------: |
+| [《别当欧尼酱了！》漫画鉴赏](https://github.com/RShock/zhenxun_plugin_onimai) | [@RShock](https://github.com/RShock)          |                 在qq中观看《别当欧尼酱了！》漫画              |
 | [Phigros查分器](https://github.com/SEVEN-6174/zhenxun_plugin_phigros) | [@SEVEN-6174](https://github.com/SEVEN-6174)          |                 勉强能用的Phigros查分器                 |
 | [只因进化录](https://github.com/RShock/ikun_evolution) |           [@RShock](https://github.com/RShock)          |                 q群大型挂机游戏                 | 
 | [动漫人物查询](https://github.com/itoukou1/zhenxun_plugin_animetrace) |           [@itoukou1](https://github.com/itoukou1)          |                 基于AnimeTrace API开发的以图识番插件，支持多可能性查询和单可能查询。                 | 
