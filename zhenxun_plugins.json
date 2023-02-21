@@ -22,5 +22,13 @@
         "introduction": "21点、银行、打劫、福利金、刮刮乐、小人举牌的插件合集",
         "download_url": "https://github.com/po-lan/zhenxun_plugins_TZseries/releases/download/v0.2/zhenxun_plugins_TZseries.zip",
         "github_url": "https://github.com/po-lan/zhenxun_plugins_TZseries"
+    },
+    "zhenxun_github_sub": {
+        "plugin_name": " github订阅",
+        "author": "yajiwa",
+        "version": 0.5,
+        "introduction": "用来推送github用户动态或仓库动态",
+        "download_url": "https://github.com/yajiwa/zhenxun_github_sub/releases/download/v0.5/github_sub.zip",
+        "github_url": "https://github.com/yajiwa/zhenxun_github_sub"
     }
 }

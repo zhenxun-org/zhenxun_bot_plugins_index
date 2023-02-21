@@ -20,20 +20,20 @@
 
 |                             名称                             |                           作者                           |                             备注                             |
 | :----------------------------------------------------------: | :------------------------------------------------------: | :----------------------------------------------------------: |
-| [获取MC服务器信息](https://github.com/klxf/zhenxun_plugin_getmcserver) |           [@Mr_Fang](https://github.com/klxf)            |                 一个简单的获取服务器在线人数、玩家列表的插件              |
-| [《别当欧尼酱了！》漫画鉴赏](https://github.com/RShock/zhenxun_plugin_onimai) | [@RShock](https://github.com/RShock)          |                 在qq中观看《别当欧尼酱了！》漫画              |
-| [Phigros查分器](https://github.com/SEVEN-6174/zhenxun_plugin_phigros) | [@SEVEN-6174](https://github.com/SEVEN-6174)          |                 勉强能用的Phigros查分器                 |
-| [只因进化录](https://github.com/RShock/ikun_evolution) |           [@RShock](https://github.com/RShock)          |                 q群大型挂机游戏                 | 
-| [动漫人物查询](https://github.com/itoukou1/zhenxun_plugin_animetrace) |           [@itoukou1](https://github.com/itoukou1)          |                 基于AnimeTrace API开发的以图识番插件，支持多可能性查询和单可能查询。                 | 
-| [以文生图](https://github.com/CCYellowStar/zhenxun_plugin_TextToPic) |           [@CCYellowStar](https://github.com/CCYellowStar)           |                 使用wenxinApi(https://wenxin.baidu.com/moduleApi/ernieVilg)以文字描述生成各种风格图片的真寻插件                 |
-| [github订阅](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/github_sub) |           [@yajiwa](https://github.com/yajiwa)           |                 推送github用户动态或仓库动态                 |
-| [明日方舟助理抽取](https://github.com/sophisticate9008/draw_helper) |         [@sophisticate9008](https://github.com/sophisticate9008)         |                     抽取明日方舟助理，随机中文语音（转型为收藏小游戏）                     |
-| [亡命神抽](https://github.com/YH1345246294/DeadMansDraw) |         [@YH1345246294](https://github.com/YH1345246294)         |                     亡命神抽，不是你死就是我亡                     |
-| [算卦](https://github.com/kuiiue/zhenxun-plugin-suangua) |         [@kui](https://github.com/kuiiue)         |                     算卦不算命，求己胜求人                     |
-| [看东方](https://github.com/CCYellowStar/zhenxun_plugin_looktouhou) |         [@CCYellowStar](https://github.com/CCYellowStar)         |                     使用[paulzzh东方API](https://img.paulzzh.com/)来获取对应角色图                     |
-| [wolframalpha科学计算](https://github.com/luvsagiri/zhenxun_plugin_wolframalpha) |           [@luvsagiri](https://github.com/luvsagiri)           |     使用[wolframalpha](https://www.wolframalpha.com/)进行科学计算     |
-| [原神角色面板查询](https://github.com/CRAZYShimakaze/zhenxun_extensive_plugin/tree/main/genshin_role_info) |         [@CRAZYShimakaze](https://github.com/CRAZYShimakaze)         |                     移植自[LittlePaimon](https://github.com/CMHopeSunshine/LittlePaimon),展示角色的面板和伤害数据   
-| [赛马娘工具包](https://github.com/shinianj/zhenxun_plugin_uma_mn) |         [@shinianj](https://github.com/shinianj)         |                     由hoshinobot适配的赛马娘工具包                     |
+| [获取MC服务器信息](https://github.com/klxf/zhenxun_plugin_getmcserver) |           [@Mr_Fang](https://github.com/klxf)            |         一个简单的获取服务器在线人数、玩家列表的插件         |
+| [《别当欧尼酱了！》漫画鉴赏](https://github.com/RShock/zhenxun_plugin_onimai) |           [@RShock](https://github.com/RShock)           |               在qq中观看《别当欧尼酱了！》漫画               |
+| [Phigros查分器](https://github.com/SEVEN-6174/zhenxun_plugin_phigros) |       [@SEVEN-6174](https://github.com/SEVEN-6174)       |                   勉强能用的Phigros查分器                    |
+|    [只因进化录](https://github.com/RShock/ikun_evolution)    |           [@RShock](https://github.com/RShock)           |                       q群大型挂机游戏                        |
+| [动漫人物查询](https://github.com/itoukou1/zhenxun_plugin_animetrace) |         [@itoukou1](https://github.com/itoukou1)         | 基于AnimeTrace API开发的以图识番插件，支持多可能性查询和单可能查询。 |
+| [以文生图](https://github.com/CCYellowStar/zhenxun_plugin_TextToPic) |     [@CCYellowStar](https://github.com/CCYellowStar)     | 使用wenxinApi(https://wenxin.baidu.com/moduleApi/ernieVilg)以文字描述生成各种风格图片的真寻插件 |
+| [github订阅](https://github.com/yajiwa/zhenxun_github_sub)  [点击下载](https://github.com/yajiwa/zhenxun_github_sub/releases/download/v0.5/github_sub.zip) |           [@yajiwa](https://github.com/yajiwa)           |                 推送github用户动态或仓库动态                 |
+| [明日方舟助理抽取](https://github.com/sophisticate9008/draw_helper) | [@sophisticate9008](https://github.com/sophisticate9008) |      抽取明日方舟助理，随机中文语音（转型为收藏小游戏）      |
+|   [亡命神抽](https://github.com/YH1345246294/DeadMansDraw)   |     [@YH1345246294](https://github.com/YH1345246294)     |                  亡命神抽，不是你死就是我亡                  |
+|   [算卦](https://github.com/kuiiue/zhenxun-plugin-suangua)   |            [@kui](https://github.com/kuiiue)             |                    算卦不算命，求己胜求人                    |
+| [看东方](https://github.com/CCYellowStar/zhenxun_plugin_looktouhou) |     [@CCYellowStar](https://github.com/CCYellowStar)     | 使用[paulzzh东方API](https://img.paulzzh.com/)来获取对应角色图 |
+| [wolframalpha科学计算](https://github.com/luvsagiri/zhenxun_plugin_wolframalpha) |        [@luvsagiri](https://github.com/luvsagiri)        | 使用[wolframalpha](https://www.wolframalpha.com/)进行科学计算 |
+| [原神角色面板查询](https://github.com/CRAZYShimakaze/zhenxun_extensive_plugin/tree/main/genshin_role_info) |   [@CRAZYShimakaze](https://github.com/CRAZYShimakaze)   | 移植自[LittlePaimon](https://github.com/CMHopeSunshine/LittlePaimon),展示角色的面板和伤害数据 |
+| [赛马娘工具包](https://github.com/shinianj/zhenxun_plugin_uma_mn) |         [@shinianj](https://github.com/shinianj)         |                由hoshinobot适配的赛马娘工具包                |
 | [海滨的灼热乱斗](https://github.com/sophisticate9008/fight)  | [@sophisticate9008](https://github.com/sophisticate9008) |                    崩坏三十二英桀战斗模拟                    |
 | [幸运球](https://github.com/fluoresce0/zhenxun_plugins_luckyball) |       [@fluoresce0](https://github.com/fluoresce0)       |                           模拟彩票                           |
 | [成语接龙](https://github.com/CRAZYShimakaze/zhenxun_extensive_plugin/tree/main/idiom_salon) |   [@CRAZYShimakaze](https://github.com/CRAZYShimakaze)   |               接尾字同音字开头的成语，1v1对抗                |
@@ -89,4 +89,4 @@
 | [人生重开模拟器](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/lifeRestart) |       [@AkashiCoin](https://github.com/AkashiCoin)       |                       转自 HoshinoBot                        |
 | [随机塔罗牌](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/tarot) |       [@AkashiCoin](https://github.com/AkashiCoin)       |            转自 HoshinoBot 的 b 站主题塔罗牌插件             |
 | [彩六查分](https://github.com/AkashiCoin/nonebot_plugins_zhenxun_bot/tree/master/nonebot_plugin_r6s) |        [@BalconyJH](https://github.com/BalconyJH)        |                    彩虹六号围攻rank分查询                    |
-| [hoshino 清晰术](https://github.com/HibiKier/zhenxun_plugin_img2bigImg) |        [@HibiKier](https://github.com/HibiKier)        | hoshino 清晰术                                    |
+| [hoshino 清晰术](https://github.com/HibiKier/zhenxun_plugin_img2bigImg) |         [@HibiKier](https://github.com/HibiKier)         |                        hoshino 清晰术                        |
