@@ -63,3 +63,16 @@ Feat: add `插件名` plugin for #Issue编号
 你可以根据 [Issue 模板](./.github/ISSUE_TEMPLATE/plugin.md)，将插件信息填入，并附带 `Plugin` 标签，我们会在空闲时对插件进行审核
 
 在审核通过后，我们会将分支合并
+
+## 联动真寻插件仓库
+
+需要有GitHub_Release的下载链接
+
+### 压缩文件夹
+
+压缩文件的时候不要压缩插件文件夹，直接选择插件内的`.py,requirements.txt`等文件或文件夹进行压缩
+
+### 依赖
+
+插件如果需要安装依赖可以写在`requirements.txt`里，真寻安装插件时将自动安装里面的依赖
+
