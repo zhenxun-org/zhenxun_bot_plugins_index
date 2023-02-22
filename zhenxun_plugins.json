@@ -31,4 +31,12 @@
         "download_url": "https://github.com/yajiwa/zhenxun_github_sub/releases/download/v0.5/github_sub.zip",
         "github_url": "https://github.com/yajiwa/zhenxun_github_sub"
     }
+	"zhenxun_github_sub": {
+        "plugin_name": " 哔咔漫画",
+        "author": "CCYellowStar",
+        "version": 1.0,
+        "introduction": "一起看涩涩？",
+        "download_url": "https://github.com/CCYellowStar/zhenxun_plugin_pica/releases/download/v1.0/zhenxun_plugin_pica.zip",
+        "github_url": "https://github.com/CCYellowStar/zhenxun_plugin_pica"
+    }
 }
