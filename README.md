@@ -20,7 +20,7 @@
 
 |                             名称                             |                           作者                           |                             备注                             |
 | :----------------------------------------------------------: | :------------------------------------------------------: | :----------------------------------------------------------: |
-|  [我的世界服务器状态查询](https://github.com/molanp/zhenxun_check_Minecraft)|      [@molanp](https://github.com/molanp)      |    一个方便的查询我的世界服务器信息的插件|
+|  [我的世界服务器状态查询](https://ghproxy.com/github.com/molanp/zhenxun_check_Minecraft)|      [@molanp](https://github.com/molanp)      |    一个方便的查询我的世界服务器信息的插件|
 | [获取MC服务器信息](https://github.com/klxf/zhenxun_plugin_getmcserver) |           [@Mr_Fang](https://github.com/klxf)            |                 一个简单的获取服务器在线人数、玩家列表的插件              |
 | [《别当欧尼酱了！》漫画鉴赏](https://github.com/RShock/zhenxun_plugin_onimai) | [@RShock](https://github.com/RShock)          |                 在qq中观看《别当欧尼酱了！》漫画              |
 | [Phigros查分器](https://github.com/SEVEN-6174/zhenxun_plugin_phigros) | [@SEVEN-6174](https://github.com/SEVEN-6174)          |                 勉强能用的Phigros查分器                 |
