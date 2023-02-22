@@ -20,6 +20,7 @@
 
 |                             名称                             |                           作者                           |                             备注                             |
 | :----------------------------------------------------------: | :------------------------------------------------------: | :----------------------------------------------------------: |
+| [QQ权重查询](https://github.com/xiayingLIULI/zhenxun_plugin_QQweight)  [点击下载](https://github.com/xiayingLIULI/zhenxun_plugin_QQweight/releases/download/v0.1/QQwright.zip) |     [xiayingLIULI](https://github.com/xiayingLIULI)      |                查询个人QQ号以及真寻的QQ权重分                |
 | [NovelAi作图（本地版）](https://github.com/CCYellowStar/zhenxun_plugin_NovelAi) |     [CCYellowStar](https://github.com/CCYellowStar)      | 调用本地stable-diffusion-webui-api的NovelAi作图插件，支持中文，内置EhTagTranslation词库翻译和百度机翻 |
 | [哔咔漫画](https://github.com/CCYellowStar/zhenxun_plugin_pica)  [点击下载](https://github.com/CCYellowStar/zhenxun_plugin_pica/releases/download/v1.0/zhenxun_plugin_pica.zip) |     [CCYellowStar](https://github.com/CCYellowStar)      |                         一起看涩涩？                         |
 | [获取MC服务器信息](https://github.com/klxf/zhenxun_plugin_getmcserver) |           [@Mr_Fang](https://github.com/klxf)            |         一个简单的获取服务器在线人数、玩家列表的插件         |
