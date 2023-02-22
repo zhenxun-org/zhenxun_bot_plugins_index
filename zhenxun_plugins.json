@@ -30,7 +30,7 @@
         "introduction": "用来推送github用户动态或仓库动态",
         "download_url": "https://github.com/yajiwa/zhenxun_github_sub/releases/download/v0.5/github_sub.zip",
         "github_url": "https://github.com/yajiwa/zhenxun_github_sub"
-    }
+    },
 	"zhenxun_github_sub": {
         "plugin_name": " 哔咔漫画",
         "author": "CCYellowStar",
