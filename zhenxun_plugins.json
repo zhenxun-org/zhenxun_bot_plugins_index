@@ -51,8 +51,16 @@
         "plugin_name": " 我的世界服务器状态查询",
         "author": "molanp",
         "version": 1.3,
-        "introduction": "通过套接字链接获取我的世界服务器信息，整理格式并发送",
+        "introduction": "一个方便的查询我的世界服务器信息的插件",
         "download_url": "https://github.com/molanp/zhenxun_check_Minecraft/releases/download/v1.3/zhenxun_check_Minecraft-main.zip",
         "github_url": "https://github.com/molanp/zhenxun_check_Minecraft"
+    },
+	"zhenxun_plugin_niuniu": {
+        "plugin_name": " 牛牛大作战",
+        "author": "molanp",
+        "version": 0.2,
+        "introduction": "一个方便的查询我的世界服务器信息的插件",
+        "download_url": "https://github.com/molanp/zhenxun_plugin_niuniu/releases/download/0.2/zhenxun_plugin_niuniu-main.zip",
+        "github_url": "https://github.com/molanp/zhenxun_plugin_niuniu"
     }
 }
