@@ -20,9 +20,10 @@
 
 |                             名称                             |                           作者                           |                             备注                             |
 | :----------------------------------------------------------: | :------------------------------------------------------: | :----------------------------------------------------------: |
+| [我的世界服务器状态查询](https://github.com/molanp/zhenxun_check_Minecraft)   [点击下载](https://github.com/molanp/zhenxun_check_Minecraft/releases/download/v1.3/zhenxun_check_Minecraft-main.zip) |           [molanp](https://github.com/molanp)            |     通过套接字链接获取我的世界服务器信息，整理格式并发送     |
 | [QQ权重查询](https://github.com/xiayingLIULI/zhenxun_plugin_QQweight)  [点击下载](https://github.com/xiayingLIULI/zhenxun_plugin_QQweight/releases/download/v0.1/QQwright.zip) |     [xiayingLIULI](https://github.com/xiayingLIULI)      |                查询个人QQ号以及真寻的QQ权重分                |
 | [NovelAi作图（本地版）](https://github.com/CCYellowStar/zhenxun_plugin_NovelAi) |     [CCYellowStar](https://github.com/CCYellowStar)      | 调用本地stable-diffusion-webui-api的NovelAi作图插件，支持中文，内置EhTagTranslation词库翻译和百度机翻 |
-| [哔咔漫画](https://github.com/CCYellowStar/zhenxun_plugin_pica)  [点击下载](https://github.com/CCYellowStar/zhenxun_plugin_pica/releases/download/v1.0/zhenxun_plugin_pica.zip) |     [CCYellowStar](https://github.com/CCYellowStar)      |                         一起看涩涩？                         |
+| [哔咔漫画](https://github.com/CCYellowStar/zhenxun_plugin_pica)  [点击下载](https://github.com/CCYellowStar/zhenxun_plugin_pica/releases/download/v1.1/zhenxun_plugin_pica.zip) |     [CCYellowStar](https://github.com/CCYellowStar)      |                         一起看涩涩？                         |
 | [获取MC服务器信息](https://github.com/klxf/zhenxun_plugin_getmcserver) |           [@Mr_Fang](https://github.com/klxf)            |         一个简单的获取服务器在线人数、玩家列表的插件         |
 | [《别当欧尼酱了！》漫画鉴赏](https://github.com/RShock/zhenxun_plugin_onimai) |           [@RShock](https://github.com/RShock)           |               在qq中观看《别当欧尼酱了！》漫画               |
 | [Phigros查分器](https://github.com/SEVEN-6174/zhenxun_plugin_phigros) |       [@SEVEN-6174](https://github.com/SEVEN-6174)       |                   勉强能用的Phigros查分器                    |
