@@ -20,6 +20,7 @@
 
 |                             名称                             |                           作者                           |                             备注                             |
 | :----------------------------------------------------------: | :------------------------------------------------------: | :----------------------------------------------------------: |
+| [Chatgpt问答](https://github.com/CRAZYShimakaze/zhenxun_extensive_plugin/tree/main/chatgpt)  |            [@CRAZYShimakaze](https://github.com/CRAZYShimakaze)            |                        chatgpt问答（支持配置上下文长度）                        |
 | [牛牛大作战](https://github.com/molanp/zhenxun_plugin_niuniu)  [点击下载](https://github.com/molanp/zhenxun_plugin_niuniu/releases/download/0.2/zhenxun_plugin_niuniu-main.zip) |           [molanp](https://github.com/molanp)            |                        男同快乐小游戏                        |
 | [我的世界服务器状态查询](https://github.com/molanp/zhenxun_check_Minecraft)   [点击下载](https://github.com/molanp/zhenxun_check_Minecraft/releases/download/v1.3/zhenxun_check_Minecraft-main.zip) |           [molanp](https://github.com/molanp)            |            一个方便的查询我的世界服务器信息的插件            |
 | [QQ权重查询](https://github.com/xiayingLIULI/zhenxun_plugin_QQweight)  [点击下载](https://github.com/xiayingLIULI/zhenxun_plugin_QQweight/releases/download/v0.1/QQwright.zip) |     [xiayingLIULI](https://github.com/xiayingLIULI)      |                查询个人QQ号以及真寻的QQ权重分                |
