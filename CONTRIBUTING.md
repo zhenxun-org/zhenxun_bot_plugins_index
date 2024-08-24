@@ -26,7 +26,7 @@ Feat: add `插件名` plugin
 
 在审核通过后，我们会将插件添加至索引
 
-如果您愿意，可以参考下方的 `表格样式` 修改 `README.md`，并根据 `发起 Pull Request` 发布修改
+如果您愿意，可以参考下方的 `表格样式` 修改`indices`目录下的 `Function-Plugin.md`，并根据 `发起 Pull Request` 发布修改
 
 ## 表格样式
 
@@ -34,16 +34,10 @@ Feat: add `插件名` plugin
 | [插件名](仓库地址) | [@作者名](作者 GitHub 地址) | 插件备注 |
 ```
 
-如果您的插件发布了 Release，也可将 Release 地址写入，格式如下
-
-```markdown
-| [插件名](仓库地址) [点击下载](https://ghproxy.com/GitHub release 下载地址) | [@作者名](作者 GitHub 地址) | 插件备注 |
-```
-
 例如下面的成分姬插件
 
 ```markdown
-| [成分姬](https://github.com/yajiwa/zhenxun_plugin_ddcheck)  [点击下载](https://ghproxy.com/https://github.com/yajiwa/zhenxun_plugin_ddcheck/releases/download/v0.2/zhenxun_plugin_ddcheck.zip) | [@yajiwa](https://github.com/yajiwa) | 查询B站关注列表的VTuber成分，并以图片形式发出 |
+| [github订阅](https://github.com/xuanerwa/zhenxun_github_sub) | [@xuanerwa](https://github.com/xuanerwa) | 用来推送github用户动态或仓库动态                             |
 ```
 
 ## 发起 Pull Request
@@ -64,15 +58,25 @@ Feat: add `插件名` plugin for #Issue编号
 
 在审核通过后，我们会将分支合并
 
-## 联动真寻插件仓库
+## 真寻商店插件
 
-需要有GitHub_Release的下载链接
+修改项目下的 `plugins.json` 文件添加你的插件，例如
+```json
+"github订阅": {
+        "module": "github_sub",
+        "module_path": "plugins.github_sub",
+        "description": "订阅github用户或仓库",
+        "usage：\n    github新Comment，PR，Issue等提醒\n指令：\n    添加github ['用户'/'仓库'] [用户名/{owner/repo}]\n    删除github [用户名/{owner/repo}]\n    查看github\n    示例：添加github订阅 用户 HibiKier\n    示例：添加gb订阅 仓库 HibiKier/zhenxun_bot\n    示例：添加github 用户 HibiKier\n    示例：删除gb订阅 HibiKier",
+        "author": "xuanerwa",
+        "version": "0.6",
+        "plugin_type": "NORMAL",
+        "is_dir": true
+		"github_url": "https://github.com/xuanerwa/zhenxun_github_sub"
+    },
+```
 
-### 压缩文件夹
 
-压缩文件的时候不要压缩插件文件夹，直接选择插件内的`.py,requirements.txt`等文件或文件夹进行压缩
 
-### 依赖
 
 插件如果需要安装依赖可以写在`requirements.txt`里，真寻安装插件时将自动安装里面的依赖
 
