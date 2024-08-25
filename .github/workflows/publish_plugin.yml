@@ -1,0 +1,83 @@
+name: plugin publish
+
+on:
+  issues:
+    types: [opened, reopened, edited]
+  pull_request_target:
+    types: [closed]
+  issue_comment:
+    types: [created]
+  pull_request_review:
+    types: [submitted]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.issue.number || github.run_id }}
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    name: check
+    # do not run on forked PRs, do not run on not related issues, do not run on pr comments
+    if: |
+      !(
+        (
+          github.event.pull_request &&
+          (
+            github.event.pull_request.head.repo.fork ||
+            !(
+              contains(github.event.pull_request.labels.*.name, 'Plugin')
+            )
+          )
+        ) ||
+        (
+          github.event_name == 'issue_comment' && github.event.issue.pull_request
+        )
+      )
+    steps:
+      - run: echo "Check passed"
+  plugin_test:
+    runs-on: ubuntu-latest
+    name: nonebot2 plugin test
+    needs: check
+    permissions:
+      issues: read
+    outputs:
+      result: ${{ steps.plugin-test.outputs.RESULT }}
+      output: ${{ steps.plugin-test.outputs.OUTPUT }}
+      metadata: ${{ steps.plugin-test.outputs.METADATA }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        id: setup_python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install Poetry
+        if: ${{ !startsWith(github.event_name, 'pull_request') }}
+        run: pip install poetry
+
+      # Poetry cache depends on OS, Python version and Poetry version.
+      - name: Cache Poetry cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pypoetry
+          key: poetry-cache-${{ runner.os }}-${{ steps.setup_python.outputs.python-version }}
+
+      - name: Setup zhenxun
+        id: setup-zhenxun
+        run: |
+            git clone -b dev https://github.com/Hibikier/zhenxun_bot.git
+
+      - name: Test Plugin
+        id: plugin-test
+        run: |
+          mv scripts/test_plugin.py zhenxun_bot/test_plugin.py
+          cd zhenxun_bot
+          rm -rf ./zhenxun/plugins/* poetry.lock
+          poetry source remove ali
+          poetry install --no-root
+          poetry run pip install pydantic==1.10
+          poetry run python3 test_plugin.py

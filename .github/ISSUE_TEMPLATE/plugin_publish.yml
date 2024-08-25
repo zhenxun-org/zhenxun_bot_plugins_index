@@ -1,0 +1,61 @@
+name: 发布插件
+title: "Plugin: {name}"
+description: 发布插件到 zhenxun-bot 插件索引仓库
+labels: ["Plugin"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: 插件名称
+      description: 插件名称
+      placeholder: e.g. github订阅
+    validations:
+      required: true
+
+  - type: input
+    id: module
+    attributes:
+      label: 模块名称
+      description: 插件模块名称, 由英文小写字母和下划线组成
+      placeholder: e.g. github_sub
+    validations:
+      required: true
+
+  - type: input
+    id: module_path
+    attributes:
+      label: 模块路径
+      description: 模块路径，相对于github仓库根目录，以`.`分割目录
+      placeholder: e.g. github_sub
+    validations:
+      required: true
+
+  - type: input
+    id: github_url
+    attributes:
+      label: 仓库地址
+      description: 仓库地址
+      placeholder: e.g. https://github.com/xuanerwa/zhenxun_github_sub
+    validations:
+      required: true
+
+  - type: dropdown
+    id: is_dir
+    attributes:
+      label: 是否为目录
+      description: 插件路径是否为目录
+      options:
+        - 是
+        - 否
+      default: 0
+
+  - type: textarea
+    id: config
+    attributes:
+      label: 插件配置项
+      description: 插件配置项
+      render: dotenv
+      placeholder: |
+        # e.g.
+        # KEY=VALUE
+        # KEY2=VALUE2
