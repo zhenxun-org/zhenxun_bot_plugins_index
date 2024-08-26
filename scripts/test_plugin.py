@@ -130,7 +130,7 @@ url_path = ShopManage.get_url_path("{module_path}", {is_dir})
 if not url_path:
     logger.error("插件下载地址构建失败...")
     exit(1)
-asyncio.run(download_file("{github_download_url}".format(url_path)))
+asyncio.run(download_file("{github_download_url}".format(url_path), True, "{github_download_url}".split("/contents/")[0] + "/contents/"))
 plugin = load_plugin(Path(__file__).parent / "zhenxun"/ "plugins" / "{module_name}")
 
 if not plugin:
@@ -339,7 +339,7 @@ class PluginTest:
         if self.path.exists():
             # 默认使用 fake 驱动
             with open(self.path / ".env", "w", encoding="utf8") as f:
-                f.write("DRIVER=fake")
+                f.write("ENVIRONMENT=dev")
             # 如果提供了插件配置项，则写入配置文件
             if self.config is not None:
                 with open(self.path / ".env.prod", "w", encoding="utf8") as f:
@@ -443,7 +443,6 @@ SYSTEM_PROXY="http://127.0.0.1:7890"
     plugin_github_url = PLUGIN_GITHUB_URL_PATTERN.search(issue_body)
     is_dir_text = IS_DIR_PATTERN.search(issue_body)
     config = CONFIG_PATTERN.search(issue_body)
-    print(plugin_name, module_name, module_path, plugin_github_url, is_dir_text, config)
 
     if not (
         plugin_name
@@ -535,9 +534,7 @@ async def main():
         is_dir=is_dir,
         config=config.group(1).strip() if config else None,
     )
-    ok, msg = await test.run()
-    if ok:
-        print("测试通过")
+    await test.run()
 
 
 if __name__ == "__main__":
