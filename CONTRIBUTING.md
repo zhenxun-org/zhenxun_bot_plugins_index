@@ -58,21 +58,21 @@ Feat: add `插件名` plugin for #Issue编号
 
 在审核通过后，我们会将分支合并
 
-## 真寻商店插件
+## 真寻插件商店
 
 修改项目下的 `plugins.json` 文件添加你的插件，例如
 ```json
 "github订阅": {
         "module": "github_sub",
-        "module_path": "plugins.github_sub",
+        "module_path": "github_sub",
         "description": "订阅github用户或仓库",
         "usage：\n    github新Comment，PR，Issue等提醒\n指令：\n    添加github ['用户'/'仓库'] [用户名/{owner/repo}]\n    删除github [用户名/{owner/repo}]\n    查看github\n    示例：添加github订阅 用户 HibiKier\n    示例：添加gb订阅 仓库 HibiKier/zhenxun_bot\n    示例：添加github 用户 HibiKier\n    示例：删除gb订阅 HibiKier",
         "author": "xuanerwa",
         "version": "0.6",
         "plugin_type": "NORMAL",
-        "is_dir": true
+        "is_dir": true,
 		"github_url": "https://github.com/xuanerwa/zhenxun_github_sub"
-    },
+    }
 ```
 
 
