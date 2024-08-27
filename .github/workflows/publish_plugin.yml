@@ -114,9 +114,9 @@ jobs:
           poetry install --no-root
           poetry run pip install pydantic==1.10
           curl -sSL https://github.com/zhenxun-org/zhenxunflow/releases/latest/download/plugin_test.py | poetry run python -
-  noneflow:
+  zhenxunflow:
     runs-on: ubuntu-latest
-    name: noneflow
+    name: zhenxunflow
     needs: plugin_test
     steps:
       - name: Generate token
@@ -130,6 +130,12 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ steps.generate-token.outputs.token }}
+
+      - name: Cache pre-commit hooks
+        uses: actions/cache@v4
+        with:
+          path: .cache/.pre-commit
+          key: zhenxunflow-${{ runner.os }}-${{ hashFiles('.pre-commit-config.yaml') }}
 
       - name: zhenxunflow
         uses: docker://ghcr.io/zhenxun-org/zhenxunflow:latest
@@ -145,3 +151,7 @@ jobs:
           PLUGIN_TEST_METADATA: ${{ needs.plugin_test.outputs.metadata }}
           APP_ID: ${{ secrets.APP_ID }}
           PRIVATE_KEY: ${{ secrets.APP_KEY }}
+          PRE_COMMIT_HOME: /github/workspace/.cache/.pre-commit
+
+      - name: Fix permission
+        run: sudo chown -R $(whoami):$(id -ng) .cache/.pre-commit
