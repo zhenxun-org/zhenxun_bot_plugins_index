@@ -96,17 +96,20 @@ jobs:
       # Poetry cache depends on OS, Python version and Poetry version.
       - name: Cache Poetry cache
         uses: actions/cache@v3
+        if: ${{ !startsWith(github.event_name, 'pull_request') }}
         with:
           path: ~/.cache/pypoetry
           key: poetry-cache-${{ runner.os }}-${{ steps.setup_python.outputs.python-version }}
 
       - name: Setup zhenxun
         id: setup-zhenxun
+        if: ${{ !startsWith(github.event_name, 'pull_request') }}
         run: |
-            git clone -b dev https://github.com/Hibikier/zhenxun_bot.git
+          git clone -b dev https://github.com/Hibikier/zhenxun_bot.git
 
       - name: Test Plugin
         id: plugin-test
+        if: ${{ !startsWith(github.event_name, 'pull_request') }}
         run: |
           cd zhenxun_bot
           rm -rf ./zhenxun/plugins/* poetry.lock
@@ -114,6 +117,13 @@ jobs:
           poetry install --no-root
           poetry run pip install pydantic==1.10
           curl -sSL https://github.com/zhenxun-org/zhenxunflow/releases/latest/download/plugin_test.py | poetry run python -
+
+      - name: Test Plugin PR
+        id: plugin-test-pr
+        if: ${{ startsWith(github.event_name, 'pull_request') }}
+        run: |
+          curl -sSL https://github.com/zhenxun-org/zhenxunflow/releases/latest/download/plugin_test.py | python -
+
   zhenxunflow:
     runs-on: ubuntu-latest
     name: zhenxunflow
