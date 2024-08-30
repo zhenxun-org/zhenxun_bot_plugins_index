@@ -24,7 +24,7 @@
 
 | 名称                                                         | 作者                                     | 备注                                                         |
 | :----------------------------------------------------------- | :--------------------------------------- | :----------------------------------------------------------- |
-| [WebUi](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/web_ui) | [@HibiKier](https://github.com/HibiKier) | Web管理界面api需要配合“[绪山真寻Bot的简易Web管理界面](https://github.com/HibiKier/zhenxun_bot_webui)”使用 |
+| [B站订阅](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/bilibili_sub) | [@HibiKier](https://github.com/HibiKier) | 非常便利的B站订阅通知                                        |
 | [词库问答](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/word_bank) | [@HibiKier](https://github.com/HibiKier) | 自定义词条，单词条多个内容随机回复                           |
 | [游戏抽卡](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/draw_card) | [@HibiKier](https://github.com/HibiKier) | 模拟赛马娘，原神，明日方舟，坎公骑冠剑，公主连结(国/台)，碧蓝航线，FGO，阴阳师，碧蓝档案进行抽卡 |
 | [github订阅](https://github.com/xuanerwa/zhenxun_github_sub) | [@xuanerwa](https://github.com/xuanerwa) | 用来推送github用户动态或仓库动态                             |
