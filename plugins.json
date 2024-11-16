@@ -16,7 +16,7 @@
     "description": "Minecraft服务器状态查询，支持IPv6",
     "usage": "Minecraft服务器状态查询，支持IPv6\n    用法：\n        查服 [ip]:[端口] / 查服 [ip]\n        设置语言 zh-cn\n        当前语言\n        语言列表\n    eg:\n        mcheck ip:port / mcheck ip\n        set_lang en\n        lang_now\n        lang_list",
     "author": "molanp",
-    "version": "1.19",
+    "version": "1.20",
     "plugin_type": "NORMAL",
     "is_dir": true,
     "github_url": "https://github.com/molanp/zhenxun_check_Minecraft"
