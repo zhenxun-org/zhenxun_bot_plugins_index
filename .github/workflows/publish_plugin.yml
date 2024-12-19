@@ -113,7 +113,7 @@ jobs:
         run: |
           cd zhenxun_bot
           rm -rf ./zhenxun/plugins/* poetry.lock
-          poetry source remove ali
+          poetry source remove aliyun
           poetry install --no-root
           poetry run pip install pydantic==1.10
           curl -sSL https://github.com/zhenxun-org/zhenxunflow/releases/latest/download/plugin_test.py | poetry run python -
