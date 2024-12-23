@@ -31,5 +31,16 @@
     "plugin_type": "NORMAL",
     "is_dir": true,
     "github_url": "https://github.com/sophisticate9008/zhenxun_plugin_arknights_collect_operator/tree/master"
+  },
+  "海滨乱斗": {
+    "module": "zhenxun_plugin_honkai_shore_fight",
+    "module_path": ".",
+    "description": "崩坏三曾经的网页赛制押注活动,插件以文字方式展示战斗过程并可以押注金币(仅限qq平台)",
+    "usage": "\n    海滨乱斗(?静默)\n    ",
+    "author": "sophisticate9008",
+    "version": "0.1",
+    "plugin_type": "NORMAL",
+    "is_dir": true,
+    "github_url": "https://github.com/sophisticate9008/zhenxun_plugin_honkai_shore_fight/tree/master"
   }
 }
