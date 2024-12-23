@@ -20,5 +20,16 @@
     "plugin_type": "NORMAL",
     "is_dir": true,
     "github_url": "https://github.com/molanp/zhenxun_plugin_mccheck"
+  },
+  "明日方舟干员收集": {
+    "module": "zhenxun_plugin_arknights_collect_operator",
+    "module_path": ".",
+    "description": "消耗金币项目,卡池包含全部3星以上角色，按照游戏里的情况给黄票和保底增加概率",
+    "usage": "\n    抽干员(?十连)\n    干员(皮肤|立绘)(1|2|...)\n    (克洛斯|能天使)语音(?戳一下|信赖触摸)\n    我的黄票,黄票兑换(年|令|...)\n    我的干员,我的六星记录\n    ",
+    "author": "sophisticate9008",
+    "version": "0.1",
+    "plugin_type": "NORMAL",
+    "is_dir": true,
+    "github_url": "https://github.com/sophisticate9008/zhenxun_plugin_arknights_collect_operator/tree/master"
   }
 }
