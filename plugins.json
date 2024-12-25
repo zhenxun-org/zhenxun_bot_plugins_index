@@ -42,5 +42,16 @@
     "plugin_type": "NORMAL",
     "is_dir": true,
     "github_url": "https://github.com/sophisticate9008/zhenxun_plugin_honkai_shore_fight/tree/master"
+  },
+  "游戏立绘抽卡": {
+    "module": "zhenxun_plugin_draw_painting",
+    "module_path": ".",
+    "description": "从本地图片库中随机抽取游戏人物立绘",
+    "usage": "抽取老婆/老公\n    指令：\n    抽老婆/老公［游戏名参数可选］\n    我老婆/老公 [查看所有立绘]\n    老婆/老公改名 [修改单张立绘名称]\n    老婆/老公概率 ?[数量参数可选，默认全部] [查看各游戏占比]\n    这是男的/女的 [抽老婆抽到男的的时候可以用，另一个同理，只能处理自己的立绘]\n    投票删除 [回复抽到的图片，非男非女时可以使用]\n    请注意，如果出现乱用指令的情况，将会被永久封禁。",
+    "author": "PackageInstaller",
+    "version": "1.0",
+    "plugin_type": "NORMAL",
+    "is_dir": true,
+    "github_url": "https://github.com/PackageInstaller/zhenxun_plugin_draw_painting/tree/master"
   }
 }
