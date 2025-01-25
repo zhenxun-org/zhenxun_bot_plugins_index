@@ -53,5 +53,17 @@
     "plugin_type": "NORMAL",
     "is_dir": true,
     "github_url": "https://github.com/PackageInstaller/zhenxun_plugin_draw_painting/tree/master"
+  },
+  "AI全家桶": {
+    "module": "zhipu_toolkit",
+    "module_path": "zhipu_toolkit",
+    "description": "智谱AI全家桶，支持文生图，文生视频等，无需付费",
+    "usage": "AI全家桶，省时省力省心\nusage:\n生成图片 <prompt> \n生成视频 <prompt>",
+    "author": "molanp",
+    "version": "0.1",
+    "plugin_type": "NORMAL",
+    "is_dir": true,
+    "github_url": "https://github.com/molanp/zhenxun_plugin_zhipu_toolkit"
   }
+
 }
