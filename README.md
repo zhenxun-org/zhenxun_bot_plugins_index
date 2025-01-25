@@ -11,9 +11,9 @@
 ## 👀 使用方法
 
 - 对真寻发送 “插件商店” 查看插件列表
-- 添加插件 id     : 添加插件
-- 移除插件 id     : 移除插件
-- 搜索插件 name_or_author		:搜索插件
+- 添加插件 id or module     : 添加插件
+- 移除插件 id or module     : 移除插件
+- 搜索插件 name or author		:搜索插件
 
 
 
