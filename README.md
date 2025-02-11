@@ -30,7 +30,7 @@
 | [游戏抽卡](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/draw_card) | [@HibiKier](https://github.com/HibiKier) | 模拟赛马娘，原神，明日方舟，坎公骑冠剑，公主连结(国/台)，碧蓝航线，FGO，阴阳师，碧蓝档案进行抽卡 |
 | [github订阅](https://github.com/xuanerwa/zhenxun_github_sub) | [@xuanerwa](https://github.com/xuanerwa) | 用来推送github用户动态或仓库动态                             |
 | [Minecraft查服](https://github.com/molanp/zhenxun_plugin_mccheck) | [@molanp](https://github.com/molanp) | Minecraft服务器通用状态查询，支持IPv6                             |
-
+| [智谱Ai全家桶](https://github.com/molanp/zhenxun_plugin_zhipu_toolkit) | [@molanp](https://github.com/molanp) | AI全家桶，一次安装，到处使用，省时省力省心 |
 </details>
 
 ## 🐷 伴生插件
