@@ -58,9 +58,9 @@
     "module": "zhipu_toolkit",
     "module_path": "zhipu_toolkit",
     "description": "AI全家桶，一次安装，到处使用，省时省力省心",
-    "usage": "AI全家桶，一次安装，到处使用，省时省力省心\n    usage:\n        生成图片 <prompt>\n        生成视频 <prompt>\n        清理我的会话:   用于清理你与AI的聊天记录\n    或者与机器人聊天，\n    例如；\n        @Bot抱抱\n        小真寻老婆",
+    "usage": "AI全家桶，一次安装，到处使用，省时省力省心\nusage:\n    生成图片 <prompt>\n    生成视频 <prompt>\n    清理我的会话:   用于清理你与AI的聊天记录\n    清理群会话: (仅管理员)用于清理本群的大杂烩记录，仅当分组模式为group时生效\n    启用/禁用伪人模式:  开启或关闭当前群聊的伪人模式\n或者与机器人聊天，小真寻是可以看懂大家的表情包和链接的...\n例如；\n    @Bot 抱抱\n    小真寻老婆",
     "author": "molanp",
-    "version": "0.6",
+    "version": "0.7",
     "plugin_type": "NORMAL",
     "is_dir": true,
     "github_url": "https://github.com/molanp/zhenxun_plugin_zhipu_toolkit"
