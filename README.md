@@ -85,9 +85,9 @@
 
 </details>
 
-## 🛠️ 功能类插件
+## 🛠️ 插件列表
 
-[>>>点击此处跳转<<<](./indices/Function-Plugin.md)
+[>>>点击此处跳转<<<](./indices/Plugins-list.md)
 
 
 
