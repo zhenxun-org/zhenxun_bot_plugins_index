@@ -87,7 +87,7 @@
 
 ## 🛠️ 插件列表
 
-[>>>点击此处跳转<<<](./indices/Plugins-list.md)
+[>>>点击此处跳转<<<](./indices/Plugin-list.md)
 
 
 
