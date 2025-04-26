@@ -97,5 +97,16 @@
     "plugin_type": "NORMAL",
     "is_dir": true,
     "github_url": "https://github.com/webjoin111/zhenxun_plugin_summary_group"
+  },
+  "doro大冒险": {
+    "module": "nonebot_plugin_dorodoro",
+    "module_path": "nonebot_plugin_dorodoro",
+    "description": "一个基于文字冒险的游戏插件",
+    "usage": "\n    使用方法：\n    doro ：开始游戏\n    choose <选项> 或 选择 <选项>：在游戏中做出选择\n    ",
+    "author": "ATTomatoo",
+    "version": "1.5.1",
+    "plugin_type": "NORMAL",
+    "is_dir": true,
+    "github_url": "https://github.com/ATTomatoo/dorodoro"
   }
 }
