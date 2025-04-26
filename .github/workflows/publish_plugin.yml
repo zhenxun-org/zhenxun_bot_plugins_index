@@ -177,20 +177,21 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
+          ref: index
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.10"
 
-      - name: Refresh git
-        run: |
-          git fetch
-          git pull
-
       - name: 生成插件索引表格
         run: |
           python update_table.py
+
+      - name: sync
+        run: |
+          git pull origin index --rebase
+
       - name: 提交更改
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
