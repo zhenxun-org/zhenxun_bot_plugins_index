@@ -1,66 +1,66 @@
 {
-    "zhenxun_arktools": {
-        "plugin_name": " 明日方舟工具箱",
-        "author": "Number_Sir",
-        "version": 0.2,
-        "introduction": "明日方舟工具箱，整合一些有需求的资料查询功能",
-        "download_url": "https://github.com/NumberSir/zhenxun_arktools/releases/download/v1.0.0/zhenxun_arktools.zip",
-        "github_url": "https://github.com/NumberSir/zhenxun_arktools"
-    },
-    "zhenxun_plugin_siyuan": {
-        "plugin_name": "思源笔记",
-        "author": "Zuoqiu-Yingyi",
-        "version": 0.21,
-        "introduction": "将群转化为思源笔记的收集箱",
-        "download_url": "https://github.com/Zuoqiu-Yingyi/zhenxun-bot-plugin-siyuan/releases/download/v0.2.2/zhenxun_plugin_siyuan.zip",
-        "github_url": "https://github.com/Zuoqiu-Yingyi/zhenxun-bot-plugin-siyuan"
-    },
-    "zhenxun_plugins_TZseries": {
-        "plugin_name": " TZ插件合集",
-        "author": "落灰",
-        "version": 0.3,
-        "introduction": "21点、银行、打劫、福利金、刮刮乐、小人举牌的插件合集",
-        "download_url": "https://github.com/po-lan/zhenxun_plugins_TZseries/releases/download/v0.3/zhenxun_plugins_TZseries.zip",
-        "github_url": "https://github.com/po-lan/zhenxun_plugins_TZseries"
-    },
-    "zhenxun_github_sub": {
-        "plugin_name": " github订阅",
-        "author": "yajiwa",
-        "version": 0.5,
-        "introduction": "用来推送github用户动态或仓库动态",
-        "download_url": "https://github.com/yajiwa/zhenxun_github_sub/releases/download/v0.5/github_sub.zip",
-        "github_url": "https://github.com/yajiwa/zhenxun_github_sub"
-    },
-	"zhenxun_plugin_pica": {
-        "plugin_name": " 哔咔漫画",
-        "author": "CCYellowStar",
-        "version": 1.2,
-        "introduction": "一起看涩涩？",
-        "download_url": "https://github.com/CCYellowStar/zhenxun_plugin_pica/releases/download/v1.2/zhenxun_plugin_pica.zip",
-        "github_url": "https://github.com/CCYellowStar/zhenxun_plugin_pica"
-    },
-	"zhenxun_plugin_QQweight": {
-        "plugin_name": " QQ权重查询",
-        "author": "xiayingLIULI",
-        "version": 0.1,
-        "introduction": "查询个人QQ号以及真寻的QQ权重分",
-        "download_url": "https://github.com/xiayingLIULI/zhenxun_plugin_QQweight/releases/download/v0.1/QQwright.zip",
-        "github_url": "https://github.com/xiayingLIULI/zhenxun_plugin_QQweight"
-    },
-	"zhenxun_check_Minecraft": {
-        "plugin_name": " 我的世界服务器状态查询",
-        "author": "molanp",
-        "version": 1.3,
-        "introduction": "一个方便的查询我的世界服务器信息的插件",
-        "download_url": "https://github.com/molanp/zhenxun_check_Minecraft/releases/download/v1.3/zhenxun_check_Minecraft-main.zip",
-        "github_url": "https://github.com/molanp/zhenxun_check_Minecraft"
-    },
-	"zhenxun_plugin_niuniu": {
-        "plugin_name": " 牛牛大作战",
-        "author": "molanp",
-        "version": 0.2,
-        "introduction": "一个方便的查询我的世界服务器信息的插件",
-        "download_url": "https://github.com/molanp/zhenxun_plugin_niuniu/releases/download/0.2/zhenxun_plugin_niuniu-main.zip",
-        "github_url": "https://github.com/molanp/zhenxun_plugin_niuniu"
-    }
+  "zhenxun_arktools": {
+    "plugin_name": " 明日方舟工具箱",
+    "author": "Number_Sir",
+    "version": 0.2,
+    "introduction": "明日方舟工具箱，整合一些有需求的资料查询功能",
+    "download_url": "https://github.com/NumberSir/zhenxun_arktools/releases/download/v1.0.0/zhenxun_arktools.zip",
+    "github_url": "https://github.com/NumberSir/zhenxun_arktools"
+  },
+  "zhenxun_plugin_siyuan": {
+    "plugin_name": "思源笔记",
+    "author": "Zuoqiu-Yingyi",
+    "version": 0.21,
+    "introduction": "将群转化为思源笔记的收集箱",
+    "download_url": "https://github.com/Zuoqiu-Yingyi/zhenxun-bot-plugin-siyuan/releases/download/v0.2.2/zhenxun_plugin_siyuan.zip",
+    "github_url": "https://github.com/Zuoqiu-Yingyi/zhenxun-bot-plugin-siyuan"
+  },
+  "zhenxun_plugins_TZseries": {
+    "plugin_name": " TZ插件合集",
+    "author": "落灰",
+    "version": 0.3,
+    "introduction": "21点、银行、打劫、福利金、刮刮乐、小人举牌的插件合集",
+    "download_url": "https://github.com/po-lan/zhenxun_plugins_TZseries/releases/download/v0.3/zhenxun_plugins_TZseries.zip",
+    "github_url": "https://github.com/po-lan/zhenxun_plugins_TZseries"
+  },
+  "zhenxun_github_sub": {
+    "plugin_name": " github订阅",
+    "author": "yajiwa",
+    "version": 0.5,
+    "introduction": "用来推送github用户动态或仓库动态",
+    "download_url": "https://github.com/yajiwa/zhenxun_github_sub/releases/download/v0.5/github_sub.zip",
+    "github_url": "https://github.com/yajiwa/zhenxun_github_sub"
+  },
+  "zhenxun_plugin_pica": {
+    "plugin_name": " 哔咔漫画",
+    "author": "CCYellowStar",
+    "version": 1.2,
+    "introduction": "一起看涩涩？",
+    "download_url": "https://github.com/CCYellowStar/zhenxun_plugin_pica/releases/download/v1.2/zhenxun_plugin_pica.zip",
+    "github_url": "https://github.com/CCYellowStar/zhenxun_plugin_pica"
+  },
+  "zhenxun_plugin_QQweight": {
+    "plugin_name": " QQ权重查询",
+    "author": "xiayingLIULI",
+    "version": 0.1,
+    "introduction": "查询个人QQ号以及真寻的QQ权重分",
+    "download_url": "https://github.com/xiayingLIULI/zhenxun_plugin_QQweight/releases/download/v0.1/QQwright.zip",
+    "github_url": "https://github.com/xiayingLIULI/zhenxun_plugin_QQweight"
+  },
+  "zhenxun_check_Minecraft": {
+    "plugin_name": " 我的世界服务器状态查询",
+    "author": "molanp",
+    "version": 1.3,
+    "introduction": "一个方便的查询我的世界服务器信息的插件",
+    "download_url": "https://github.com/molanp/zhenxun_check_Minecraft/releases/download/v1.3/zhenxun_check_Minecraft-main.zip",
+    "github_url": "https://github.com/molanp/zhenxun_check_Minecraft"
+  },
+  "zhenxun_plugin_niuniu": {
+    "plugin_name": " 牛牛大作战",
+    "author": "molanp",
+    "version": 0.2,
+    "introduction": "一个方便的查询我的世界服务器信息的插件",
+    "download_url": "https://github.com/molanp/zhenxun_plugin_niuniu/releases/download/0.2/zhenxun_plugin_niuniu-main.zip",
+    "github_url": "https://github.com/molanp/zhenxun_plugin_niuniu"
+  }
 }

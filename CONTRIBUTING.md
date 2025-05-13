@@ -20,7 +20,7 @@ feat: add `插件名` plugin
 Feat: add `插件名` plugin
 ```
 
-## 发起 Issue 
+## 发起 Issue
 
 您可以根据 [Issue 模板](./.github/ISSUE_TEMPLATE/plugin.md)，将插件信息填入，并附带 `Plugin` 标签，我们会在空闲时对插件进行审核
 
@@ -37,7 +37,7 @@ Feat: add `插件名` plugin
 例如下面的成分姬插件
 
 ```markdown
-| [github订阅](https://github.com/xuanerwa/zhenxun_github_sub) | [@xuanerwa](https://github.com/xuanerwa) | 用来推送github用户动态或仓库动态                             |
+| [github订阅](https://github.com/xuanerwa/zhenxun_github_sub) | [@xuanerwa](https://github.com/xuanerwa) | 用来推送github用户动态或仓库动态 |
 ```
 
 ## 发起 Pull Request
@@ -61,6 +61,7 @@ Feat: add `插件名` plugin for #Issue编号
 ## 真寻插件商店
 
 修改项目下的 `plugins.json` 文件添加你的插件，例如
+
 ```json
 "github订阅": {
         "module": "github_sub",
@@ -75,8 +76,4 @@ Feat: add `插件名` plugin for #Issue编号
     }
 ```
 
-
-
-
 插件如果需要安装依赖可以写在`requirements.txt`里，真寻安装插件时将自动安装里面的依赖
-
