@@ -10,12 +10,14 @@ repos:
     hooks:
       - id: ruff
         args: [--fix, --exit-non-zero-on-fix]
-        stages: [commit]
+        stages: [pre-commit]
       - id: ruff-format
+        stages: [pre-commit]
 
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: v4.0.0-alpha.8
     hooks:
       - id: prettier
-        types_or: [javascript, jsx, ts, tsx, markdown, yaml, json]
-        stages: [commit]
+        types: [yaml]
+        types_or: [javascript, jsx, ts, tsx, markdown, json]
+        stages: [pre-commit]
