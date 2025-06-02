@@ -171,6 +171,7 @@ jobs:
     name: 更新插件索引表格
     permissions:
       contents: write
+      pull-requests: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -188,21 +189,23 @@ jobs:
         run: |
           python update_table.py
 
-      - name: 提交临时更改
+      - name: 创建更新分支
         run: |
           git config --global user.email "action@github.com"
           git config --global user.name "GitHub Action"
+          git checkout -b update-plugin-table-${{ github.run_id }}
           git add indices/Plugin-list.md
-          git commit -m "临时提交: 自动生成的插件索引表格"
+          git commit -m "自动更新插件索引表格 [skip ci]"
+          git push origin HEAD
 
-      - name: 同步远程更改
-        run: |
-          git pull origin index --rebase
-
-      - name: 提交更改
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git add indices/Plugin-list.md
-          git commit --amend -m "自动更新插件索引表格 [skip ci]"
-          git push origin HEAD:${{ github.ref }} --force
+      - name: 创建或更新PR
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "自动更新插件索引表格 [skip ci]"
+          title: "自动更新插件索引表格"
+          body: "由GitHub Actions自动生成的插件索引更新"
+          base: index
+          branch: update-plugin-table-${{ github.run_id }}
+          delete-branch: true
+          labels: automated
