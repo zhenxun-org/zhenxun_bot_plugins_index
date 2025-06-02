@@ -188,7 +188,14 @@ jobs:
         run: |
           python update_table.py
 
-      - name: sync
+      - name: 提交临时更改
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git add indices/Plugin-list.md
+          git commit -m "临时提交: 自动生成的插件索引表格"
+
+      - name: 同步远程更改
         run: |
           git pull origin index --rebase
 
@@ -196,8 +203,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config --global user.email "action@github.com"
-          git config --global user.name "GitHub Action"
           git add indices/Plugin-list.md
-          git commit -m "自动更新插件索引表格 [skip ci]"
-          git push origin HEAD:${{ github.ref }}
+          git commit --amend -m "自动更新插件索引表格 [skip ci]"
+          git push origin HEAD:${{ github.ref }} --force
