@@ -36,6 +36,7 @@ jobs:
       )
     steps:
       - run: echo "Check passed"
+  
   reaction:
     runs-on: ubuntu-latest
     name: reaction
@@ -70,6 +71,7 @@ jobs:
           gh api --method POST /repos/${{ github.repository }}/issues/comments/${{ github.event.comment.id }}/reactions -f "content=rocket"
         env:
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+  
   plugin_test:
     runs-on: ubuntu-latest
     name: zhenxun plugin test
@@ -123,12 +125,18 @@ jobs:
         if: ${{ startsWith(github.event_name, 'pull_request') }}
         run: |
           curl -sSL https://github.com/zhenxun-org/zhenxunflow/releases/latest/download/plugin_test.py | python -
-
+  
   zhenxunflow:
     runs-on: ubuntu-latest
     name: zhenxunflow
     needs: plugin_test
+    outputs:
+      run_id: ${{ steps.run_id.outputs.id }}
     steps:
+      - name: 保存运行ID
+        id: run_id
+        run: echo "id=${{ github.run_id }}" >> $GITHUB_OUTPUT
+      
       - name: Generate token
         id: generate-token
         uses: tibdex/github-app-token@v2
@@ -140,6 +148,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ steps.generate-token.outputs.token }}
+          fetch-depth: 0
+          ref: index
 
       - name: Cache pre-commit hooks
         uses: actions/cache@v4
@@ -165,6 +175,15 @@ jobs:
 
       - name: Fix permission
         run: sudo chown -R $(whoami):$(id -ng) .cache/.pre-commit
+      
+      # 上传生成的插件数据
+      - name: 上传插件数据
+        uses: actions/upload-artifact@v4
+        with:
+          name: zhenxunflow-artifacts
+          path: plugins.json
+          retention-days: 1
+  
   update_table:
     runs-on: ubuntu-latest
     needs: zhenxunflow
@@ -179,33 +198,63 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
           ref: index
-
+      
+      # 下载插件数据
+      - name: 下载插件数据
+        uses: actions/download-artifact@v4
+        with:
+          name: zhenxunflow-artifacts
+          path: .
+      
+      
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.10"
-
+      
       - name: 生成插件索引表格
         run: |
-          python update_table.py
-
+          # 运行脚本并捕获退出码
+          python update_table.py || exit_code=$?
+          if [ $exit_code -eq 78 ]; then
+            echo "ℹ️ 插件索引表格没有变化"
+            echo "no_changes=true" >> $GITHUB_ENV
+          elif [ $exit_code -ne 0 ]; then
+            echo "❌ 脚本执行失败，退出码: $exit_code"
+            exit $exit_code
+          fi
+          echo "=== 生成的索引文件预览 ==="
+          cat indices/Plugin-list.md
+      
       - name: 创建更新分支
+        if: ${{ env.no_changes != 'true' }}
         run: |
           git config --global user.email "action@github.com"
           git config --global user.name "GitHub Action"
+          git pull origin index
           git checkout -b update-plugin-table-${{ github.run_id }}
           git add indices/Plugin-list.md
           git commit -m "自动更新插件索引表格 [skip ci]"
           git push origin HEAD
-
+      
+      # 关键修复：配置 create-pull-request 动作
       - name: 创建或更新PR
+        if: ${{ env.no_changes != 'true' }}
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "自动更新插件索引表格 [skip ci]"
           title: "自动更新插件索引表格"
           body: "由GitHub Actions自动生成的插件索引更新"
           base: index
           branch: update-plugin-table-${{ github.run_id }}
           delete-branch: true
           labels: automated
+          # 关键配置：禁用自动提交
+          commit: false
+          # 关键配置：设置正确的作者信息
+          author: "GitHub Action <action@github.com>"
+          committer: "GitHub Action <action@github.com>"
+      
+      - name: 无更改通知
+        if: ${{ env.no_changes == 'true' }}
+        run: echo "✅ 插件索引表格没有变化，无需更新"
