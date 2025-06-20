@@ -144,13 +144,13 @@
     "github_url": "https://github.com/s12mmm3/zhenxun_plugin_coffee"
   },
   {
-    "name": "上不上AI评分系统",
+    "name": "上不上",
     "module": "fuckornot",
     "module_path": "fuckornot",
     "description": "上不上AI评分系统",
     "usage": "上传图片，让AI来评判它的可操性\n        上 [图片]\n    也可以通过附加参数来指定风格\n    简短模式: 短平快，1-2句，够味\n    详细模式:细嗦3+句，够劲\n    小说模式:全程15+句教你咋上，纯硬核\n    例如:\n        上 [图片] --m 简短模式\n        上 [图片] --m 详细模式\n        上 [图片] --m 小说模式",
     "author": "molanp",
-    "version": "1.0.1",
+    "version": "1.1",
     "plugin_type": "NORMAL",
     "is_dir": true,
     "github_url": "https://github.com/molanp/zhenxun_plugin_fuckornot"
