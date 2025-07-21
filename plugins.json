@@ -166,5 +166,17 @@
     "plugin_type": "SUPERUSER",
     "is_dir": true,
     "github_url": "https://github.com/molanp/zhenxun_plugin_nb_store"
+  },
+  {
+    "name": "多模态AI助手",
+    "module": "multimodal_ai",
+    "module_path": "multimodal_ai",
+    "description": "多模态AI助手，支持多种AI模型，支持图片、视频、音频、文档等多种格式的交互",
+    "usage": "基于Zhenxun LLM服务的多模态AI助手，支持智能对话和文件分析\n\n🤖 基础对话：\n  ai [问题] - 智能对话\n  ai 搜索[关键词] - 搜索并回答\n\n📁 多模态分析：\n  [引用包含文件的消息] + ai [问题] - 分析引用消息中的文件\n  [直接发送文件] + ai [问题] - 分析当前消息中的文件\n  支持格式：图片、音频、视频、文档等\n\n⚙️ 模型管理：\n  ai模型 列表 - 查看可用模型\n  ai模型 切换 [Provider/Model] - 切换对话模型（超级用户）\n\n🎨 ai绘图/ai绘画：\n  ai绘图/ai绘画 [描述] - ai图片生成\n  ai绘图/ai绘画 [描述] [图片] - 基于图片进行风格转换\n🎨 主题管理：\n  ai主题 列表 - 查看所有可用的主题\n  ai主题 切换 [主题名] - 切换Markdown转图片主题（超级用户）\n\n🖼️ 配置管理：\n  ai配置 md on/off - 开关Markdown转图片（超级用户）\n  ai配置 绘图 on/off - 开关AI绘图功能（超级用户）\n\n特性：\n- 智能文件类型识别和处理\n- 多模态内容综合分析\n- 统一的AI模型管理\n- 自动图片输出优化\n- 上下文连续对话（默认5分钟会话保持）\n",
+    "author": "webjoin111",
+    "version": "1.0",
+    "plugin_type": "NORMAL",
+    "is_dir": true,
+    "github_url": "https://github.com/webjoin111/zhenxun-plugin-multimodal-ai"
   }
 ]
