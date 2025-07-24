@@ -178,5 +178,17 @@
     "plugin_type": "NORMAL",
     "is_dir": true,
     "github_url": "https://github.com/webjoin111/zhenxun-plugin-multimodal-ai"
+  },
+  {
+    "name": "拍他",
+    "module": "pai",
+    "module_path": "pai",
+    "description": "拍他一次 / 拍他五次",
+    "usage": "指令：\n      - 拍他 @某人 （戳一下）\n      - 拍死他 @某人（戳五次）",
+    "author": "iAJue",
+    "version": "1.0",
+    "plugin_type": "NORMAL",
+    "is_dir": true,
+    "github_url": "https://github.com/iAJue/zhenxun_plugin_pai"
   }
 ]
