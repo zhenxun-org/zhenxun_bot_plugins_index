@@ -20,7 +20,7 @@ jobs:
       - name: Add aliyun remote
         run: |
           git remote add aliyun https://${{secrets.ALIYUN_ACCOUNT}}:${{secrets.ALIYUN_PASSWORD}}@codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun-org/zhenxun_bot_plugins_index.git
-          git fetch aliyun main --force  # 强制更新本地引用
+          git fetch aliyun index --force  # 强制更新本地引用
 
       - name: Force push
-        run: git push --progress --force aliyun HEAD:main
+        run: git push --progress --force aliyun HEAD:index
