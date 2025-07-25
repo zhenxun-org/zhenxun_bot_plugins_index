@@ -190,5 +190,17 @@
     "plugin_type": "NORMAL",
     "is_dir": true,
     "github_url": "https://github.com/iAJue/zhenxun_plugin_pai"
+  },
+  {
+    "name": "禁言小助手",
+    "module": "lottery",
+    "module_path": "lottery",
+    "description": "参与抽奖的群员会被随机禁言一段时间, 我看看谁这么贱",
+    "usage": "指令：\n      - 抽奖                 (直接参与抽奖并被随机禁言)",
+    "author": "iAJue",
+    "version": "1.1",
+    "plugin_type": "NORMAL",
+    "is_dir": true,
+    "github_url": "https://github.com/iAJue/zhenxun_plugin_lottery"
   }
 ]
