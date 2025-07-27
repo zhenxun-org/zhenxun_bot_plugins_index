@@ -150,7 +150,7 @@
     "description": "上不上AI评分系统",
     "usage": "    上传图片，让AI来评判它的可操性\n上 [图片]\n        上 @user\n        [回复]上\n\n    -----人格列表，可以使用序号或名称指定人格-----\n    |1 | 欲望化身\n    |2 | 霸道总裁\n    |3 | 耽美鉴赏家\n    |4 | 恋物诗人\n    |5 | 纯欲神官\n    |6 | 百合诗人\n\n    例如:\n        上 -s 1 [图片]\n        上 -s 霸道总裁 [图片]",
     "author": "molanp",
-    "version": "1.5",
+    "version": "1.6",
     "plugin_type": "NORMAL",
     "is_dir": true,
     "github_url": "https://github.com/molanp/zhenxun_plugin_fuckornot"
