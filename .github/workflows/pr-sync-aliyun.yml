@@ -1,0 +1,160 @@
+name: Sync plugins to Aliyun Codeup
+
+on:
+  pull_request:
+    paths:
+      - "plugins.json"
+
+jobs:
+  detect-and-sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. 检出 PR 分支代码
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          fetch-depth: 0
+
+      # 2. 拉取 base 仓库对应分支
+      - name: Fetch base branch
+        run: |
+          git remote add upstream https://github.com/${{ github.repository }}.git
+          git fetch upstream ${{ github.base_ref }} --depth=1
+
+      # 3. 检测插件变更
+      - name: Identify changed plugins
+        id: changed-plugins
+        shell: python
+        run: |
+          import json
+          import os
+          import subprocess
+
+          # 当前（PR 分支）的 plugins.json
+          try:
+              with open('plugins.json', 'r', encoding='utf-8') as f:
+                  current_plugins = json.load(f)
+          except FileNotFoundError:
+              current_plugins = []
+              print("::warning::plugins.json not found in PR branch")
+
+          # 获取 base 分支的 plugins.json
+          base_plugins = []
+          try:
+              result = subprocess.run(['git', 'show', f'upstream/${{ github.base_ref }}:plugins.json'], 
+                                     capture_output=True, text=True, encoding='utf-8')
+              if result.returncode == 0:
+                  base_plugins = json.loads(result.stdout)
+          except (FileNotFoundError, json.JSONDecodeError):
+              print("::warning::Base plugins.json not found or invalid")
+
+          # 变更检测
+          changed = []
+          base_map = {p.get('github_url'): p for p in base_plugins}
+          for plugin in current_plugins:
+              github_url = plugin.get('github_url')
+              if not github_url:
+                  continue
+              base_plugin = base_map.get(github_url)
+              if not base_plugin or json.dumps(plugin, sort_keys=True) != json.dumps(base_plugin, sort_keys=True):
+                  repo_name = github_url.split('/')[-1]
+                  if repo_name.endswith('.git'):
+                      repo_name = repo_name[:-4]
+                  changed.append({
+                      'name': plugin.get('name', ''),
+                      'github_url': github_url,
+                      'repo_name': repo_name,
+                      'current_data': plugin
+                  })
+
+          if changed:
+              print(f"Changed plugins: {json.dumps(changed, ensure_ascii=False)}")
+              with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as f:
+                  f.write(f'changed_plugins={json.dumps(changed, ensure_ascii=False)}\n')
+          else:
+              print("No changed plugins found")
+
+      # 4. 安装 Python 依赖
+      - name: Install Python dependencies
+        if: ${{ steps.changed-plugins.outputs.changed_plugins != '' }}
+        run: |
+          pip install alibabacloud_devops20210625 alibabacloud_credentials
+
+      # 6. 处理变更插件（使用阿里云 SDK 创建仓库）
+      - name: Process each changed plugin
+        run: |
+          python /home/runner/work/zhenxun_bot_plugins_index/scripts/sync.py \
+            --changed-plugins '${{ steps.changed-plugins.outputs.changed_plugins }}' \
+            --org-id '67a361cf556e6cdab537117a' \
+            --group-path 'zhenxun_plugins' \
+            --aliyun-account '${{ secrets.ALIYUN_ACCOUNT }}' \
+            --aliyun-password '${{ secrets.ALIYUN_PASSWORD }}' \
+            --access-key-id '${{ secrets.ALIYUN_ACCESS_KEY_ID }}' \
+            --access-key-secret '${{ secrets.ALIYUN_ACCESS_KEY_SECRET }}'
+
+
+      - name: Verify Aliyun Credentials
+        run: |
+          echo "验证阿里云凭证环境变量:"
+          if [ -n "$ALIBABA_CLOUD_ACCESS_KEY_ID" ]; then
+            echo "ALIBABA_CLOUD_ACCESS_KEY_ID: 已设置 (长度: ${#ALIBABA_CLOUD_ACCESS_KEY_ID})"
+          else
+            echo "ALIBABA_CLOUD_ACCESS_KEY_ID: 未设置"
+          fi
+          
+          if [ -n "$ALIBABA_CLOUD_ACCESS_KEY_SECRET" ]; then
+            echo "ALIBABA_CLOUD_ACCESS_KEY_SECRET: 已设置 (长度: ${#ALIBABA_CLOUD_ACCESS_KEY_SECRET})"
+          else
+            echo "ALIBABA_CLOUD_ACCESS_KEY_SECRET: 未设置"
+          fi
+      # 7. 更新 plugins.json
+      - name: Update plugins.json with aliurl
+        if: ${{ steps.changed-plugins.outputs.changed_plugins != '' }}
+        shell: python
+        env:
+          RESULTS_JSON: ${{ steps.changed-plugins.outputs.changed_plugins }}
+        run: |
+          import json
+          import os
+          
+          with open('plugins.json', 'r', encoding='utf-8') as f:
+              plugins = json.load(f)
+          
+          results = json.loads(os.environ['RESULTS_JSON'])
+          updated = False
+          
+          for result in results:
+              if result['status'] != 'success':
+                  continue
+                  
+              for plugin in plugins:
+                  if plugin.get('github_url') == result['github_url']:
+                      plugin['aliurl'] = result['aliurl']
+                      updated = True
+                      print(f"Updated {plugin['name']} with aliurl")
+                      break
+          
+          if updated:
+              with open('plugins.json', 'w', encoding='utf-8') as f:
+                  json.dump(plugins, f, ensure_ascii=False, indent=2)
+              print("✅ plugins.json updated with aliurl")
+          else:
+              print("⚠️ No plugins updated")
+
+      # 8. 提交变更
+      - name: Commit and push changes
+        if: ${{ success() && steps.changed-plugins.outputs.changed_plugins != '' }}
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add plugins.json
+          
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Add aliurl to plugins.json for Aliyun Codeup sync"
+            git push
+          fi
