@@ -202,5 +202,17 @@
     "plugin_type": "NORMAL",
     "is_dir": true,
     "github_url": "https://github.com/iAJue/zhenxun_plugin_lottery"
+  },
+  {
+    "name": "24点",
+    "module": "twenty_four",
+    "module_path": "twenty_four",
+    "description": "24 点小游戏",
+    "usage": "开启游戏命令: 开始24点\n    结束游戏命令: 结束24点\n\n    你的回答直接发就行",
+    "author": "molanp",
+    "version": "0.1",
+    "plugin_type": "NORMAL",
+    "is_dir": false,
+    "github_url": "https://github.com/molanp/zhenxun_plugin_twenty_four"
   }
 ]
