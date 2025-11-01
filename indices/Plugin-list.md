@@ -17,3 +17,4 @@
 | [群聊语录](https://github.com/webjoin111/zhenxun_plugin_quote) | [@webjoin111](https://github.com/webjoin111) | 一款QQ群语录库——支持上传聊天截图为语录，随机投放语录，关键词搜索语录精准投放 |
 | [来杯咖啡](https://github.com/s12mmm3/zhenxun_plugin_coffee) | [@overwriter](https://github.com/overwriter) | 来一杯热气腾腾的咖啡吧~ |
 | [上不上AI评分系统](https://github.com/molanp/zhenxun_plugin_fuckornot) | [@molanp](https://github.com/molanp) | 上不上AI评分系统 |
+| [21点](https://github.com/Evan8440/zhenxun_plugin_casino_21) | [@Evan8440](https://github.com/Evan8440) | 又是输光金币的一天呢 |

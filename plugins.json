@@ -226,5 +226,17 @@
     "plugin_type": "NORMAL",
     "is_dir": true,
     "github_url": "https://github.com/webjoin111/zhenxun-plugin-ai_creation"
+  },
+  {
+    "name": "21点",
+    "module": "casino_21",
+    "module_path": "casino_21",
+    "description": "21 点小游戏",
+    "usage": "第一位玩家发起活动，指令：21点 [赌注]\n接受21点赌局，指令：入场 [赌注]\n人齐后开局，指令：开局\n拿牌，指令：拿牌\n宣布停止，指令：停牌\n所有人停牌，或者超时90s后，结算指令：结束\n最后一位未停牌玩家可使用结束指令直接结算游戏\n小真寻入场费为玩家平均值，必要点数17\n起手2牌合计21点为黑杰克，比其他21点大\n获胜奖励为胜者按各自入场费，均分其他人金币",
+    "author": "Evan8440",
+    "version": "3.0",
+    "plugin_type": "NORMAL",
+    "is_dir": true,
+    "github_url": "https://github.com/Evan8440/zhenxun_plugin_casino_21"
   }
 ]
