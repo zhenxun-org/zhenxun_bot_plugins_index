@@ -238,5 +238,17 @@
     "plugin_type": "NORMAL",
     "is_dir": true,
     "github_url": "https://github.com/Evan8440/zhenxun_plugin_casino_21"
+  },
+  {
+    "name": "21点青春版",
+    "module": "21_points_youth",
+    "module_path": "21_points_youth",
+    "description": "21点青春版，让金币再次焕发光辉",
+    "usage": "\n    21点帮助 : 获取帮助\n    21点 [赌注金额] : 第一位玩家发起活动\n    入场 [赌注金额] : 接受21点赌局\n    开局 : 人齐后开局\n    拿牌 : 拿牌指令\n    停牌 :  宣布停止\n    结束 : 所有人停牌，或者超时90s后，结算指令\n\n    **说明**\n\n    入场费为玩家平均值，必要点数17\n    起手2牌合计21点为黑杰克，比其他21点大\n    获胜奖励为胜者按各自入场费，均分其他人金币\n    ",
+    "author": "molanp",
+    "version": "2.0",
+    "plugin_type": "NORMAL",
+    "is_dir": true,
+    "github_url": "https://github.com/molanp/zhenxun_plugin_21_points_youth"
   }
 ]
