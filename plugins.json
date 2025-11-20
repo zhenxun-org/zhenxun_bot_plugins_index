@@ -262,5 +262,17 @@
     "plugin_type": "ADMIN",
     "is_dir": true,
     "github_url": "https://github.com/BingZi-233/zhenxun_plugin_group_request_handler"
+  },
+  {
+    "name": "链接白名单",
+    "module": "link_police",
+    "module_path": "link_police",
+    "description": "检查群消息中的链接是否在白名单中，自动撤回违规链接。仅对配置了白名单的群组生效。",
+    "usage": "群消息中的链接会自动检测，不在白名单中的链接将被撤回\n    注意：只有配置了白名单的群组才会启用链接检测\n\n    管理员命令：\n    启用链接监控              : 启用当前群组的链接监控（需要先有白名单规则）\n    停用链接监控              : 停用当前群组的链接监控\n    链接监控状态              : 查看当前群组的监控状态\n    添加链接白名单 [正则表达式]  : 添加链接白名单规则\n    删除链接白名单 [索引]       : 删除指定的白名单规则\n    链接白名单列表              : 查看当前白名单规则\n\n    示例：\n        添加链接白名单 https://github\\.com/.*\n        启用链接监控\n        链接监控状态\n        添加链接白名单 https://.*\\.bilibili\\.com/.*\n        删除链接白名单 1\n        停用链接监控",
+    "author": "BingZi-233",
+    "version": "0.1",
+    "plugin_type": "ADMIN",
+    "is_dir": true,
+    "github_url": "https://github.com/BingZi-233/zhenxun_plugin_link_police"
   }
 ]
