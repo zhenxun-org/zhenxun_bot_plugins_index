@@ -162,7 +162,7 @@
     "description": "Nonebot插件商店",
     "usage": "nb插件商店 ?页码 ?每页项数        : 查看当前的nonebot 插件商店\n    添加nb插件 id/name/pypi_name     : 添加nonebot 市场插件\n    移除nb插件 id/name/pypi_name     : 移除nonebot 市场插件\n    搜索nb插件 <任意关键字>     : 搜索nonebot 市场插件\n    更新nb插件 id/name/pypi_name     : 更新nonebot 市场插件\n    更新全部nb插件     : 更新全部nonebot 市场插件",
     "author": "molanp",
-    "version": "0.8",
+    "version": "0.9",
     "plugin_type": "SUPERUSER",
     "is_dir": true,
     "github_url": "https://github.com/molanp/zhenxun_plugin_nb_store"
