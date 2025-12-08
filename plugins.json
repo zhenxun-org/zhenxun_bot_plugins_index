@@ -282,7 +282,7 @@
     "description": "基于 skyblessings-python-api 的祈福签生成插件",
     "usage": "\n    指令：\n        祈福签/祈福/skyblessings/抽签\n    每个人每天只能抽一次，多次抽签会返回当天的签\n    ",
     "author": "YingLing3",
-    "version": "0.1",
+    "version": "0.2",
     "plugin_type": "NORMAL",
     "is_dir": true,
     "github_url": "https://github.com/YingLing3/zhenxun_plugin_skyblessings"
