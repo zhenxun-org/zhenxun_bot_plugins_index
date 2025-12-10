@@ -3,6 +3,8 @@ import os
 import subprocess
 import sys
 import argparse
+import tempfile
+import shutil
 from alibabacloud_devops20210625.client import Client as devops20210625Client
 from alibabacloud_tea_openapi import models as open_api_models
 from alibabacloud_devops20210625 import models as devops_20210625_models
@@ -43,8 +45,104 @@ def create_repository(client, org_id, repo_name):
         return False
 
 
+def sync_repository_import_method(github_url, repo_name, auth_url):
+    """使用导入代码库的方式同步（阿里云推荐方式）"""
+    try:
+        # 使用临时目录来操作
+        temp_dir = tempfile.mkdtemp(prefix=f"{repo_name}_sync_")
+        bare_dir = os.path.join(temp_dir, f"{repo_name}.git")
+
+        print(f"🔄 使用导入代码库方式同步: {github_url}")
+        print(f"临时目录: {temp_dir}")
+
+        # 步骤1: 克隆裸仓库
+        print("🔄 克隆裸仓库...")
+        subprocess.run(
+            ["git", "clone", "--bare", github_url, bare_dir],
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+
+        # 进入裸仓库目录
+        os.chdir(bare_dir)
+
+        # 步骤2: 设置阿里云远程仓库地址
+        print("🔄 设置阿里云远程仓库地址...")
+        subprocess.run(
+            ["git", "remote", "set-url", "origin", auth_url],
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+
+        # 步骤3: 推送所有标签和分支
+        print("🔄 推送标签和分支到阿里云...")
+
+        # 先推送标签
+        tag_result = subprocess.run(
+            ["git", "push", "origin", "--tags"],
+            capture_output=True,
+            text=True,
+        )
+
+        # 再推送所有分支
+        branch_result = subprocess.run(
+            ["git", "push", "origin", "--all"],
+            capture_output=True,
+            text=True,
+        )
+
+        # 检查推送结果
+        if tag_result.returncode != 0 and branch_result.returncode != 0:
+            error_msg = ""
+            if tag_result.stderr:
+                error_msg += f"标签推送失败: {tag_result.stderr}\n"
+            if branch_result.stderr:
+                error_msg += f"分支推送失败: {branch_result.stderr}"
+            raise Exception(error_msg)
+
+        # 返回原始目录
+        os.chdir("..")
+
+        # 清理临时目录
+        shutil.rmtree(temp_dir, ignore_errors=True)
+
+        return True
+
+    except subprocess.CalledProcessError as e:
+        error_lines = e.stderr.splitlines() if e.stderr else []
+        error_msg = "\n".join(
+            [line for line in error_lines if "error:" in line or "fatal:" in line]
+        )
+        if not error_msg:
+            error_msg = f"命令执行失败: {e.cmd}\n返回码: {e.returncode}"
+        raise Exception(error_msg)
+    except Exception:
+        raise
+    finally:
+        # 确保清理临时目录
+        try:
+            if "temp_dir" in locals() and os.path.exists(temp_dir):
+                shutil.rmtree(temp_dir, ignore_errors=True)
+        except Exception:
+            pass
+
+
 def sync_repository(github_url, repo_name, auth_url):
-    """同步代码到阿里云仓库"""
+    """同步代码到阿里云仓库（主函数，选择最佳方式）"""
+    try:
+        # 先尝试原方法
+        print("🔄 尝试标准同步方法...")
+        return sync_repository_standard(github_url, repo_name, auth_url)
+    except Exception as e:
+        print(f"ℹ️ 标准方法失败: {str(e)}")
+        print("🔄 切换到导入代码库方法...")
+        return sync_repository_import_method(github_url, repo_name, auth_url)
+
+
+def sync_repository_standard(github_url, repo_name, auth_url):
+    """标准同步方法"""
     try:
         # 克隆 GitHub 仓库
         print(f"🔄 克隆 GitHub 仓库: {github_url}")
@@ -67,21 +165,38 @@ def sync_repository(github_url, repo_name, auth_url):
             text=True,
         )
 
-        # 强制推送到阿里云
-        print("🔄 推送代码到阿里云...")
-        subprocess.run(
-            ["git", "push", "aliup", "HEAD:main", "--force"],
+        # 获取当前分支名
+        branch_result = subprocess.run(
+            ["git", "rev-parse", "--abbrev-ref", "HEAD"],
             check=True,
             capture_output=True,
             text=True,
         )
+        current_branch = branch_result.stdout.strip()
+
+        # 尝试推送（先尝试非强制推送）
+        print("🔄 推送代码到阿里云...")
+        push_result = subprocess.run(
+            ["git", "push", "aliup", f"{current_branch}:main", "--force-with-lease"],
+            capture_output=True,
+            text=True,
+        )
+
+        # 如果非强制推送失败，尝试强制推送
+        if push_result.returncode != 0:
+            print("ℹ️ 非强制推送失败，尝试强制推送...")
+            subprocess.run(
+                ["git", "push", "aliup", f"{current_branch}:main", "--force"],
+                check=True,
+                capture_output=True,
+                text=True,
+            )
 
         # 返回上级目录
         os.chdir("..")
         return True
 
     except subprocess.CalledProcessError as e:
-        # 提取更具体的错误信息
         error_lines = e.stderr.splitlines() if e.stderr else []
         error_msg = "\n".join(
             [line for line in error_lines if "error:" in line or "fatal:" in line]
@@ -147,7 +262,7 @@ def main():
 
             # 创建阿里云认证 URL
             auth_url = f"https://{args.aliyun_account}:{args.aliyun_password}@codeup.aliyun.com/{args.org_id}/{args.group_path}/{repo_name}.git"
-            display_url = f"https://{args.aliyun_account}:****@codeup.aliyun.com/{args.org_id}/{args.group_path}/{repo_name}.git"
+            display_url = f"https://codeup.aliyun.com/{args.org_id}/{args.group_path}/{repo_name}.git"
 
             print("\n" + "-" * 50)
             print(f"🔄 处理插件: {plugin.get('name', repo_name)}")
@@ -163,7 +278,7 @@ def main():
                 ):
                     raise Exception(f"仓库创建失败: {repo_name}")
 
-                # 2. 同步代码
+                # 2. 同步代码（会自动选择最佳方法）
                 sync_repository(github_url, repo_name, auth_url)
 
                 results.append(
@@ -186,6 +301,13 @@ def main():
                         "error": str(e),
                     }
                 )
+
+                # 清理可能残留的目录
+                try:
+                    if os.path.exists(repo_name):
+                        shutil.rmtree(repo_name, ignore_errors=True)
+                except Exception:
+                    pass
 
         # 输出处理结果
         print("\n" + "=" * 50)
