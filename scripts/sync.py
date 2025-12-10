@@ -22,14 +22,14 @@ def get_client(access_key_id, access_key_secret) -> devops20210625Client:
     return devops20210625Client(config)
 
 
-def create_repository(client, org_id, repo_name):
+def create_repository(client, org_id, repo_name, github_url) -> bool:
     """创建阿里云仓库"""
     request = devops_20210625_models.CreateRepositoryRequest(
         namespace_id=1638483,
         name=repo_name,
         visibility_level=10,
         organization_id=org_id,
-        readmeType="EMPTY",
+        importUrl=github_url
     )
     runtime = util_models.RuntimeOptions()
     try:
@@ -39,7 +39,7 @@ def create_repository(client, org_id, repo_name):
     except Exception as error:
         # 更健壮的仓库存在检测
         error_msg = str(error)
-        if "Repository already exists" in error_msg or "已存在" in error_msg:
+        if "Repository already exists" in error_msg or "已存在" in error_msg or "409" in error_msg:
             print(f"ℹ️ 仓库已存在: {repo_name}")
             return True
         print(f"❌ 仓库创建失败 {repo_name}: {error_msg}")
@@ -275,7 +275,7 @@ def main():
                 # 1. 创建阿里云仓库
                 print("🔄 检查/创建阿里云仓库...")
                 if not create_repository(
-                    client=aliyun_client, org_id=args.org_id, repo_name=repo_name
+                    client=aliyun_client, org_id=args.org_id, repo_name=repo_name, github_url=github_url
                 ):
                     raise Exception(f"仓库创建失败: {repo_name}")
 
