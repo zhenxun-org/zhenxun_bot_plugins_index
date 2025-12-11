@@ -55,7 +55,7 @@ def create_repository(
     namespace_id: int,
     repo_name: str,
     description: str = "",
-    visibility: str = "private",
+    visibility: str = "public",
 ) -> bool:
     """创建阿里云代码库"""
 
@@ -71,6 +71,8 @@ def create_repository(
         "namespaceId": namespace_id,
         "visibility": visibility,
         "readMeType": "USER_GUIDE",  # 自动创建引导README
+        "organizationId": organization_id,
+        "path": repo_name,
     }
 
     # 如果有描述，则添加
@@ -85,6 +87,7 @@ def create_repository(
     print(f"   命名空间ID: {namespace_id}")
 
     try:
+        print("正在请求创建仓库，参数 -> payload: ", payload, "params: ", params)
         response = requests.post(
             url, headers=headers, params=params, json=payload, timeout=30
         )
