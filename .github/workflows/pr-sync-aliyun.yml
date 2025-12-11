@@ -138,21 +138,12 @@ jobs:
             aliyun_url="https://${{ secrets.ALIYUN_ACCOUNT }}:${{ secrets.ALIYUN_PASSWORD }}@codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/${repo_name}.git"
             git remote add aliyun "$aliyun_url"
             
-            # 获取当前分支
-            current_branch=$(git rev-parse --abbrev-ref HEAD)
-            
             # 尝试推送
             echo "🔄 推送代码到阿里云..."
-            if git push --progress aliyun "${current_branch}:main"; then
+            if git push --progress --force aliyun HEAD:main; then
               echo "✅ 推送成功: $repo_name"
             else
-              # 如果失败，尝试强制推送
-              echo "🔄 尝试强制推送..."
-              if git push --progress --force aliyun "${current_branch}:main"; then
-                echo "✅ 强制推送成功: $repo_name"
-              else
-                echo "❌ 推送失败: $repo_name"
-              fi
+              echo "❌ 推送失败: $repo_name"
             fi
             
             # 返回上级目录
