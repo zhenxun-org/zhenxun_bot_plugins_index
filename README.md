@@ -13,78 +13,36 @@
 - 移除插件 id or module : 移除插件
 - 搜索插件 name or author :搜索插件
 
-## ⭐️ 推荐插件
+## ⭐️ 插件列表
 
-这里展示的是用户使用较为频繁的插件。
-
-<details><summary>点击此处展开/收起</summary>
-
+<!-- PLUGIN_TABLE_START -->
 | 名称                                                                                         | 作者                                     | 备注                                                                                             |
 | :------------------------------------------------------------------------------------------- | :--------------------------------------- | :----------------------------------------------------------------------------------------------- |
-| [B站订阅](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/bilibili_sub) | [@HibiKier](https://github.com/HibiKier) | 非常便利的B站订阅通知                                                                            |
-| [词库问答](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/word_bank)   | [@HibiKier](https://github.com/HibiKier) | 自定义词条，单词条多个内容随机回复                                                               |
-| [游戏抽卡](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/draw_card)   | [@HibiKier](https://github.com/HibiKier) | 模拟赛马娘，原神，明日方舟，坎公骑冠剑，公主连结(国/台)，碧蓝航线，FGO，阴阳师，碧蓝档案进行抽卡 |
-| [github订阅](https://github.com/xuanerwa/zhenxun_github_sub)                                 | [@xuanerwa](https://github.com/xuanerwa) | 用来推送github用户动态或仓库动态                                                                 |
-| [Minecraft查服](https://github.com/molanp/zhenxun_plugin_mccheck)                            | [@molanp](https://github.com/molanp)     | Minecraft服务器通用状态查询，支持IPv6                                                            |
-| [智谱Ai全家桶](https://github.com/molanp/zhenxun_plugin_zhipu_toolkit)                       | [@molanp](https://github.com/molanp)     | AI全家桶，一次安装，到处使用，省时省力省心                                                       |
-
-</details>
-
-## 🐷 伴生插件
-
-和真寻一起出生的插件
-
-<details><summary>点击此处展开/收起</summary>
-
-| 插件名称                                                                                                    | 简介                                                                                                                     |
-| ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| [AI](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/ai)                               | 青云客AI，还有重复说相同的话检测，与小真寻普普通通的对话吧                                                               |
-| [B站订阅](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/bilibili_sub)                | 非常便利的B站订阅通知，包括直播间，个人用户动态，番剧更新等                                                              |
-| [敏感词警察](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/black_word)               | 对小真寻进行辱骂会遭到严厉的惩罚，惩罚等级随次数而增加                                                                   |
-| [磁力搜索](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/bt)                         | 懂的都懂                                                                                                                 |
-| [联系管理员](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/dialogue)                 | 跨越空间与时间跟超级用户对话                                                                                             |
-| [钉宫语录](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/dinggong)                   | 被钉宫辱骂吧笨蛋                                                                                                         |
-| [游戏抽卡](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/draw_card)                  | 模拟赛马娘，原神，明日方舟，坎公骑冠剑，公主连结(国/台)，碧蓝航线，FGO，阴阳师，碧蓝档案进行抽卡，且通过爬虫实现自动更新 |
-| [Epic提醒](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/epic)                       | epic免费游戏提醒，可以不玩，不能没有                                                                                     |
-| [金币红包](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/gold_redbag)                | 运气项目又来了，看看你的手气                                                                                             |
-| [本地图库](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/image_management)           | 本地图库项目，可以通过命令来上传，移动，删除，发送图片，私人的小收藏                                                     |
-| [真寻日报](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/mahiro_report)              | 可爱的小真寻为您带来今天的新鲜新闻哦                                                                                     |
-| [刷屏检测](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/mute)                       | 刷屏是想吃禁言了                                                                                                         |
-| [我有一个朋友](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/one_friend)             | 我有个朋友想说...                                                                                                        |
-| [CSGO开箱](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/open_cases)                 | CSGO开箱以及统计，概率与完美公示的相同，模拟开箱戒赌                                                                     |
-| [爬爬爬](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/pa)                           | 随机爬表情包                                                                                                             |
-| [b站转发解析](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/parse_bilibili)          | 解析b站转发消息，包括专栏，视频url，分享消息等等                                                                         |
-| [PIX-API](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/pix_api)                     | PIX的api版本，共享图库，看看你的xp                                                                                       |
-| [PIX图库](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/pix_gallery)                 | PIX的本地版本，收集你和群友的xp                                                                                          |
-| [P站排行](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/pixiv_rank_search)           | 基于hibiapi的pixiv各种排行                                                                                               |
-| [BUFF皮肤查询](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/search_buff_skin_price) | CSGO当前皮肤数据buff查询                                                                                                 |
-| [识图](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/search_image)                   | 简单的saucenao识图                                                                                                       |
-| [涩图](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/send_setu_)                     | 没什么好说的，必备插件lolicon.api涩图                                                                                    |
-| [翻译](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/translate)                      | 出国旅游好助手                                                                                                           |
-| [微博热搜](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/wbtop)                      | alapi的微博热搜                                                                                                          |
-| [识番](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/what_anime)                     | api.trace.moe 以图识番                                                                                                   |
-| [词库问答](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/word_bank)                  | 词条检测，包含个人/群组/全局三种范围以及精准/模糊/正则三种检测方式                                                       |
-| [词云](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/word_clouds)                    | 看看自己说了什么话，用户的发言总结                                                                                       |
-| [网易云热评](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/comments_163)             | alapi的网易云热评，到点了，该抑郁了                                                                                      |
-| [coser](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/coser)                         | 没什么，换换口味罢了                                                                                                     |
-| [b封面](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/cover)                         | alapi的b站封面截取接口，通过url来获取b站视频封面                                                                         |
-| [复读姬](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/fudu)                         | 人类的本质是....支持文字与图片，概率打断复读                                                                             |
-| [群欢迎消息](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/group_welcome_msg)        | 设置群组成员的入群欢迎信息，支持图片与文字                                                                               |
-| [鸡汤](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/jidang)                         | 大饼吃多了，那就来喝点鸡汤吧~                                                                                            |
-| [鲁迅说](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/luxun)                        | 鲁迅曾经说过...                                                                                                          |
-| [能不能好好说话](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/nbnhhsh)              | 文字拼音首字母猜测，jjj=桀桀桀                                                                                           |
-| [Pid搜索](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/pid_search)                  | 基于hibiapi的pid搜索，通过p站图片pid搜索图片并发送                                                                       |
-| [古诗](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/poetry)                         | 为什么突然文艺起来了啊喂！平白无故念首诗                                                                                 |
-| [二次元语录](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/quotations)               | 二次元给你力量                                                                                                           |
-| [roll](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/roll)                           | 犹豫不决吗？那就让我帮你决定吧                                                                                           |
-| [点歌](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/music)                          | 简易版网易云点歌                                                                                                         |
-| [角色识别](https://github.com/zhenxun-org/zhenxun_bot_plugins/tree/main/plugins/what_role)                  | 动漫以及gal游戏的角色识别                                                                                                |
-
-</details>
-
-## 🛠️ 插件列表
-
-[>>>点击此处跳转<<<](./indices/Plugin-list.md)
+| [github订阅](https://github.com/xuanerwa/zhenxun_github_sub) | [@xuanerwa](https://github.com/xuanerwa) | 订阅github用户或仓库 |
+| [Minecraft查服](https://github.com/molanp/zhenxun_plugin_mccheck) | [@molanp](https://github.com/molanp) | Minecraft服务器状态查询，支持IPv6 |
+| [明日方舟干员收集](https://github.com/sophisticate9008/zhenxun_plugin_arknights_collect_operator/tree/master) | [@sophisticate9008](https://github.com/sophisticate9008) | 消耗金币项目,卡池包含全部3星以上角色，按照游戏里的情况给黄票和保底增加概率 |
+| [海滨乱斗](https://github.com/sophisticate9008/zhenxun_plugin_honkai_shore_fight/tree/master) | [@sophisticate9008](https://github.com/sophisticate9008) | 崩坏三曾经的网页赛制押注活动,插件以文字方式展示战斗过程并可以押注金币(仅限qq平台) |
+| [游戏立绘抽卡](https://github.com/PackageInstaller/zhenxun_plugin_draw_painting/tree/master) | [@PackageInstaller](https://github.com/PackageInstaller) | 从本地图片库中随机抽取游戏人物立绘 |
+| [AI全家桶](https://github.com/molanp/zhenxun_plugin_zhipu_toolkit) | [@molanp](https://github.com/molanp) | AI全家桶，一次安装，到处使用，省时省力省心 |
+| [牛牛大作战](https://github.com/molanp/zhenxun_plugin_niuniu) | [@molanp](https://github.com/molanp) | 牛牛大作战，男同快乐游 |
+| [真寻农场](https://github.com/Shu-Ying/zhenxun_plugin_farm) | [@Shu-Ying](https://github.com/Shu-Ying) | 快乐的农场时光 |
+| [群聊总结](https://github.com/webjoin111/zhenxun_plugin_summary_group) | [@webjoin111](https://github.com/webjoin111) | 使用 AI 分析群聊记录，生成讨论内容的总结 |
+| [doro大冒险](https://github.com/ATTomatoo/dorodoro) | [@ATTomatoo](https://github.com/ATTomatoo) | 一个基于文字冒险的游戏插件 |
+| [群聊语录](https://github.com/webjoin111/zhenxun_plugin_quote) | [@webjoin111](https://github.com/webjoin111) | 一款QQ群语录库——支持上传聊天截图为语录，随机投放语录，关键词搜索语录精准投放 |
+| [来杯咖啡](https://github.com/s12mmm3/zhenxun_plugin_coffee) | [@overwriter](https://github.com/overwriter) | 来一杯热气腾腾的咖啡吧~ |
+| [上不上](https://github.com/molanp/zhenxun_plugin_fuckornot) | [@molanp](https://github.com/molanp) | 上不上AI评分系统 |
+| [Nonebot插件商店](https://github.com/molanp/zhenxun_plugin_nb_store) | [@molanp](https://github.com/molanp) | Nonebot插件商店 |
+| [多模态AI助手](https://github.com/webjoin111/zhenxun-plugin-multimodal-ai) | [@webjoin111](https://github.com/webjoin111) | 多模态AI助手，支持多种AI模型，支持图片、视频、音频、文档等多种格式的交互 |
+| [拍他](https://github.com/iAJue/zhenxun_plugin_pai) | [@iAJue](https://github.com/iAJue) | 拍他一次 / 拍他五次 |
+| [禁言小助手](https://github.com/iAJue/zhenxun_plugin_lottery) | [@iAJue](https://github.com/iAJue) | 参与抽奖的群员会被随机禁言一段时间, 我看看谁这么贱 |
+| [24点](https://github.com/molanp/zhenxun_plugin_twenty_four) | [@molanp](https://github.com/molanp) | 24 点小游戏 |
+| [AI创作](https://github.com/webjoin111/zhenxun-plugin-ai_creation) | [@webjoin111](https://github.com/webjoin111) | 多功能 AI 创作插件，集成了豆包（Doubao）与多模态大模型 API，支持文生图、图生图及强大的模板系统。 |
+| [21点](https://github.com/Evan8440/zhenxun_plugin_casino_21) | [@Evan8440](https://github.com/Evan8440) | 21 点小游戏 |
+| [21点青春版](https://github.com/molanp/zhenxun_plugin_21_points_youth) | [@molanp](https://github.com/molanp) | 21点青春版，让金币再次焕发光辉 |
+| [加群申请处理插件](https://github.com/BingZi-233/zhenxun_plugin_group_request_handler) | [@BingZi-233](https://github.com/BingZi-233) | 自动处理群白名单内的加群申请,根据QQ等级、黑名单和加群理由进行审核,支持统计查询 |
+| [链接白名单](https://github.com/BingZi-233/zhenxun_plugin_link_police) | [@BingZi-233](https://github.com/BingZi-233) | 检查群消息中的链接是否在白名单中，自动撤回违规链接。仅对配置了白名单的群组生效。 |
+| [祈福签](https://github.com/YingLing3/zhenxun_plugin_skyblessings) | [@YingLing3](https://github.com/YingLing3) | 基于 skyblessings-python-api 的祈福签生成插件 |
+<!-- PLUGIN_TABLE_END -->
 
 ## 💧 老版本插件
 

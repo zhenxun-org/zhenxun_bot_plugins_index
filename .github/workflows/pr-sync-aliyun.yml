@@ -67,13 +67,18 @@ jobs:
                       'name': plugin.get('name', ''),
                       'github_url': github_url,
                       'repo_name': repo_name,
+                      'description': plugin.get('description', ''),
                       'current_data': plugin
                   })
-
           if changed:
-              print(f"Changed plugins: {json.dumps(changed, ensure_ascii=False)}")
+              json_str = json.dumps(changed, ensure_ascii=False)
+              print(f"Changed plugins: {json_str}")
+              # 写入文件供后续步骤使用
+              with open('/tmp/changed_plugins.json', 'w', encoding='utf-8') as f:
+                  f.write(json_str)
+              # 同时写入 GitHub Actions output
               with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as f:
-                  f.write(f'changed_plugins={json.dumps(changed, ensure_ascii=False)}\n')
+                  f.write(f'changed_plugins={json_str}\n')
           else:
               print("No changed plugins found")
 
@@ -81,68 +86,125 @@ jobs:
       - name: Install Python dependencies
         if: ${{ steps.changed-plugins.outputs.changed_plugins != '' }}
         run: |
-          pip install alibabacloud_devops20210625 alibabacloud_credentials
+          pip install requests
 
-      # 6. 处理变更插件（使用阿里云 SDK 创建仓库）
-      - name: Process each changed plugin
+      # 5. 处理变更插件（创建阿里云仓库）
+      - name: Create Aliyun repositories
+        if: ${{ steps.changed-plugins.outputs.changed_plugins != '' }}
+        id: create-repos
         run: |
-          python /home/runner/work/zhenxun_bot_plugins_index/scripts/sync.py \
+          python scripts/sync.py \
             --changed-plugins '${{ steps.changed-plugins.outputs.changed_plugins }}' \
             --org-id '67a361cf556e6cdab537117a' \
-            --group-path 'zhenxun_plugins' \
-            --aliyun-account '${{ secrets.ALIYUN_ACCOUNT }}' \
-            --aliyun-password '${{ secrets.ALIYUN_PASSWORD }}' \
-            --access-key-id '${{ secrets.ALIYUN_ACCESS_KEY_ID }}' \
-            --access-key-secret '${{ secrets.ALIYUN_ACCESS_KEY_SECRET }}'
+            --access-token '${{ secrets.ALIYUN_PERSONAL_ACCESS_TOKEN }}' \
+            --namespace-id 1638483 \
+            --namespace-path 'zhenxun_plugins' \
+            --visibility 'private'
 
-
-      - name: Verify Aliyun Credentials
+      # 6. 同步每个插件的代码到阿里云
+      - name: Sync code for each plugin
+        if: ${{ steps.changed-plugins.outputs.changed_plugins != '' }}
         run: |
-          echo "验证阿里云凭证环境变量:"
-          if [ -n "$ALIBABA_CLOUD_ACCESS_KEY_ID" ]; then
-            echo "ALIBABA_CLOUD_ACCESS_KEY_ID: 已设置 (长度: ${#ALIBABA_CLOUD_ACCESS_KEY_ID})"
-          else
-            echo "ALIBABA_CLOUD_ACCESS_KEY_ID: 未设置"
-          fi
-          
-          if [ -n "$ALIBABA_CLOUD_ACCESS_KEY_SECRET" ]; then
-            echo "ALIBABA_CLOUD_ACCESS_KEY_SECRET: 已设置 (长度: ${#ALIBABA_CLOUD_ACCESS_KEY_SECRET})"
-          else
-            echo "ALIBABA_CLOUD_ACCESS_KEY_SECRET: 未设置"
-          fi
-      # 7. 更新 plugins.json
-      - name: Update plugins.json with aliurl
+          set -e
+
+          # 读取JSON数据（文件已在步骤3中创建）
+          changed_plugins=$(cat /tmp/changed_plugins.json)
+
+          # 遍历每个插件
+          for row in $(echo "${changed_plugins}" | jq -r '.[] | @base64'); do
+            _jq() {
+              echo ${row} | base64 --decode | jq -r ${1}
+            }
+            
+            github_url=$(_jq '.github_url')
+            repo_name=$(_jq '.repo_name')
+            
+            echo "🔄 开始同步插件: $repo_name"
+            echo "GitHub URL: $github_url"
+            
+            # 克隆GitHub仓库
+            echo "🔄 克隆GitHub仓库..."
+            git clone "$github_url" "$repo_name"
+            
+            cd "$repo_name"
+            
+            # 配置Git
+            echo "🔄 配置Git..."
+            git config --global http.postBuffer 524288000
+            git config --global core.compression 0
+            
+            # 添加阿里云远程
+            echo "🔄 添加阿里云远程..."
+            aliyun_url="https://${{ secrets.ALIYUN_ACCOUNT }}:${{ secrets.ALIYUN_PASSWORD }}@codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/${repo_name}.git"
+            git remote add aliyun "$aliyun_url"
+            
+            # 获取当前分支
+            current_branch=$(git rev-parse --abbrev-ref HEAD)
+            
+            # 尝试推送
+            echo "🔄 推送代码到阿里云..."
+            if git push --progress aliyun "${current_branch}:main"; then
+              echo "✅ 推送成功: $repo_name"
+            else
+              # 如果失败，尝试强制推送
+              echo "🔄 尝试强制推送..."
+              if git push --progress --force aliyun "${current_branch}:main"; then
+                echo "✅ 强制推送成功: $repo_name"
+              else
+                echo "❌ 推送失败: $repo_name"
+              fi
+            fi
+            
+            # 返回上级目录
+            cd ..
+            
+            # 清理目录
+            rm -rf "$repo_name"
+            
+            echo "✅ 完成同步: $repo_name"
+            echo "---"
+          done
+
+      # 7. 更新 plugins.json 中的 ali_url
+      - name: Update plugins.json with ali_url
         if: ${{ steps.changed-plugins.outputs.changed_plugins != '' }}
         shell: python
-        env:
-          RESULTS_JSON: ${{ steps.changed-plugins.outputs.changed_plugins }}
         run: |
           import json
           import os
-          
+
+          # 读取变更插件列表（文件已在步骤3中创建）
+          with open('/tmp/changed_plugins.json', 'r', encoding='utf-8') as f:
+              content = f.read().strip()
+              print(f"读取到的内容: {content}")
+              changed_plugins = json.loads(content)
+
+          # 读取当前的plugins.json
           with open('plugins.json', 'r', encoding='utf-8') as f:
               plugins = json.load(f)
-          
-          results = json.loads(os.environ['RESULTS_JSON'])
+
           updated = False
-          
-          for result in results:
-              if result['status'] != 'success':
-                  continue
-                  
+
+          # 更新ali_url
+          for changed_plugin in changed_plugins:
+              repo_name = changed_plugin['repo_name']
+              ali_url = f"https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/{repo_name}"
+              
+              # 在plugins.json中找到对应的插件
               for plugin in plugins:
-                  if plugin.get('github_url') == result['github_url']:
-                      plugin['aliurl'] = result['aliurl']
+                  if plugin.get('github_url') == changed_plugin['github_url']:
+                      plugin['ali_url'] = ali_url
                       updated = True
-                      print(f"Updated {plugin['name']} with aliurl")
+                      print(f"✅ 更新 {plugin.get('name', repo_name)} 的 ali_url: {ali_url}")
                       break
-          
+
+          # 保存更新后的plugins.json
           if updated:
               with open('plugins.json', 'w', encoding='utf-8') as f:
                   json.dump(plugins, f, ensure_ascii=False, indent=2)
-              print("✅ plugins.json updated with aliurl")
+              print("✅ plugins.json 已更新")
           else:
-              print("⚠️ No plugins updated")
+              print("⚠️ 没有插件被更新")
 
       # 8. 提交变更
       - name: Commit and push changes
@@ -151,10 +213,10 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add plugins.json
-          
+
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Add aliurl to plugins.json for Aliyun Codeup sync"
+            git commit -m "Add ali_url to plugins.json for Aliyun Codeup sync"
             git push
           fi
