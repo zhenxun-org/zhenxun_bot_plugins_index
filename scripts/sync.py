@@ -163,7 +163,7 @@ def main():
     parser.add_argument(
         "--visibility",
         type=str,
-        default="private",
+        default="internal",
         choices=["private", "internal", "public"],
         help="代码库可见性",
     )
