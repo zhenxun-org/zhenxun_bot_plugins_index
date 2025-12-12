@@ -115,7 +115,7 @@
     "description": "一个基于文字冒险的游戏插件",
     "usage": "\n    使用方法：\n    doro ：开始游戏\n    choose <选项> 或 选择 <选项>：在游戏中做出选择\n    ",
     "author": "ATTomatoo",
-    "version": "1.5.7",
+    "version": "1.5.8",
     "plugin_type": "NORMAL",
     "is_dir": true,
     "github_url": "https://github.com/ATTomatoo/dorodoro",
