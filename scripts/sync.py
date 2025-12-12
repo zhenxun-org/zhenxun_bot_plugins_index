@@ -55,7 +55,7 @@ def create_repository(
     namespace_id: int,
     repo_name: str,
     description: str = "",
-    visibility: str = "public",
+    visibility: str = "internal",
 ) -> bool:
     """创建阿里云代码库"""
 
@@ -70,7 +70,6 @@ def create_repository(
         "name": repo_name,
         "namespaceId": namespace_id,
         "visibility": visibility,
-        "readMeType": "USER_GUIDE",  # 自动创建引导README
         "organizationId": organization_id,
         "path": repo_name,
     }
