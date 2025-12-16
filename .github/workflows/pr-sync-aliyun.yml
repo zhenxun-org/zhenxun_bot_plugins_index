@@ -11,7 +11,7 @@ jobs:
 
     steps:
       # =========================================================
-      # 1️⃣ 只检出 BASE 仓库
+      #  只检出 BASE 仓库
       # =========================================================
       - name: Checkout base repository
         uses: actions/checkout@v4
@@ -28,60 +28,51 @@ jobs:
           import json
           import subprocess
           import os
+          import urllib.request
 
-          pr_sha = os.environ["GITHUB_EVENT_PULL_REQUEST_HEAD_SHA"]
-          base_ref = os.environ["GITHUB_EVENT_PULL_REQUEST_BASE_REF"]
+          pr_repo_full = "${{ github.event.pull_request.head.repo.full_name }}"
+          pr_ref = "${{ github.event.pull_request.head.ref }}"
+          pr_url = f"https://raw.githubusercontent.com/{pr_repo_full}/{pr_ref}/plugins.json"
 
-          def load_json_from_git(ref, path):
-              try:
-                  result = subprocess.run(
-                      ["git", "show", f"{ref}:{path}"],
-                      capture_output=True,
-                      text=True,
-                      encoding="utf-8",
-                      check=True
-                  )
-                  return json.loads(result.stdout)
-              except Exception:
-                  return []
-
-          # PR 中的 plugins.json（只读文件）
-          pr_plugins = load_json_from_git(pr_sha, "plugins.json")
-
-          # base 分支的 plugins.json
-          base_plugins = load_json_from_git(f"origin/{base_ref}", "plugins.json")
-
+          try:
+              with urllib.request.urlopen(pr_url) as resp:
+                  pr_plugins = json.load(resp)
+          except Exception:
+              pr_plugins = []
+          try:
+              result = subprocess.run(
+                  ["git", "show", "HEAD:plugins.json"],
+                  capture_output=True, text=True, check=True
+              )
+              base_plugins = json.loads(result.stdout)
+          except Exception:
+              base_plugins = []
           base_map = {p.get("github_url"): p for p in base_plugins if p.get("github_url")}
-
           changed = []
 
           for plugin in pr_plugins:
               github_url = plugin.get("github_url")
               if not github_url:
                   continue
-
               base_plugin = base_map.get(github_url)
-
-              if not base_plugin or json.dumps(plugin, sort_keys=True) != json.dumps(base_plugin, sort_keys=True):
-                  repo_name = github_url.rstrip("/").split("/")[-1]
-                  if repo_name.endswith(".git"):
-                      repo_name = repo_name[:-4]
-
+              # 只比对关键字段，避免 json.dumps 完全匹配失败
+              if not base_plugin or plugin.get("name") != base_plugin.get("name") or plugin.get("version") != base_plugin.get("version"):
+                  repo_name = github_url.rstrip("/").split("/")[-1].removesuffix(".git")
                   changed.append({
-                      "name": plugin.get("name", repo_name),
+                      "name": plugin.get("name", ""),
                       "github_url": github_url,
                       "repo_name": repo_name,
+                      "description": plugin.get("description", ""),
                   })
 
+          out = json.dumps(changed, ensure_ascii=False)
+          with open("/tmp/changed_plugins.json", "w", encoding="utf-8") as f:
+              f.write(out)
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as f:
+              f.write(f"changed_plugins={out}\n")
+
           if changed:
-              data = json.dumps(changed, ensure_ascii=False)
-              with open("/tmp/changed_plugins.json", "w", encoding="utf-8") as f:
-                  f.write(data)
-
-              with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as f:
-                  f.write(f"changed_plugins={data}\n")
-
-              print("Changed plugins:", data)
+              print(f"Detected changed plugins: {out}")
           else:
               print("No changed plugins found")
 
@@ -185,3 +176,5 @@ jobs:
             git commit -m "Sync plugin to Aliyun Codeup"
             git push
           fi
+
+ 

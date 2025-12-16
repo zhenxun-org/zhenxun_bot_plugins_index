@@ -81,8 +81,6 @@ def create_repository(
     params = {"createParentPath": "true"}
 
     print(f"🔄 正在创建代码库: {repo_name}")
-    print(f"   Token 长度: {len(token)} 字符")
-    print(f"   Token 预览: {token[:6]}...{token[-3:] if len(token) > 9 else ''}")
     print(f"   组织ID: {organization_id}")
     print(f"   命名空间ID: {namespace_id}")
 
