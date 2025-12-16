@@ -99,7 +99,7 @@ jobs:
             --access-token '${{ secrets.ALIYUN_PERSONAL_ACCESS_TOKEN }}' \
             --namespace-id 1638483 \
             --namespace-path 'zhenxun_plugins' \
-            --visibility 'private'
+            --visibility 'internal'
 
       # 6. 同步每个插件的代码到阿里云
       - name: Sync code for each plugin

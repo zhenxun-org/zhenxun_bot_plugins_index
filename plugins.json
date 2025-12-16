@@ -9,8 +9,7 @@
     "version": "0.9",
     "plugin_type": "NORMAL",
     "is_dir": true,
-    "github_url": "https://github.com/xuanerwa/zhenxun_github_sub",
-    "ali_url": "https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/zhenxun_github_sub"
+    "github_url": "https://github.com/xuanerwa/zhenxun_github_sub"
   },
   {
     "name": "Minecraft查服",
