@@ -9,7 +9,6 @@ jobs:
   update-readme:
     runs-on: ubuntu-latest
     
-    
     steps:
       # 1. 检出 PR 分支代码
       - name: Checkout PR branch
@@ -17,7 +16,7 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
-          token: ${{ secrets.ACCESS_TOKEN }}
+          token: ${{ secrets.ACCESS_TOKEN || github.token }}
           fetch-depth: 0
           persist-credentials: true
       
@@ -45,6 +44,8 @@ jobs:
       # 5. 提交更改（如果有）
       - name: Commit and push changes
         if: steps.check-changes.outputs.has_changes == 'true'
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN || github.token }}
         run: |
           # 配置 Git 用户
           git config --local user.email "action@github.com"
@@ -54,19 +55,16 @@ jobs:
           git add README.md
           git commit -m "chore: 自动更新 README.md 中的插件列表表格 [skip ci]"
           
-          # 使用明确的 PAT 认证 URL 推送
-          # 注意：这里的 ${{ github.event.pull_request.head.repo.full_name }} 可能是 fork 仓库
-          git push https://x-access-token:${{ secrets.ACCESS_TOKEN }}@github.com/${{ github.event.pull_request.head.repo.full_name }}.git HEAD:${{ github.event.pull_request.head.ref }}
-          
-          # 或者如果上面不行，尝试使用更简化的方式：
-          # git push origin HEAD:${{ github.event.pull_request.head.ref }}
+          # 使用可用的 token 推送
+          git remote set-url origin https://x-access-token:${ACCESS_TOKEN}@github.com/${{ github.event.pull_request.head.repo.full_name }}.git
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
       
       # 6. 添加评论（如果有更改）
       - name: Comment on PR
         if: steps.check-changes.outputs.has_changes == 'true'
         uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.ACCESS_TOKEN }}
+          github-token: ${{ secrets.ACCESS_TOKEN || github.token }}
           script: |
             github.rest.issues.createComment({
               issue_number: context.payload.pull_request.number,
