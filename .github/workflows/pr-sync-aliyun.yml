@@ -145,6 +145,11 @@ jobs:
           with open("/tmp/changed_plugins.json", "r", encoding="utf-8") as f:
               changed = json.load(f)
 
+          # 确保我们使用的是最新的 plugins.json 文件
+          import subprocess
+          result = subprocess.run(["git", "fetch", "origin"], check=True, capture_output=True)
+          result = subprocess.run(["git", "checkout", "HEAD"], check=True, capture_output=True)
+
           with open("plugins.json", "r", encoding="utf-8") as f:
               plugins = json.load(f)
 
