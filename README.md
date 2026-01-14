@@ -42,6 +42,7 @@
 | [加群申请处理插件](https://github.com/BingZi-233/zhenxun_plugin_group_request_handler) | [@BingZi-233](https://github.com/BingZi-233) | 自动处理群白名单内的加群申请,根据QQ等级、黑名单和加群理由进行审核,支持统计查询 |
 | [链接白名单](https://github.com/BingZi-233/zhenxun_plugin_link_police) | [@BingZi-233](https://github.com/BingZi-233) | 检查群消息中的链接是否在白名单中，自动撤回违规链接。仅对配置了白名单的群组生效。 |
 | [祈福签](https://github.com/YingLing3/zhenxun_plugin_skyblessings) | [@YingLing3](https://github.com/YingLing3) | 基于 skyblessings-python-api 的祈福签生成插件 |
+| [三角洲查询](https://github.com/ThelevenFD/zhenxun_plugin_DFMInfo) | [@ThelevenFD](https://github.com/ThelevenFD) | 三角洲查询 |
 <!-- PLUGIN_TABLE_END -->
 
 ## 💧 老版本插件
