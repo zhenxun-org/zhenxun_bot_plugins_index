@@ -16,7 +16,6 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
-          token: ${{ secrets.ACCESS_TOKEN || github.token }}
           fetch-depth: 0
           persist-credentials: true
       
@@ -37,15 +36,16 @@ jobs:
         run: |
           if [ -n "$(git status --porcelain README.md)" ]; then
             echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "README needs update" > .pr-need-readme-update
+            echo "needs_update_file=true" >> $GITHUB_OUTPUT
           else
             echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "needs_update_file=false" >> $GITHUB_OUTPUT
           fi
       
-      # 5. 提交更改（如果有）
-      - name: Commit and push changes
-        if: steps.check-changes.outputs.has_changes == 'true'
-        env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN || github.token }}
+      # 5. 尝试提交更改（仅当PR来自同源仓库时）
+      - name: Commit and push changes if same repo
+        if: github.event.pull_request.head.repo.full_name == github.repository && steps.check-changes.outputs.has_changes == 'true'
         run: |
           # 配置 Git 用户
           git config --local user.email "action@github.com"
@@ -55,20 +55,56 @@ jobs:
           git add README.md
           git commit -m "chore: 自动更新 README.md 中的插件列表表格 [skip ci]"
           
-          # 使用可用的 token 推送
-          git remote set-url origin https://x-access-token:${ACCESS_TOKEN}@github.com/${{ github.event.pull_request.head.repo.full_name }}.git
-          git push origin HEAD:${{ github.event.pull_request.head.ref }}
+          # 推送更改
+          git push
       
-      # 6. 添加评论（如果有更改）
+      # 6. 对于fork仓库和有变化的情况，添加标记文件
+      - name: Add marker file for fork PRs with changes
+        if: github.event.pull_request.head.repo.full_name != github.repository && steps.check-changes.outputs.needs_update_file == 'true'
+        run: |
+          # 添加标记文件，提醒维护者合并后需要更新README
+          git add .pr-need-readme-update
+          echo "需要在合并后更新README.md" > readme_update_instructions.txt
+          git add readme_update_instructions.txt
+          
+          # 由于是fork，无法直接推送，但我们可以准备提交信息
+          echo "Fork PR detected, cannot commit automatically, but README would need update"
+      
+      # 7. 上传需要更新的文件作为工件
+      - name: Upload marker files
+        if: steps.check-changes.outputs.needs_update_file == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: readme-needs-update-marker
+          path: |
+            .pr-need-readme-update
+            readme_update_instructions.txt
+      
+      # 8. 添加评论到PR（适用于所有情况）
       - name: Comment on PR
-        if: steps.check-changes.outputs.has_changes == 'true'
         uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.ACCESS_TOKEN || github.token }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            github.rest.issues.createComment({
-              issue_number: context.payload.pull_request.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: '✅ 已自动更新 README.md 中的插件列表表格'
-            })
+            const { payload } = context;
+            let commentBody = '';
+            
+            if (steps.check-changes.outputs.has_changes === 'true') {
+              if (payload.repository.full_name === payload.pull_request.head.repo.full_name) {
+                commentBody = '✅ 已自动更新 README.md 中的插件列表表格';
+              } else {
+                commentBody = `📋 检测到插件信息更新，README.md 需要更新，但由于 PR 来自 fork 仓库，无法自动提交更改。\n\n维护者需要手动将更改合并到主分支以触发自动更新。`;
+              }
+            } else {
+              commentBody = 'ℹ️ 插件信息没有变化，无需更新 README.md 表格';
+            }
+            
+            await github.rest.issues.createComment({
+              issue_number: payload.pull_request.number,
+              owner: payload.repository.owner.login,
+              repo: payload.repository.name,
+              body: commentBody
+            });
+            
+            // 根据是否有变化设置作业输出
+            core.setOutput('has_changes', steps.check-changes.outputs.has_changes);
