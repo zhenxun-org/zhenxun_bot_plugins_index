@@ -83,28 +83,32 @@ jobs:
       # 8. 添加评论到PR（适用于所有情况）
       - name: Comment on PR
         uses: actions/github-script@v7
+        env:
+          HAS_CHANGES: ${{ steps.check-changes.outputs.has_changes }}
+          REPO_FULL_NAME: ${{ github.event.pull_request.head.repo.full_name }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const { payload } = context;
+            const hasChanges = process.env.HAS_CHANGES === 'true';
+            const repoFullName = process.env.REPO_FULL_NAME;
+            const githubRepository = process.env.GITHUB_REPOSITORY;
+            
             let commentBody = '';
             
-            if (steps.check-changes.outputs.has_changes === 'true') {
-              if (payload.repository.full_name === payload.pull_request.head.repo.full_name) {
+            if (hasChanges) {
+              if (repoFullName === githubRepository) {
                 commentBody = '✅ 已自动更新 README.md 中的插件列表表格';
               } else {
-                commentBody = `📋 检测到插件信息更新，README.md 需要更新，但由于 PR 来自 fork 仓库，无法自动提交更改。\n\n维护者需要手动将更改合并到主分支以触发自动更新。`;
+                commentBody = '📋 检测到插件信息更新，README.md 需要更新，但 PR 来自 fork 仓库，无法自动提交更改。\n\n✅ **重要提醒：合并 PR 后，README.md 需要手动更新**。系统已准备了更新标记文件。';
               }
             } else {
               commentBody = 'ℹ️ 插件信息没有变化，无需更新 README.md 表格';
             }
             
             await github.rest.issues.createComment({
-              issue_number: payload.pull_request.number,
-              owner: payload.repository.owner.login,
-              repo: payload.repository.name,
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
               body: commentBody
             });
-            
-            // 根据是否有变化设置作业输出
-            core.setOutput('has_changes', steps.check-changes.outputs.has_changes);
