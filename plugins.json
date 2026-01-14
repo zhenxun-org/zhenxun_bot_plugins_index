@@ -287,5 +287,17 @@
     "plugin_type": "NORMAL",
     "is_dir": true,
     "github_url": "https://github.com/YingLing3/zhenxun_plugin_skyblessings"
+  },
+  {
+    "name": "三角洲查询",
+    "module": "zhenxun_plugin_DFMInfo",
+    "module_path": ".",
+    "description": "三角洲查询",
+    "usage": "粥/洲",
+    "author": "ThelevenFD",
+    "version": "0.2",
+    "plugin_type": "NORMAL",
+    "is_dir": true,
+    "github_url": "https://github.com/ThelevenFD/zhenxun_plugin_DFMInfo"
   }
 ]
