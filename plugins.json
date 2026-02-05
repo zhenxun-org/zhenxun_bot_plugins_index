@@ -130,7 +130,8 @@
     "version": "v1.1.4",
     "plugin_type": "NORMAL",
     "is_dir": true,
-    "github_url": "https://github.com/webjoin111/zhenxun_plugin_quote"
+    "github_url": "https://github.com/webjoin111/zhenxun_plugin_quote",
+    "ali_url": "https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/zhenxun_plugin_quote"
   },
   {
     "name": "来杯咖啡",
