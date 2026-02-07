@@ -227,7 +227,8 @@
     "version": "1.2.1",
     "plugin_type": "NORMAL",
     "is_dir": true,
-    "github_url": "https://github.com/webjoin111/zhenxun-plugin-ai_creation"
+    "github_url": "https://github.com/webjoin111/zhenxun-plugin-ai_creation",
+    "ali_url": "https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/zhenxun-plugin-ai_creation"
   },
   {
     "name": "21点",
