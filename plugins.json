@@ -302,5 +302,17 @@
     "is_dir": true,
     "github_url": "https://github.com/ThelevenFD/zhenxun_plugin_DFMInfo",
     "ali_url": "https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/zhenxun_plugin_DFMInfo"
-  }
+  },
+  {
+  "name": "ChatInter",
+  "module": "zhenxun_plugin_chatinter",
+  "module_path": "chatinter",
+  "description": "基于 AI 意图识别的智能对话插件",
+  "usage": "直接对话即可",
+  "author": "meng-luo",
+  "version": "1.0.0",
+  "plugin_type": "NORMAL",
+  "is_dir": true,
+  "github_url": "https://github.com/meng-luo/zhenxun_plugin_chatinter"
+}
 ]
