@@ -18,3 +18,4 @@
 | [来杯咖啡](https://github.com/s12mmm3/zhenxun_plugin_coffee) | [@overwriter](https://github.com/overwriter) | 来一杯热气腾腾的咖啡吧~ |
 | [上不上AI评分系统](https://github.com/molanp/zhenxun_plugin_fuckornot) | [@molanp](https://github.com/molanp) | 上不上AI评分系统 |
 | [21点](https://github.com/Evan8440/zhenxun_plugin_casino_21) | [@Evan8440](https://github.com/Evan8440) | 又是输光金币的一天呢 |
+| [火影忍者手游攻略](https://github.com/Riordon666/zhenxun_naruto) | [@Riordon666](https://github.com/Riordon666) | 一个查询木叶快报、获取抖音攻略的插件 |
