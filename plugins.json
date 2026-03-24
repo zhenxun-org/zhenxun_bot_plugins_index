@@ -60,7 +60,7 @@
     "github_url": "https://github.com/PackageInstaller/zhenxun_plugin_draw_painting/tree/master"
   },
   {
-    "name": "AI全家桶"，
+    "name": "AI全家桶",
     "module": "zhipu_toolkit",
     "module_path": "zhipu_toolkit",
     "description": "AI全家桶，一次安装，到处使用，省时省力省心",
@@ -85,9 +85,9 @@
   },
   {
     "name": "真寻农场",
-    "module": "zhenxun_plugin_farm"，
+    "module": "zhenxun_plugin_farm",
     "module_path": ".",
-    "description": "快乐的农场时光"，
+    "description": "快乐的农场时光",
     "usage": "你也要种地?\n    指令：\n        at 开通农场\n        我的农场\n        我的农场币\n        种子商店 [页数]\n        购买种子 [作物/种子名称] [数量]\n        我的种子\n        播种 [作物/种子名称] [数量]\n        收获\n        铲除\n        我的作物\n        出售作物 [作物/种子名称] [数量]\n        偷菜 at\n        开垦\n        购买农场币 [数量] 数量为消耗金币的数量",
     "author": "Shu-Ying",
     "version": "1.0",
@@ -164,7 +164,7 @@
     "description": "Nonebot插件商店",
     "usage": "nb插件商店 ?页码 ?每页项数        : 查看当前的nonebot 插件商店\n    添加nb插件 id/name/pypi_name     : 添加nonebot 市场插件\n    移除nb插件 id/name/pypi_name     : 移除nonebot 市场插件\n    搜索nb插件 <任意关键字>     : 搜索nonebot 市场插件\n    更新nb插件 id/name/pypi_name     : 更新nonebot 市场插件\n    更新全部nb插件     : 更新全部nonebot 市场插件",
     "author": "molanp",
-    "version": "1.2",
+    "version": "1.2"，
     "plugin_type": "SUPERUSER",
     "is_dir": true,
     "github_url": "https://github.com/molanp/zhenxun_plugin_nb_store"
