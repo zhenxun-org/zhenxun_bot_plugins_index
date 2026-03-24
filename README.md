@@ -44,6 +44,7 @@
 | [祈福签](https://github.com/YingLing3/zhenxun_plugin_skyblessings) | [@YingLing3](https://github.com/YingLing3) | 基于 skyblessings-python-api 的祈福签生成插件 |
 | [三角洲查询](https://github.com/ThelevenFD/zhenxun_plugin_DFMInfo) | [@ThelevenFD](https://github.com/ThelevenFD) | 三角洲查询 |
 | [ChatInter](https://github.com/meng-luo/zhenxun_plugin_chatinter) | [@meng-luo](https://github.com/meng-luo) | 基于 AI 意图识别的智能对话插件 |
+| [火影忍者手游攻略](https://github.com/Riordon666/zhenxun_naruto) | [@Riordon666](https://github.com/Riordon666) | 一个查询木叶快报、获取抖音攻略的插件 |
 <!-- PLUGIN_TABLE_END -->
 
 ## 💧 老版本插件
