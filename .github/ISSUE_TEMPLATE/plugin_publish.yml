@@ -39,6 +39,16 @@ body:
     validations:
       required: true
 
+  - type: input
+    id: branch
+    attributes:
+      label: 分支名称
+      description: 插件仓库的分支名称，默认 main，如 master
+      placeholder: e.g. main
+      value: main
+    validations:
+      required: false
+
   - type: dropdown
     id: is_dir
     attributes:
