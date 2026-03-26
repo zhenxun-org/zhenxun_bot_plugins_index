@@ -304,15 +304,27 @@
     "ali_url": "https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/zhenxun_plugin_DFMInfo"
   },
   {
-  "name": "ChatInter",
-  "module": "zhenxun_plugin_chatinter",
-  "module_path": "chatinter",
-  "description": "基于 AI 意图识别的智能对话插件",
-  "usage": "直接对话即可",
-  "author": "meng-luo",
-  "version": "1.0.0",
-  "plugin_type": "NORMAL",
-  "is_dir": true,
-  "github_url": "https://github.com/meng-luo/zhenxun_plugin_chatinter"
-}
+    "name": "ChatInter",
+    "module": "zhenxun_plugin_chatinter",
+    "module_path": "chatinter",
+    "description": "基于 AI 意图识别的智能对话插件",
+    "usage": "直接对话即可",
+    "author": "meng-luo",
+    "version": "1.0.0",
+    "plugin_type": "NORMAL",
+    "is_dir": true,
+    "github_url": "https://github.com/meng-luo/zhenxun_plugin_chatinter"
+  },
+  {
+    "name": "火影忍者手游攻略",
+    "module": "naruto",
+    "module_path": ".",
+    "description": "获取火影忍者手游抖音博主最新作品攻略，并提供木叶快报与饰品模拟器快捷入口",
+    "usage": "火影最新攻略 作者名 - 获取指定作者最新攻略\n    木叶快报 - 获取木叶快报链接\n    饰品模拟器 - 获取饰品模拟器链接\n\n    已接入作者：\n    - 南宫的嘟嘟\n    - 南宫诺奇\n    - 火影子时（支持简写为“子时”）\n    - 火影忍者萝卜（支持简写为“萝卜”）\n    - 许仙火影忍者手游（支持简写为“许仙”）\n    - 无氪玩家（支持简写为“无氪”）",
+    "author": "Riordon666",
+    "version": "0.3",
+    "plugin_type": "NORMAL",
+    "is_dir": true,
+    "github_url": "https://github.com/Riordon666/naruto"
+  }
 ]
