@@ -144,6 +144,7 @@ jobs:
           token: ${{ steps.generate-token.outputs.token }}
 
       - name: Cache pre-commit hooks
+        id: cache-pre-commit
         uses: actions/cache@v4
         with:
           path: .cache/.pre-commit
@@ -166,5 +167,6 @@ jobs:
           PRE_COMMIT_HOME: /github/workspace/.cache/.pre-commit
 
       - name: Fix permission
+        if: steps.cache-pre-commit.outputs.cache-hit == 'true'
         run: sudo chown -R $(whoami):$(id -ng) .cache/.pre-commit
       
