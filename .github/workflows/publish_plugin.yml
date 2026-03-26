@@ -112,15 +112,12 @@ jobs:
       - name: Test Plugin
         id: plugin-test
         if: ${{ !startsWith(github.event_name, 'pull_request') }}
-        env:
-          PIP_CONSTRAINT: /tmp/pip-constraints.txt
         run: |
-          echo "pydantic<2" > /tmp/pip-constraints.txt
           cd zhenxun_bot
           rm -rf ./zhenxun/plugins/* poetry.lock
           poetry source remove aliyun
           poetry install --no-root
-          poetry run pip install --force-reinstall --no-deps -c /tmp/pip-constraints.txt "pydantic<2"
+          poetry run pip install --upgrade "pydantic>=2"
           poetry run python - <<'PY'
           import pydantic
           import fastapi
@@ -132,11 +129,8 @@ jobs:
       - name: Test Plugin PR
         id: plugin-test-pr
         if: ${{ startsWith(github.event_name, 'pull_request') }}
-        env:
-          PIP_CONSTRAINT: /tmp/pip-constraints.txt
         run: |
-          echo "pydantic<2" > /tmp/pip-constraints.txt
-          pip install --force-reinstall --no-deps -c /tmp/pip-constraints.txt "pydantic<2"
+          pip install --upgrade "pydantic>=2"
           python - <<'PY'
           import pydantic
           import fastapi
