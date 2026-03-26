@@ -120,7 +120,13 @@ jobs:
           rm -rf ./zhenxun/plugins/* poetry.lock
           poetry source remove aliyun
           poetry install --no-root
-          poetry run pip install -c /tmp/pip-constraints.txt "pydantic<2"
+          poetry run pip install --force-reinstall --no-deps -c /tmp/pip-constraints.txt "pydantic<2"
+          poetry run python - <<'PY'
+          import pydantic
+          import fastapi
+          print("pydantic:", pydantic.__version__)
+          print("fastapi:", fastapi.__version__)
+          PY
           curl -sSL https://github.com/zhenxun-org/zhenxunflow/releases/latest/download/plugin_test.py | poetry run python -
 
       - name: Test Plugin PR
@@ -130,7 +136,13 @@ jobs:
           PIP_CONSTRAINT: /tmp/pip-constraints.txt
         run: |
           echo "pydantic<2" > /tmp/pip-constraints.txt
-          pip install -c /tmp/pip-constraints.txt "pydantic<2"
+          pip install --force-reinstall --no-deps -c /tmp/pip-constraints.txt "pydantic<2"
+          python - <<'PY'
+          import pydantic
+          import fastapi
+          print("pydantic:", pydantic.__version__)
+          print("fastapi:", fastapi.__version__)
+          PY
           curl -sSL https://github.com/zhenxun-org/zhenxunflow/releases/latest/download/plugin_test.py | python -
   
   zhenxunflow:
