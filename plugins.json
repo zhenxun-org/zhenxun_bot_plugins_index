@@ -294,7 +294,7 @@
     "name": "三角洲查询",
     "module": "zhenxun_plugin_DFMInfo",
     "module_path": ".",
-    "description": "三角洲查询",
+    "description": "查询三角洲密码,跑刀自动凑战备,特勤处制造物品推荐等等...",
     "usage": "粥/洲",
     "author": "ThelevenFD",
     "version": "0.3",
