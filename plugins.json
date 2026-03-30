@@ -297,7 +297,7 @@
     "description": "三角洲查询",
     "usage": "粥/洲",
     "author": "ThelevenFD",
-    "version": "0.2",
+    "version": "0.3",
     "plugin_type": "NORMAL",
     "is_dir": true,
     "github_url": "https://github.com/ThelevenFD/zhenxun_plugin_DFMInfo",
