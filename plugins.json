@@ -326,5 +326,17 @@
     "plugin_type": "NORMAL",
     "is_dir": true,
     "github_url": "https://github.com/Riordon666/naruto"
+  },
+  {
+    "name": "洛克王国世界孵蛋查询",
+    "module": "zhenxun_roco_egg_query",
+    "module_path": "zhenxun_roco_egg_query",
+    "description": "根据宠物蛋径蛋重查询可能孵出的宠物",
+    "usage": "发送\"查蛋\"查看使用说明\n    发送\"查蛋 蛋径 蛋重\"进行查询\n    示例：\n      查蛋 0.35 7.64\n      查蛋 0.35m 7.64kg",
+    "author": "OatmeaILL",
+    "version": "1.0",
+    "plugin_type": "NORMAL",
+    "is_dir": true,
+    "github_url": "https://github.com/OatmeaILL/zhenxun_roco_egg_query"
   }
 ]
