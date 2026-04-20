@@ -43,7 +43,7 @@
 | [链接白名单](https://github.com/BingZi-233/zhenxun_plugin_link_police) | [@BingZi-233](https://github.com/BingZi-233) | 检查群消息中的链接是否在白名单中，自动撤回违规链接。仅对配置了白名单的群组生效。 |
 | [祈福签](https://github.com/YingLing3/zhenxun_plugin_skyblessings) | [@YingLing3](https://github.com/YingLing3) | 基于 skyblessings-python-api 的祈福签生成插件 |
 | [三角洲查询](https://github.com/ThelevenFD/zhenxun_plugin_DFMInfo) | [@ThelevenFD](https://github.com/ThelevenFD) | 查询三角洲密码,跑刀自动凑战备,特勤处制造物品推荐等等... |
-| [ChatInter](https://github.com/meng-luo/zhenxun_plugin_chatinter) | [@meng-luo](https://github.com/meng-luo) | 基于 AI 意图识别的智能对话插件 |
+| [ChatInter](https://github.com/meng-luo/zhenxun_plugin_chatinter) | [@Copaan & meng-luo](https://github.com/Copaan & meng-luo) | 基于 AI 意图识别的智能对话插件 |
 | [火影忍者手游攻略](https://github.com/Riordon666/naruto) | [@Riordon666](https://github.com/Riordon666) | 获取火影忍者手游抖音博主最新作品攻略，并提供木叶快报与饰品模拟器快捷入口 |
 | [洛克王国世界孵蛋查询](https://github.com/OatmeaILL/zhenxun_roco_egg_query) | [@OatmeaILL](https://github.com/OatmeaILL) | 根据宠物蛋径蛋重查询可能孵出的宠物 |
 <!-- PLUGIN_TABLE_END -->
