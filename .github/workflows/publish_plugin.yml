@@ -89,7 +89,7 @@ jobs:
         id: setup-zhenxun
         if: ${{ !startsWith(github.event_name, 'pull_request') }}
         run: |
-          git clone -b main https://github.com/Hibikier/zhenxun_bot.git
+          git clone --depth 1 -b main https://github.com/Hibikier/zhenxun_bot.git
 
       # 2. 此时有了真寻目录，再安装 uv 并配置缓存路径
       - name: Install uv
