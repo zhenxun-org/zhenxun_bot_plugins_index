@@ -84,12 +84,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # 1. 先 Clone 真寻，确保目录下有 pyproject.toml
+      - name: Setup zhenxun
+        id: setup-zhenxun
+        if: ${{ !startsWith(github.event_name, 'pull_request') }}
+        run: |
+          git clone -b main https://github.com/Hibikier/zhenxun_bot.git
+
+      # 2. 此时有了真寻目录，再安装 uv 并配置缓存路径
       - name: Install uv
         if: ${{ !startsWith(github.event_name, 'pull_request') }}
         uses: astral-sh/setup-uv@v3
         with:
           enable-cache: true
-          cache-dependency-glob: "**/pyproject.toml"
+          # 缓存哈希指向真寻目录下的配置文件
+          cache-dependency-glob: "zhenxun_bot/pyproject.toml"
 
       - name: Setup Python
         id: setup_python
@@ -97,30 +106,24 @@ jobs:
         with:
           python-version: "3.10"
 
-      - name: Setup zhenxun
-        id: setup-zhenxun
-        if: ${{ !startsWith(github.event_name, 'pull_request') }}
-        run: |
-          git clone -b main https://github.com/Hibikier/zhenxun_bot.git
-
       - name: Test Plugin
         id: plugin-test
         if: ${{ !startsWith(github.event_name, 'pull_request') }}
         run: |
           cd zhenxun_bot
-          # 清理旧插件和 lock 文件
+          
+          # 清理旧插件和 lock
           rm -rf ./zhenxun/plugins/* uv.lock
           
-          # 移除 pyproject.toml 中的 aliyun 源配置
+          # 移除 aliyun 源
           if grep -q "aliyun" pyproject.toml; then
             sed -i '/\[\[tool.uv.index\]\]/,/url = ".*aliyun.*"/d' pyproject.toml
           fi
 
-          # 使用 uv 安装依赖并升级 pydantic
+          # uv 操作
           uv sync --no-dev
           uv pip install --upgrade "pydantic>=2"
           
-          # 环境验证
           uv run python - <<'PY'
           import pydantic
           import fastapi
@@ -128,7 +131,6 @@ jobs:
           print("fastapi:", fastapi.__version__)
           PY
           
-          # 运行真寻插件测试脚本
           curl -sSL https://github.com/zhenxun-org/zhenxunflow/releases/latest/download/plugin_test.py | uv run python -
 
       - name: Test Plugin PR
