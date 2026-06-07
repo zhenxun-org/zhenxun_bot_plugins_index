@@ -46,6 +46,7 @@
 | [ChatInter](https://github.com/meng-luo/zhenxun_plugin_chatinter) | [@Copaan & meng-luo](https://github.com/Copaan & meng-luo) | 基于 AI 意图识别的智能对话插件 |
 | [火影忍者手游攻略](https://github.com/Riordon666/naruto) | [@Riordon666](https://github.com/Riordon666) | 获取火影忍者手游抖音博主最新作品攻略，并提供木叶快报与饰品模拟器快捷入口 |
 | [洛克王国世界孵蛋查询](https://github.com/OatmeaILL/zhenxun_roco_egg_query) | [@OatmeaILL](https://github.com/OatmeaILL) | 根据宠物蛋径蛋重查询可能孵出的宠物 |
+| [天气查询](https://github.com/aikun-China/nonebot_plugin_weather) | [@aikun-China](https://github.com/aikun-China) | 和风天气查询，支持实时/预报/预警/空气质量/定时订阅 |
 <!-- PLUGIN_TABLE_END -->
 
 ## 💧 老版本插件
