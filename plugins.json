@@ -339,5 +339,17 @@
     "plugin_type": "NORMAL",
     "is_dir": true,
     "github_url": "https://github.com/OatmeaILL/zhenxun_roco_egg_query"
+  },
+  {
+    "name": "天气查询",
+    "module": "nonebot_plugin_weather",
+    "module_path": ".",
+    "description": "和风天气查询，支持实时/预报/预警/空气质量/定时订阅",
+    "usage": "/天气 [城市] | /天气 [城市] [天数] | /天气 订阅 [城市] [HH:MM] | /天气 取消订阅",
+    "author": "aikun-China",
+    "version": "0.7.0",
+    "plugin_type": "NORMAL",
+    "is_dir": true,
+    "github_url": "https://github.com/aikun-China/nonebot_plugin_weather"
   }
 ]
