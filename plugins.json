@@ -351,5 +351,17 @@
     "plugin_type": "NORMAL",
     "is_dir": true,
     "github_url": "https://github.com/aikun-China/nonebot_plugin_weather"
+  },
+  {
+    "name": "进群验证",
+    "module": "zhenxun_join_verify",
+    "module_path": "zhenxun_join_verify",
+    "description": "新人进群需在规定时间内回答验证题目，否则将被踢出群聊（被动插件，默认关闭）",
+    "usage": "新人进群时，若群内开启了此被动任务，机器人会自动@新人发送一道验证题目。\n    新人直接回复纯数字答案即可。答错指定次数或超时未答，将被自动移出群聊。\n    \n    开启/关闭指令（需群管/群主）：\n    开启被动 进群验证\n    关闭被动 进群验证\n\n    提醒用户管理（需群管/群主）：\n    进群验证提醒列表\n    添加进群验证提醒 QQ号\n    移除进群验证提醒 QQ号",
+    "author": "Hychan2333",
+    "version": "1.2",
+    "plugin_type": "NORMAL",
+    "is_dir": true,
+    "github_url": "https://github.com/Hychan2333/zhenxun_join_verify"
   }
 ]
