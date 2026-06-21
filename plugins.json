@@ -363,5 +363,17 @@
     "plugin_type": "NORMAL",
     "is_dir": true,
     "github_url": "https://github.com/Hychan2333/zhenxun_join_verify"
+  },
+  {
+    "name": "链接分享解析 Lite 版",
+    "module": "nonebot_plugin_parser_lite",
+    "module_path": "src.nonebot_plugin_parser_lite",
+    "description": "通用媒体链接分享解析",
+    "usage": "发送支持平台的(BV号/链接/小程序/卡片)即可",
+    "author": "molanp",
+    "version": "1.2.6",
+    "plugin_type": "NORMAL",
+    "is_dir": true,
+    "github_url": "https://github.com/molanp/nonebot-plugin-parser-lite"
   }
 ]
