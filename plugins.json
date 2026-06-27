@@ -371,7 +371,7 @@
     "description": "通用媒体链接分享解析",
     "usage": "发送支持平台的(BV号/链接/小程序/卡片)即可",
     "author": "molanp",
-    "version": "1.2.6",
+    "version": "1.2.7",
     "plugin_type": "NORMAL",
     "is_dir": true,
     "github_url": "https://github.com/molanp/nonebot-plugin-parser-lite"
