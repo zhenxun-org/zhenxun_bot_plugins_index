@@ -156,10 +156,24 @@ jobs:
           updated = False
 
           for c in changed:
+              found = False
               for p in plugins:
                   if p.get("github_url") == c["github_url"]:
                       p["ali_url"] = f"https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/{c['repo_name']}"
+                      found = True
                       updated = True
+                      break
+              if not found:
+                  new_entry = {
+                      "name": c["name"],
+                      "github_url": c["github_url"],
+                      "description": c.get("description", ""),
+                      "ali_url": f"https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/{c['repo_name']}"
+                  }
+                  new_entries.append(new_entry)
+                  updated = True
+          if new_entries:
+              plugins.extend(new_entries)
 
           if updated:
               with open("plugins.json", "w", encoding="utf-8") as f:
