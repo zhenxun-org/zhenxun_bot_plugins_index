@@ -154,7 +154,7 @@ jobs:
               plugins = json.load(f)
 
           updated = False
-
+          new_entries = []
           for c in changed:
               found = False
               for p in plugins:
