@@ -137,7 +137,7 @@ jobs:
         id: plugin-test-pr
         if: ${{ startsWith(github.event_name, 'pull_request') }}
         run: |
-          pip install --upgrade "pydantic>=2"
+          pip install --upgrade "pydantic>=2" fastapi
           python - <<'PY'
           import pydantic
           import fastapi
