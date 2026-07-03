@@ -105,7 +105,8 @@
     "version": "3.0.1",
     "plugin_type": "NORMAL",
     "is_dir": true,
-    "github_url": "https://github.com/webjoin111/zhenxun_plugin_summary_group"
+    "github_url": "https://github.com/webjoin111/zhenxun_plugin_summary_group",
+    "ali_url": "https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/zhenxun_plugin_summary_group"
   },
   {
     "name": "doro大冒险",
@@ -179,7 +180,8 @@
     "version": "1.0.3",
     "plugin_type": "NORMAL",
     "is_dir": true,
-    "github_url": "https://github.com/webjoin111/zhenxun-plugin-multimodal-ai"
+    "github_url": "https://github.com/webjoin111/zhenxun-plugin-multimodal-ai",
+    "ali_url": "https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/zhenxun-plugin-multimodal-ai"
   },
   {
     "name": "拍他",
