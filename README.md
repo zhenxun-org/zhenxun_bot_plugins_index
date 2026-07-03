@@ -49,7 +49,7 @@
 | [天气查询](https://github.com/aikun-China/nonebot_plugin_weather) | [@aikun-China](https://github.com/aikun-China) | 和风天气查询，支持实时/预报/预警/空气质量/定时订阅 |
 | [进群验证](https://github.com/Hychan2333/zhenxun_join_verify) | [@Hychan2333](https://github.com/Hychan2333) | 新人进群需在规定时间内回答验证题目，否则将被踢出群聊（被动插件，默认关闭） |
 | [链接分享解析 Lite 版](https://github.com/molanp/nonebot-plugin-parser-lite) | [@molanp](https://github.com/molanp) | 通用媒体链接分享解析 |
-| [订阅姬](https://github.com/xuanerwa/zhenxun_rsssub) | [@xuanerwa](https://github.com/xuanerwa) | RSS 订阅、抓取、去重与推送助手 |
+| [订阅姬](https://github.com/xuanerwa/zhenxun_rsssub/tree/master) | [@xuanerwa](https://github.com/xuanerwa) | RSS 订阅、抓取、去重与推送助手 |
 <!-- PLUGIN_TABLE_END -->
 
 ## 💧 老版本插件
