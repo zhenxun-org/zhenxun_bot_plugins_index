@@ -115,7 +115,7 @@ jobs:
 
             repo_name=$(_jq '.repo_name')
             github_url=$(_jq '.github_url')
-
+            github_url=$(echo "$github_url" | sed 's|/tree/.*||' | sed 's|/blob/.*||')
             echo "🔄 Syncing $repo_name"
 
             git clone "$github_url" "$repo_name"
