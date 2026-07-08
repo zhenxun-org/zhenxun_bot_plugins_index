@@ -385,7 +385,7 @@
     "description": "RSS 订阅、抓取、去重与推送助手",
     "usage": "指令：\n    订阅姬 添加 订阅名 订阅地址\n    订阅姬 删除 订阅名 [订阅名 ...]\n    订阅姬 列表\n    订阅姬 详情 订阅名\n    订阅姬 设置 订阅名 属性=值 [属性=值 ...]\n    订阅姬 测试 订阅名\n    订阅姬 拉取 订阅名\n    订阅姬 推送 订阅名 消息链接\n    订阅姬 状态 [订阅名]\n    订阅姬 导出 [订阅名] [文件] [原始] [opml]\n    订阅姬 导入 [--dry-run] JSON内容|OPML内容|file:路径\n\n常用属性：\n    频率=5                 设置更新间隔，单位分钟\n    代理=开/关           是否使用全局代理\n    仅标题=开/关         仅推送标题\n    仅图片=开/关         仅推送图片\n    下载图片=开/关       下载图片后再推送\n    图片=0 或 图片=5     限制单条推送图片数量\n    白名单=正则 或 白名单=-1   设置/清空白名单关键词\n    黑名单=正则 或 黑名单=-1   设置/清空黑名单关键词\n    cookie=xxx             设置抓取 Cookie\n    合并=开/关           是否尝试合并转发\n    合并窗口=1            按发布时间在 1 分钟内合并成一条转发，0 为固定批次\n    隐藏内容=显示/隐藏   是否显示 Telegram/RSS 隐藏内容\n    正文长度=1200         正文超过后截断，0 为不截断\n    分段长度=500          单条消息超过后按合并转发分段，0 为不分段\n    暂停=开/关           暂停/恢复订阅\n\n示例：\n    订阅姬 添加 真寻更新 https://example.com/feed.xml\n    订阅姬 添加 RSSHub路由 /bilibili/user/video/123456\n    订阅姬 添加 TG频道 /telegram/channel/botnews\n    订阅姬 拉取 真寻更新\n    订阅姬 状态 真寻更新\n    订阅姬 设置 真寻更新 频率=30 图片=5\n    订阅姬 设置 TG频道 合并=开 合并窗口=1\n    订阅姬 设置 TG频道 隐藏内容=显示\n    订阅姬 设置 TG频道 正文长度=1200\n    订阅姬 设置 TG频道 分段长度=500\n    订阅姬 导出 真寻更新 file opml\n    订阅姬 导入 --dry-run file:rss_export_all.json",
     "author": "xuanerwa",
-    "version": "0.1.2",
+    "version": "0.1.1",
     "plugin_type": "ADMIN",
     "is_dir": true,
     "github_url": "https://github.com/xuanerwa/zhenxun_rsssub/tree/master",
