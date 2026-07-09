@@ -376,7 +376,8 @@
     "version": "1.2.8",
     "plugin_type": "NORMAL",
     "is_dir": true,
-    "github_url": "https://github.com/molanp/nonebot-plugin-parser-lite"
+    "github_url": "https://github.com/molanp/nonebot-plugin-parser-lite",
+    "ali_url": "https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/nonebot-plugin-parser-lite"
   },
   {
     "name": "订阅姬",
