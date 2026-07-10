@@ -113,10 +113,16 @@ jobs:
               echo "$row" | base64 --decode | jq -r "$1"
             }
 
-            repo_name=$(_jq '.repo_name')
             github_url=$(_jq '.github_url')
-            github_url=$(echo "$github_url" | sed 's|/tree/.*||' | sed 's|/blob/.*||')
-            echo "🔄 Syncing $repo_name"
+            github_url=$(echo "$github_url" | sed 's|/tree/.*||' | sed 's|/blob/.*||' | sed 's|/*$||')
+            repo_name=$(echo "$github_url" | sed 's|.*/||' | sed 's|\.git$||')
+            
+            if [ -z "$repo_name" ]; then
+              echo "❌ 无法提取仓库名，跳过"
+              continue
+            fi
+
+            echo "🔄 Syncing $repo_name (from $github_url)"
 
             git clone "$github_url" "$repo_name"
             cd "$repo_name"
@@ -156,19 +162,26 @@ jobs:
           updated = False
           new_entries = []
           for c in changed:
+              github_url = c.get("github_url")
+              if not github_url:
+                  continue
+              repo_name = github_url.split('/tree/')[0].split('/blob/')[0].rstrip('/').split('/')[-1].replace('.git', '')
+              if not repo_name:
+                    continue
+                ali_url = f"https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/{repo_name}"
               found = False
               for p in plugins:
-                  if p.get("github_url") == c["github_url"]:
-                      p["ali_url"] = f"https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/{c['repo_name']}"
+                  if p.get("github_url") == github_url:
+                      p["ali_url"] = ali_url
                       found = True
                       updated = True
                       break
               if not found:
                   new_entry = {
-                      "name": c["name"],
-                      "github_url": c["github_url"],
+                      "name": c.get("name", repo_name),
+                      "github_url": github_url,
                       "description": c.get("description", ""),
-                      "ali_url": f"https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/{c['repo_name']}"
+                      "ali_url": ali_url
                   }
                   new_entries.append(new_entry)
                   updated = True
