@@ -389,6 +389,7 @@
     "version": "0.1.3",
     "plugin_type": "ADMIN",
     "is_dir": true,
-    "github_url": "https://github.com/xuanerwa/zhenxun_rsssub/tree/master"
+    "github_url": "https://github.com/xuanerwa/zhenxun_rsssub/tree/master",
+    "ali_url": "https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/zhenxun_rsssub"
   }
 ]
