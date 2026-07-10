@@ -184,7 +184,7 @@ def main():
         existing_count = 0
 
         for plugin in changed_plugins:
-            repo_name = plugin["repo_name"]
+            repo_name = plugin["github_url"].split('/tree/')[0].split('/blob/')[0].rstrip('/').split('/')[-1].replace('.git', '')
             github_url = plugin["github_url"]
             plugin_name = plugin.get("name", repo_name)
 
