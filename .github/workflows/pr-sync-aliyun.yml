@@ -113,10 +113,16 @@ jobs:
               echo "$row" | base64 --decode | jq -r "$1"
             }
 
-            repo_name=$(_jq '.repo_name')
             github_url=$(_jq '.github_url')
-            github_url=$(echo "$github_url" | sed 's|/tree/.*||' | sed 's|/blob/.*||')
-            echo "🔄 Syncing $repo_name"
+            github_url=$(echo "$github_url" | sed 's|/tree/.*||' | sed 's|/blob/.*||' | sed 's|/*$||')
+            repo_name=$(echo "$github_url" | sed 's|.*/||' | sed 's|\.git$||')
+            
+            if [ -z "$repo_name" ]; then
+              echo "❌ 无法提取仓库名，跳过"
+              continue
+            fi
+
+            echo "🔄 Syncing $repo_name (from $github_url)"
 
             git clone "$github_url" "$repo_name"
             cd "$repo_name"
