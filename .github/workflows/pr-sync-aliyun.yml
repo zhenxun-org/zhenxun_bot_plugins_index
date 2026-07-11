@@ -143,18 +143,16 @@ jobs:
       # 6️⃣ 更新 base 分支中的 plugins.json
       # =========================================================
       - name: Update plugins.json with ali_url
-        if: ${{ steps.changed-plugins.outputs.changed_plugins != '' }}
         shell: python
         run: |
           import json
+          import subprocess
 
           with open("/tmp/changed_plugins.json", "r", encoding="utf-8") as f:
               changed = json.load(f)
 
-          # 确保我们使用的是最新的 plugins.json 文件
-          import subprocess
-          result = subprocess.run(["git", "fetch", "origin"], check=True, capture_output=True)
-          result = subprocess.run(["git", "checkout", "HEAD"], check=True, capture_output=True)
+          subprocess.run(["git", "fetch", "origin"], check=True, capture_output=True)
+          subprocess.run(["git", "checkout", "HEAD"], check=True, capture_output=True)
 
           with open("plugins.json", "r", encoding="utf-8") as f:
               plugins = json.load(f)
@@ -167,8 +165,9 @@ jobs:
                   continue
               repo_name = github_url.split('/tree/')[0].split('/blob/')[0].rstrip('/').split('/')[-1].replace('.git', '')
               if not repo_name:
-                    continue
-                ali_url = f"https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/{repo_name}"
+                  continue
+              ali_url = f"https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/{repo_name}"
+
               found = False
               for p in plugins:
                   if p.get("github_url") == github_url:
@@ -185,6 +184,7 @@ jobs:
                   }
                   new_entries.append(new_entry)
                   updated = True
+
           if new_entries:
               plugins.extend(new_entries)
 
