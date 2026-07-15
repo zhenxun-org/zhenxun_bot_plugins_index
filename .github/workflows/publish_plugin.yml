@@ -84,12 +84,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # ================== 新增步骤：安装系统依赖 ==================
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libegl1 libgl1 libglib2.0-0
+      # =========================================================
+
       # 1. 先 Clone 真寻，确保目录下有 pyproject.toml
       - name: Setup zhenxun
         id: setup-zhenxun
         if: ${{ !startsWith(github.event_name, 'pull_request') }}
         run: |
-          git clone --depth 1 -b main https://github.com/Hibikier/zhenxun_bot.git
+          git clone --depth 1 -b main https://github.com/zhenxun-org/zhenxun_bot.git
 
       # 2. 此时有了真寻目录，再安装 uv 并配置缓存路径
       - name: Install uv
