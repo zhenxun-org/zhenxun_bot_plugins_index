@@ -391,5 +391,11 @@
     "is_dir": true,
     "github_url": "https://github.com/xuanerwa/zhenxun_rsssub/tree/master",
     "ali_url": "https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/zhenxun_rsssub"
+  },
+  {
+    "name": "娶群友",
+    "github_url": "https://github.com/ATTomatoo/zhenxun_groupmate_waifu",
+    "description": "把可爱的群友娶回家",
+    "ali_url": "https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/zhenxun_groupmate_waifu"
   }
 ]
