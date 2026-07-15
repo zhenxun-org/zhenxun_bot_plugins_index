@@ -393,15 +393,18 @@
     "ali_url": "https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/zhenxun_rsssub"
   },
   {
+
   "name": "娶群友",
   "module": "zhenxun_groupmate_waifu",
   "module_path": "zhenxun_groupmate_waifu",
-  "description": "把可爱的群友娶回家",
+  "github_url": "https://github.com/ATTomatoo/zhenxun_groupmate_waifu",
   "usage": "娶群友",
   "author": "ATTomatoo",
   "version": "0.0.1",
   "plugin_type": "NORMAL",
   "is_dir": false,
-  "github_url": "https://github.com/ATTomatoo/zhenxun_groupmate_waifu"
-}
+  "description": "把可爱的群友娶回家",
+  "ali_url": "https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/zhenxun_groupmate_waifu"
+  }
 ]
+
