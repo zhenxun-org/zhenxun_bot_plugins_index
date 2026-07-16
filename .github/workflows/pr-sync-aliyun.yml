@@ -11,7 +11,7 @@ jobs:
 
     steps:
       # =========================================================
-      #  只检出 BASE 仓库
+      #  检出 BASE 仓库（用于获取 base 版本的 plugins.json）
       # =========================================================
       - name: Checkout base repository
         uses: actions/checkout@v4
@@ -26,7 +26,6 @@ jobs:
         shell: python
         run: |
           import json
-          import subprocess
           import os
           import urllib.request
 
@@ -39,12 +38,11 @@ jobs:
                   pr_plugins = json.load(resp)
           except Exception:
               pr_plugins = []
+
+          # 从 base 分支读取 plugins.json 作为对比基准
           try:
-              result = subprocess.run(
-                  ["git", "show", "HEAD:plugins.json"],
-                  capture_output=True, text=True, check=True
-              )
-              base_plugins = json.loads(result.stdout)
+              with open("plugins.json", "r", encoding="utf-8") as f:
+                  base_plugins = json.load(f)
           except Exception:
               base_plugins = []
           base_map = {p.get("github_url"): p for p in base_plugins if p.get("github_url")}
@@ -140,23 +138,51 @@ jobs:
           done
 
       # =========================================================
-      # 6️⃣ 更新 base 分支中的 plugins.json
+      # 6️⃣ 通过 GitHub API 更新 PR 分支上的 plugins.json
       # =========================================================
-      - name: Update plugins.json with ali_url
+      - name: Update plugins.json on PR branch via API
         shell: python
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           import json
-          import subprocess
+          import os
+          import base64
+          import requests
 
-          with open("/tmp/changed_plugins.json", "r", encoding="utf-8") as f:
+          changed_file = "/tmp/changed_plugins.json"
+          if not os.path.exists(changed_file) or os.path.getsize(changed_file) == 0:
+              print("No changed plugins, skip")
+              exit(0)
+
+          with open(changed_file, "r", encoding="utf-8") as f:
               changed = json.load(f)
 
-          subprocess.run(["git", "fetch", "origin"], check=True, capture_output=True)
-          subprocess.run(["git", "checkout", "HEAD"], check=True, capture_output=True)
+          if not changed:
+              print("Changed list is empty, skip")
+              exit(0)
 
-          with open("plugins.json", "r", encoding="utf-8") as f:
-              plugins = json.load(f)
+          pr_repo = "${{ github.event.pull_request.head.repo.full_name }}"
+          pr_branch = "${{ github.event.pull_request.head.ref }}"
+          api_base = f"https://api.github.com/repos/{pr_repo}"
+          headers = {
+              "Authorization": f"token {os.environ['GH_TOKEN']}",
+              "Accept": "application/vnd.github.v3+json",
+          }
 
+          # 1. 获取 PR 分支上 plugins.json 的当前 SHA
+          resp = requests.get(
+              f"{api_base}/contents/plugins.json",
+              headers=headers,
+              params={"ref": pr_branch},
+          )
+          resp.raise_for_status()
+          file_info = resp.json()
+          file_sha = file_info["sha"]
+          current_content = base64.b64decode(file_info["content"]).decode("utf-8")
+          plugins = json.loads(current_content)
+
+          # 2. 更新 ali_url
           updated = False
           new_entries = []
           for c in changed:
@@ -171,9 +197,10 @@ jobs:
               found = False
               for p in plugins:
                   if p.get("github_url") == github_url:
-                      p["ali_url"] = ali_url
+                      if p.get("ali_url") != ali_url:
+                          p["ali_url"] = ali_url
+                          updated = True
                       found = True
-                      updated = True
                       break
               if not found:
                   new_entry = {
@@ -188,25 +215,29 @@ jobs:
           if new_entries:
               plugins.extend(new_entries)
 
-          if updated:
-              with open("plugins.json", "w", encoding="utf-8") as f:
-                  json.dump(plugins, f, ensure_ascii=False, indent=2)
+          if not updated:
+              print("No ali_url changes needed, skip")
+              exit(0)
 
-      # =========================================================
-      # 7️⃣ 提交到 base 分支
-      # =========================================================
-      - name: Commit and push changes
-        if: ${{ success() && steps.changed-plugins.outputs.changed_plugins != '' }}
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add plugins.json
+          # 3. 通过 Contents API 提交更新到 PR 分支
+          new_content = json.dumps(plugins, ensure_ascii=False, indent=2)
+          new_content_b64 = base64.b64encode(new_content.encode("utf-8")).decode("utf-8")
 
-          if git diff --staged --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "Sync plugin to Aliyun Codeup"
-            git push
-          fi
+          resp = requests.put(
+              f"{api_base}/contents/plugins.json",
+              headers=headers,
+              json={
+                  "message": "chore: sync plugin ali_url from Aliyun Codeup",
+                  "content": new_content_b64,
+                  "sha": file_sha,
+                  "branch": pr_branch,
+              },
+          )
+
+          if resp.status_code in (200, 201):
+              print(f"Successfully updated plugins.json on PR branch: {pr_repo}/{pr_branch}")
+          else:
+              print(f"Failed to update: {resp.status_code} {resp.text}")
+              exit(1)
 
  
