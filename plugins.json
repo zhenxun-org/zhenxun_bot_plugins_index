@@ -399,7 +399,7 @@
     "description": "群内娶群友、透群友、分手等互动娱乐插件",
     "usage": "发送指令：娶群友 [@某人] / 透群友 [@某人] / 离婚 / 分手 / 查看群友卡池 / 本群cp",
     "author": "ATTomatoo",
-    "version": "0.0.2",
+    "version": "0.0.1",
     "plugin_type": "NORMAL",
     "is_dir": true,
     "github_url": "https://github.com/ATTomatoo/zhenxun_groupmate_waifu/tree/master",
