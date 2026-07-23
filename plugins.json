@@ -412,7 +412,7 @@
     "description": "通用聊天ai插件，享受纯粹聊天",
     "usage": "usage:\n        清理我的会话:   用于清理你与AI的聊天记录\n        与机器人聊天，是可以看懂大家的表情包的...\n    例如；\n        @Bot 抱抱\n        老婆",
     "author": "molanp",
-    "version": "1.2",
+    "version": "1.3",
     "plugin_type": "NORMAL",
     "is_dir": true,
     "github_url": "https://github.com/molanp/zhenxun_plugin_chat_toolkit",
