@@ -16,7 +16,7 @@ body:
     id: module
     attributes:
       label: 模块名称
-      description: 插件模块名称, 由英文小写字母和下划线组成
+      description: 插件模块名称, 由英文小写字母和下划线组成(即插件文件名称或外层文件夹名称)
       placeholder: e.g. github_sub
     validations:
       required: true
