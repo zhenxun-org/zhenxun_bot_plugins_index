@@ -420,7 +420,7 @@
   },
   {
     "name": "leekchat",
-    "module": "zhenxun_plugin_leekchat",
+    "module": "leekchat",
     "module_path": "leekchat",
     "description": "小真寻的实用聊天插件OvO",
     "usage": "@bot、使用昵称触发或引用都可以哦",
