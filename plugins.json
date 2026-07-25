@@ -417,5 +417,17 @@
     "is_dir": true,
     "github_url": "https://github.com/molanp/zhenxun_plugin_chat_toolkit",
     "ali_url": "https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/zhenxun_plugin_chat_toolkit"
+  },
+  {
+    "name": "leekchat",
+    "module": "zhenxun_plugin_leekchat",
+    "module_path": "leekchat",
+    "description": "小真寻的实用聊天插件OvO",
+    "usage": "群聊&私聊的普通对话w",
+    "author": "Jerryplusy",
+    "version": "1.0.0",
+    "plugin_type": "NORMAL",
+    "is_dir": true,
+    "github_url": "https://github.com/Jerryplusy/zhenxun_plugin_leekchat",
   }
 ]
