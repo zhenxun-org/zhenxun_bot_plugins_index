@@ -26,6 +26,8 @@ Feat: add `插件名` plugin
 
 在审核通过后，我们会将插件添加至索引
 
+<!--
+
 如果您愿意，可以参考下方的 `表格样式` 修改`indices`目录下的 `Function-Plugin.md`，并根据 `发起 Pull Request` 发布修改
 
 ## 表格样式
@@ -75,5 +77,7 @@ Feat: add `插件名` plugin for #Issue编号
 		"github_url": "https://github.com/xuanerwa/zhenxun_github_sub"
     }
 ```
+
+-->
 
 插件如果需要安装依赖可以写在`requirements.txt`里，真寻安装插件时将自动安装里面的依赖
