@@ -168,7 +168,8 @@
     "version": "1.3",
     "plugin_type": "SUPERUSER",
     "is_dir": true,
-    "github_url": "https://github.com/molanp/zhenxun_plugin_nb_store"
+    "github_url": "https://github.com/molanp/zhenxun_plugin_nb_store",
+    "ali_url": "https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/zhenxun_plugin_nb_store"
   },
   {
     "name": "多模态AI助手",
