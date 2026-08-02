@@ -50,7 +50,6 @@
 | [进群验证](https://github.com/Hychan2333/zhenxun_join_verify) | [@Hychan2333](https://github.com/Hychan2333) | 新人进群需在规定时间内回答验证题目，否则将被踢出群聊（被动插件，默认关闭） |
 | [链接分享解析 Lite 版](https://github.com/sokoko-org/nonebot-plugin-parser-lite) | [@sokoko-org](https://github.com/sokoko-org) | 通用媒体链接分享解析 |
 | [订阅姬](https://github.com/xuanerwa/zhenxun_rsssub/tree/master) | [@xuanerwa](https://github.com/xuanerwa) | RSS 订阅、抓取、去重与推送助手 |
-| [娶群友](https://github.com/ATTomatoo/zhenxun_groupmate_waifu/tree/master) | [@ATTomatoo](https://github.com/ATTomatoo) | 群内娶群友、透群友、分手等互动娱乐插件 |
 | [通用聊天AI](https://github.com/molanp/zhenxun_plugin_chat_toolkit) | [@molanp](https://github.com/molanp) | 通用聊天ai插件，享受纯粹聊天 |
 | [leekchat](https://github.com/Jerryplusy/zhenxun_plugin_leekchat) | [@Jerryplusy](https://github.com/Jerryplusy) | 小真寻的实用聊天插件OvO |
 <!-- PLUGIN_TABLE_END -->
