@@ -394,19 +394,6 @@
     "ali_url": "https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/zhenxun_rsssub"
   },
   {
-    "name": "娶群友",
-    "module": "zhenxun_groupmate_waifu",
-    "module_path": "zhenxun_groupmate_waifu",
-    "description": "群内娶群友、透群友、分手等互动娱乐插件",
-    "usage": "发送指令：娶群友 [@某人] / 透群友 [@某人] / 离婚 / 分手 / 查看群友卡池 / 本群cp",
-    "author": "ATTomatoo",
-    "version": "0.0.2",
-    "plugin_type": "NORMAL",
-    "is_dir": true,
-    "github_url": "https://github.com/ATTomatoo/zhenxun_groupmate_waifu/tree/master",
-    "ali_url": "https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/zhenxun_groupmate_waifu"
-  },
-  {
     "name": "通用聊天AI",
     "module": "chat_toolkit",
     "module_path": "chat_toolkit",
