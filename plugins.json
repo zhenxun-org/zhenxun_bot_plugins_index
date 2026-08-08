@@ -398,7 +398,7 @@
     "module": "chat_toolkit",
     "module_path": "chat_toolkit",
     "description": "通用聊天ai插件，享受纯粹聊天",
-    "usage": "usage:\n        与机器人聊天，是可以看懂大家的表情包的...\n    例如；\n        @Bot 抱抱\n        老婆",
+    "usage": "usage:\n       与机器人聊天，是可以看懂大家的表情包的...\n    例如；\n        @Bot 抱抱\n        老婆",
     "author": "molanp",
     "version": "1.6",
     "plugin_type": "NORMAL",
