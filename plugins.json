@@ -313,7 +313,7 @@
     "description": "基于 AI 意图识别的智能对话插件",
     "usage": "直接对话即可",
     "author": "Copaan & meng-luo",
-    "version": "1.4.0",
+    "version": "1.5.0",
     "plugin_type": "NORMAL",
     "is_dir": true,
     "github_url": "https://github.com/meng-luo/zhenxun_plugin_chatinter",
