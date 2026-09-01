@@ -18,6 +18,9 @@
 <!-- PLUGIN_TABLE_START -->
 | 名称                                                                                         | 作者                                     | 备注                                                                                             |
 | :------------------------------------------------------------------------------------------- | :--------------------------------------- | :----------------------------------------------------------------------------------------------- |
+| [原神角色面板](https://github.com/CRAZYShimakaze/zhenxun_plugin_genshin_role_info) | [@CRAZYShimakaze](https://github.com/CRAZYShimakaze) | 展示原神角色的面板、伤害数据、圣遗物推荐与排行 |
+| [星铁角色面板](https://github.com/CRAZYShimakaze/zhenxun_plugin_starrail_role_info) | [@CRAZYShimakaze](https://github.com/CRAZYShimakaze) | 展示星铁角色的面板、伤害数据、遗器推荐与排行 |
+| [绝区零角色面板](https://github.com/CRAZYShimakaze/zhenxun_plugin_zenlesszonezero_role_info) | [@CRAZYShimakaze](https://github.com/CRAZYShimakaze) | 展示绝区零角色面板、评分和驱动盘榜单信息 |
 | [github订阅](https://github.com/xuanerwa/zhenxun_github_sub) | [@xuanerwa](https://github.com/xuanerwa) | 订阅github用户或仓库 |
 | [Minecraft查服](https://github.com/molanp/zhenxun_plugin_mccheck) | [@molanp](https://github.com/molanp) | Minecraft服务器状态查询，支持IPv6 |
 | [明日方舟干员收集](https://github.com/sophisticate9008/zhenxun_plugin_arknights_collect_operator/tree/master) | [@sophisticate9008](https://github.com/sophisticate9008) | 消耗金币项目,卡池包含全部3星以上角色，按照游戏里的情况给黄票和保底增加概率 |
