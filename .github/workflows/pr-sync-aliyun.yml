@@ -5,6 +5,9 @@ on:
     paths:
       - "plugins.json"
 
+permissions:
+  contents: write
+
 jobs:
   detect-and-sync:
     runs-on: ubuntu-latest
@@ -186,6 +189,7 @@ jobs:
       # 6️⃣ 通过 GitHub API 更新 PR 分支上的 plugins.json
       # =========================================================
       - name: Update plugins.json on PR branch via API
+        if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
         shell: python
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -219,6 +223,10 @@ jobs:
               "Authorization": f"token {os.environ['GH_TOKEN']}",
               "Accept": "application/vnd.github.v3+json",
           }
+
+          if pr_repo != "${{ github.repository }}":
+              print("ℹ️ PR comes from a fork repository; skipping direct branch write to avoid 403")
+              exit(0)
 
           try:
               # 1. 获取 PR 分支上 plugins.json 的当前 SHA
