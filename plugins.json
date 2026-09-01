@@ -431,5 +431,17 @@
     "is_dir": true,
     "github_url": "https://github.com/CRAZYShimakaze/zhenxun_plugin_genshin_role_info",
     "ali_url": "https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/zhenxun_plugin_genshin_role_info"
+  },
+  {
+    "name": "星铁角色面板",
+    "module": "starrail_role_info",
+    "module_path": ".",
+    "description": "星铁角色面板",
+    "usage": "查询角色的面板\n    指令：\n        星铁绑定uidXXXX (例:星铁绑定uid123456789)\n        星铁解绑\n        角色面板 (例:希儿面板、希儿面板@XXX、希儿面板123456789)\n        更新/刷新星铁面板 (uid) (例:更新星铁面板123456789)\n        XX(头手身脚球绳)推荐 (例:希儿头推荐)\n        我的星铁角色\n        他的星铁角色@XXX\n        最强XX (例:最强希儿)\n        最菜XX\n        XX评分排行 (例:希儿评分排行)\n        XX伤害排行序号 (例:希儿伤害排行3)\n        遗器榜单\n        群遗器榜单",
+    "author": "CRAZYShimakaze",
+    "version": "1.3.11",
+    "plugin_type": "NORMAL",
+    "is_dir": true,
+    "github_url": "https://github.com/CRAZYShimakaze/zhenxun_plugin_starrail_role_info"
   }
 ]
