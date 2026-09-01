@@ -1,0 +1,69 @@
+name: Update JSON and README After Merge
+
+on:
+  push:
+    branches:
+      - "index"
+    paths:
+      - "plugins.json"
+
+permissions:
+  contents: write
+
+jobs:
+  auto-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Auto generate missing ali_url
+        shell: python
+        run: |
+          import json
+          
+          with open("plugins.json", "r", encoding="utf-8") as f:
+              plugins = json.load(f)
+
+          updated = False
+          for p in plugins:
+              if p.get("github_url") and not p.get("ali_url"):
+                  github_url = p["github_url"]
+                  repo_name = github_url.split('/tree/')[0].split('/blob/')[0].rstrip('/').split('/')[-1].replace('.git', '')
+                  p["ali_url"] = f"https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/{repo_name}"
+                  updated = True
+                  print(f"✅ Added ali_url for: {repo_name}")
+
+          if updated:
+              with open("plugins.json", "w", encoding="utf-8") as f:
+                  json.dump(plugins, f, ensure_ascii=False, indent=2)
+
+      - name: Update README table
+        run: |
+          python scripts/update_readme_table.py
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          git add plugins.json README.md
+          
+          # 清理历史可能遗留的标记文件
+          git rm -f .pr-need-readme-update 2>/dev/null || true
+          git rm -f readme_update_instructions.txt 2>/dev/null || true
+          
+          if git diff --staged --quiet; then
+            echo "✅ No updates required for plugins.json or README.md."
+          else
+            git commit -m "chore: 自动补全 ali_url 并更新 README [skip ci]"
+            git push
+            echo "✅ Successfully updated and pushed."
+          fi
