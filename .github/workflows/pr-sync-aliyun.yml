@@ -33,29 +33,48 @@ jobs:
           pr_ref = "${{ github.event.pull_request.head.ref }}"
           pr_url = f"https://raw.githubusercontent.com/{pr_repo_full}/{pr_ref}/plugins.json"
 
+          print(f"📍 PR Info:")
+          print(f"   Repo: {pr_repo_full}")
+          print(f"   Branch: {pr_ref}")
+          print(f"   URL: {pr_url}")
+          print()
+
           try:
-              with urllib.request.urlopen(pr_url) as resp:
+              print("🔄 Fetching plugins.json from PR branch...")
+              with urllib.request.urlopen(pr_url, timeout=30) as resp:
                   pr_plugins = json.load(resp)
-          except Exception:
+              print(f"✅ Loaded {len(pr_plugins)} plugins from PR")
+          except urllib.error.HTTPError as e:
+              print(f"⚠️ Warning: Failed to fetch PR plugins.json (HTTP {e.code})")
+              pr_plugins = []
+          except Exception as e:
+              print(f"⚠️ Warning: Failed to fetch PR plugins.json: {e}")
               pr_plugins = []
 
           # 从 base 分支读取 plugins.json 作为对比基准
+          print("🔄 Reading base branch plugins.json...")
           try:
               with open("plugins.json", "r", encoding="utf-8") as f:
                   base_plugins = json.load(f)
-          except Exception:
+              print(f"✅ Loaded {len(base_plugins)} plugins from base branch")
+          except Exception as e:
+              print(f"❌ Failed to read base plugins.json: {e}")
               base_plugins = []
+
           base_map = {p.get("github_url"): p for p in base_plugins if p.get("github_url")}
           changed = []
 
+          print("\n🔍 Detecting changes...")
           for plugin in pr_plugins:
               github_url = plugin.get("github_url")
               if not github_url:
+                  print(f"⚠️ Skipping plugin without github_url: {plugin.get('name', 'Unknown')}")
                   continue
               base_plugin = base_map.get(github_url)
               # 只比对关键字段，避免 json.dumps 完全匹配失败
               if not base_plugin or plugin.get("name") != base_plugin.get("name") or plugin.get("version") != base_plugin.get("version"):
                   repo_name = github_url.rstrip("/").split("/")[-1].removesuffix(".git")
+                  print(f"✅ Changed: {plugin.get('name')} (v{plugin.get('version')})")
                   changed.append({
                       "name": plugin.get("name", ""),
                       "github_url": github_url,
@@ -69,10 +88,9 @@ jobs:
           with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as f:
               f.write(f"changed_plugins={out}\n")
 
-          if changed:
-              print(f"Detected changed plugins: {out}")
-          else:
-              print("No changed plugins found")
+          print(f"\n📊 Total changed plugins: {len(changed)}")
+          if not changed:
+              print("ℹ️ No changed plugins found")
 
       # =========================================================
       # 3️⃣ 安装依赖
@@ -102,9 +120,11 @@ jobs:
       - name: Sync code to Aliyun
         if: ${{ steps.changed-plugins.outputs.changed_plugins != '' }}
         run: |
-          set -e
+          set +e  # Don't exit on error, we handle errors gracefully
 
           changed_plugins=$(cat /tmp/changed_plugins.json)
+          failed_syncs=()
+          success_count=0
 
           for row in $(echo "$changed_plugins" | jq -r '.[] | @base64'); do
             _jq() {
@@ -116,13 +136,19 @@ jobs:
             repo_name=$(echo "$github_url" | sed 's|.*/||' | sed 's|\.git$||')
             
             if [ -z "$repo_name" ]; then
-              echo "❌ 无法提取仓库名，跳过"
+              echo "⚠️ Unable to extract repository name, skipping"
               continue
             fi
 
             echo "🔄 Syncing $repo_name (from $github_url)"
 
-            git clone "$github_url" "$repo_name"
+            # Try to clone the repository
+            if ! git clone "$github_url" "$repo_name" 2>&1 | tee /tmp/clone_log.txt; then
+              echo "⚠️ Clone failed for $repo_name"
+              failed_syncs+=("$repo_name (clone failed)")
+              continue
+            fi
+
             cd "$repo_name"
 
             git config --global http.postBuffer 524288000
@@ -131,11 +157,30 @@ jobs:
             aliyun_url="https://${{ secrets.ALIYUN_ACCOUNT }}:${{ secrets.ALIYUN_PASSWORD }}@codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/${repo_name}.git"
             git remote add aliyun "$aliyun_url"
 
-            git push --force aliyun HEAD:main || echo "❌ Push failed: $repo_name"
+            # Try to push to aliyun
+            if git push --force aliyun HEAD:main 2>&1 | tee /tmp/push_log.txt; then
+              echo "✅ Successfully synced: $repo_name"
+              ((success_count++))
+            else
+              echo "⚠️ Push to Aliyun failed for $repo_name (will retry ali_url update)"
+              failed_syncs+=("$repo_name (push failed)")
+            fi
 
             cd ..
             rm -rf "$repo_name"
           done
+
+          echo ""
+          echo "📊 Sync Summary:"
+          echo "   Successful: $success_count"
+          echo "   Failed: ${#failed_syncs[@]}"
+          
+          if [ ${#failed_syncs[@]} -gt 0 ]; then
+            echo "   Failed syncs:"
+            for fail in "${failed_syncs[@]}"; do
+              echo "     - $fail"
+            done
+          fi
 
       # =========================================================
       # 6️⃣ 通过 GitHub API 更新 PR 分支上的 plugins.json
@@ -149,17 +194,22 @@ jobs:
           import os
           import base64
           import requests
+          import sys
 
           changed_file = "/tmp/changed_plugins.json"
           if not os.path.exists(changed_file) or os.path.getsize(changed_file) == 0:
-              print("No changed plugins, skip")
+              print("ℹ️ No changed plugins, skip")
               exit(0)
 
-          with open(changed_file, "r", encoding="utf-8") as f:
-              changed = json.load(f)
+          try:
+              with open(changed_file, "r", encoding="utf-8") as f:
+                  changed = json.load(f)
+          except Exception as e:
+              print(f"❌ Failed to load changed plugins: {e}")
+              exit(1)
 
           if not changed:
-              print("Changed list is empty, skip")
+              print("ℹ️ Changed list is empty, skip")
               exit(0)
 
           pr_repo = "${{ github.event.pull_request.head.repo.full_name }}"
@@ -170,21 +220,41 @@ jobs:
               "Accept": "application/vnd.github.v3+json",
           }
 
-          # 1. 获取 PR 分支上 plugins.json 的当前 SHA
-          resp = requests.get(
-              f"{api_base}/contents/plugins.json",
-              headers=headers,
-              params={"ref": pr_branch},
-          )
-          resp.raise_for_status()
-          file_info = resp.json()
-          file_sha = file_info["sha"]
-          current_content = base64.b64decode(file_info["content"]).decode("utf-8")
-          plugins = json.loads(current_content)
+          try:
+              # 1. 获取 PR 分支上 plugins.json 的当前 SHA
+              print(f"🔄 Fetching plugins.json from {pr_repo}/{pr_branch}")
+              resp = requests.get(
+                  f"{api_base}/contents/plugins.json",
+                  headers=headers,
+                  params={"ref": pr_branch},
+                  timeout=30,
+              )
+              if resp.status_code != 200:
+                  print(f"⚠️ Warning: Failed to fetch plugins.json (HTTP {resp.status_code})")
+                  print(f"   Response: {resp.text}")
+                  print("   Skipping ali_url update")
+                  exit(0)
+              
+              file_info = resp.json()
+              file_sha = file_info.get("sha")
+              if not file_sha:
+                  print("❌ Failed to get file SHA")
+                  exit(1)
+              
+              current_content = base64.b64decode(file_info.get("content", b"")).decode("utf-8")
+              plugins = json.loads(current_content)
+          except json.JSONDecodeError as e:
+              print(f"❌ Failed to parse plugins.json: {e}")
+              exit(1)
+          except Exception as e:
+              print(f"❌ Failed to fetch plugins.json: {e}")
+              exit(1)
 
           # 2. 更新 ali_url
           updated = False
           new_entries = []
+          updated_count = 0
+          
           for c in changed:
               github_url = c.get("github_url")
               if not github_url:
@@ -200,6 +270,8 @@ jobs:
                       if p.get("ali_url") != ali_url:
                           p["ali_url"] = ali_url
                           updated = True
+                          updated_count += 1
+                          print(f"✅ Updated ali_url for: {p.get('name', repo_name)}")
                       found = True
                       break
               if not found:
@@ -211,33 +283,49 @@ jobs:
                   }
                   new_entries.append(new_entry)
                   updated = True
+                  print(f"✅ Added new entry with ali_url: {new_entry.get('name', repo_name)}")
 
           if new_entries:
               plugins.extend(new_entries)
 
           if not updated:
-              print("No ali_url changes needed, skip")
+              print("ℹ️ No ali_url changes needed, skip")
               exit(0)
 
+          print(f"\n📝 Total updates: {updated_count + len(new_entries)}")
+
           # 3. 通过 Contents API 提交更新到 PR 分支
-          new_content = json.dumps(plugins, ensure_ascii=False, indent=2)
-          new_content_b64 = base64.b64encode(new_content.encode("utf-8")).decode("utf-8")
+          try:
+              new_content = json.dumps(plugins, ensure_ascii=False, indent=2)
+              new_content_b64 = base64.b64encode(new_content.encode("utf-8")).decode("utf-8")
 
-          resp = requests.put(
-              f"{api_base}/contents/plugins.json",
-              headers=headers,
-              json={
-                  "message": "chore: sync plugin ali_url from Aliyun Codeup",
-                  "content": new_content_b64,
-                  "sha": file_sha,
-                  "branch": pr_branch,
-              },
-          )
+              print(f"🔄 Updating plugins.json on {pr_repo}/{pr_branch}")
+              resp = requests.put(
+                  f"{api_base}/contents/plugins.json",
+                  headers=headers,
+                  json={
+                      "message": "chore: sync plugin ali_url from Aliyun Codeup",
+                      "content": new_content_b64,
+                      "sha": file_sha,
+                      "branch": pr_branch,
+                  },
+                  timeout=30,
+              )
 
-          if resp.status_code in (200, 201):
-              print(f"Successfully updated plugins.json on PR branch: {pr_repo}/{pr_branch}")
-          else:
-              print(f"Failed to update: {resp.status_code} {resp.text}")
+              if resp.status_code in (200, 201):
+                  print(f"✅ Successfully updated plugins.json on PR branch: {pr_repo}/{pr_branch}")
+              else:
+                  print(f"❌ Failed to update: HTTP {resp.status_code}")
+                  print(f"   Response: {resp.text}")
+                  exit(1)
+          except requests.exceptions.Timeout:
+              print("❌ API request timeout")
+              exit(1)
+          except requests.exceptions.RequestException as e:
+              print(f"❌ API request failed: {e}")
+              exit(1)
+          except Exception as e:
+              print(f"❌ Failed to update plugins.json: {e}")
               exit(1)
 
  
