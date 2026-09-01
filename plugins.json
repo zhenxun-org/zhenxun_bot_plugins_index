@@ -42,10 +42,10 @@
     "description": "崩坏三曾经的网页赛制押注活动,插件以文字方式展示战斗过程并可以押注金币(仅限qq平台)",
     "usage": "\n    海滨乱斗(?静默)\n    ",
     "author": "sophisticate9008",
-    "version": "0.1",
+    "version": "0.3",
     "plugin_type": "NORMAL",
     "is_dir": true,
-    "github_url": "https://github.com/sophisticate9008/zhenxun_plugin_honkai_shore_fight/tree/master"
+    "github_url": "https://github.com/sophisticate9008/zhenxun_plugin_honkai_shore_fight"
   },
   {
     "name": "游戏立绘抽卡",
