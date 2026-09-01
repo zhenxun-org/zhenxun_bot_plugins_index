@@ -444,5 +444,18 @@
     "is_dir": true,
     "github_url": "https://github.com/CRAZYShimakaze/zhenxun_plugin_starrail_role_info",
     "ali_url": "https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/zhenxun_plugin_starrail_role_info"
+  },
+  {
+    "name": "绝区零角色面板",
+    "module": "zenlesszonezero_role_info",
+    "module_path": ".",
+    "description": "绝区零角色面板",
+    "usage": "查询橱窗内角色的面板\n    指令：\n        绝区零绑定UID/uidXXX\n        绝区零解绑\n        XX面板 (例:星见雅面板、星见雅面板@CRAZYShimakaze、星见雅面板104442596)\n        更新/刷新绝区零面板 (uid)\n        绝区零角色排行\n        XX评分排行 (例:星见雅评分排行)\n        最强XX (例:最强星见雅)\n        最菜XX\n        驱动盘榜单\n        群驱动盘榜单\n        重置最强XX (仅超级用户可用)\n        检查绝区零面板更新 (仅超级用户可用)",
+    "author": "CRAZYShimakaze",
+    "version": "0.2.8",
+    "plugin_type": "NORMAL",
+    "is_dir": true,
+    "github_url": "https://github.com/CRAZYShimakaze/zhenxun_plugin_zenlesszonezero_role_info",
+    "ali_url": "https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/zhenxun_plugin_zenlesszonezero_role_info"
   }
 ]

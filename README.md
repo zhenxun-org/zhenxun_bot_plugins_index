@@ -54,6 +54,7 @@
 | [leekchat](https://github.com/Jerryplusy/zhenxun_plugin_leekchat) | [@Jerryplusy](https://github.com/Jerryplusy) | 小真寻的实用聊天插件OvO |
 | [原神角色面板](https://github.com/CRAZYShimakaze/zhenxun_plugin_genshin_role_info) | [@CRAZYShimakaze](https://github.com/CRAZYShimakaze) | 原神角色面板 |
 | [星铁角色面板](https://github.com/CRAZYShimakaze/zhenxun_plugin_starrail_role_info) | [@CRAZYShimakaze](https://github.com/CRAZYShimakaze) | 星铁角色面板 |
+| [绝区零角色面板](https://github.com/CRAZYShimakaze/zhenxun_plugin_zenlesszonezero_role_info) | [@CRAZYShimakaze](https://github.com/CRAZYShimakaze) | 绝区零角色面板 |
 <!-- PLUGIN_TABLE_END -->
 
 ## 💧 老版本插件
