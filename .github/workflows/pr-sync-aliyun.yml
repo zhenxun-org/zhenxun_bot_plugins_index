@@ -189,7 +189,7 @@ jobs:
       # 6️⃣ 通过 GitHub API 更新 PR 分支上的 plugins.json
       # =========================================================
       - name: Update plugins.json on PR branch via API
-        if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+        if: ${{ github.event_name == 'pull_request_target' && github.event.pull_request && github.event.pull_request.head.repo.full_name == github.repository }}
         shell: python
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -199,6 +199,10 @@ jobs:
           import base64
           import requests
           import sys
+
+          if os.environ.get("GITHUB_EVENT_NAME") != "pull_request_target":
+              print("ℹ️ Not a pull_request_target event; skipping direct PR branch update")
+              raise SystemExit(0)
 
           changed_file = "/tmp/changed_plugins.json"
           if not os.path.exists(changed_file) or os.path.getsize(changed_file) == 0:
@@ -218,6 +222,10 @@ jobs:
 
           pr_repo = "${{ github.event.pull_request.head.repo.full_name }}"
           pr_branch = "${{ github.event.pull_request.head.ref }}"
+          if not pr_repo or not pr_branch:
+              print("ℹ️ Missing PR metadata; skipping direct branch update")
+              raise SystemExit(0)
+
           api_base = f"https://api.github.com/repos/{pr_repo}"
           headers = {
               "Authorization": f"token {os.environ['GH_TOKEN']}",
@@ -226,7 +234,7 @@ jobs:
 
           if pr_repo != "${{ github.repository }}":
               print("ℹ️ PR comes from a fork repository; skipping direct branch write to avoid 403")
-              exit(0)
+              raise SystemExit(0)
 
           try:
               # 1. 获取 PR 分支上 plugins.json 的当前 SHA
