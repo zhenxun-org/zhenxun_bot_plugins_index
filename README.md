@@ -52,6 +52,7 @@
 | [订阅姬](https://github.com/xuanerwa/zhenxun_rsssub/tree/master) | [@xuanerwa](https://github.com/xuanerwa) | RSS 订阅、抓取、去重与推送助手 |
 | [通用聊天AI](https://github.com/molanp/zhenxun_plugin_chat_toolkit) | [@molanp](https://github.com/molanp) | 通用聊天ai插件，享受纯粹聊天 |
 | [leekchat](https://github.com/Jerryplusy/zhenxun_plugin_leekchat) | [@Jerryplusy](https://github.com/Jerryplusy) | 小真寻的实用聊天插件OvO |
+| [原神角色面板](https://github.com/CRAZYShimakaze/zhenxun_plugin_genshin_role_info) | [@CRAZYShimakaze](https://github.com/CRAZYShimakaze) | 原神角色面板 |
 <!-- PLUGIN_TABLE_END -->
 
 ## 💧 老版本插件

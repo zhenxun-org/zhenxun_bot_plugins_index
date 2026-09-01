@@ -418,5 +418,18 @@
     "is_dir": true,
     "github_url": "https://github.com/Jerryplusy/zhenxun_plugin_leekchat",
     "ali_url": "https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/zhenxun_plugin_leekchat"
+  },
+  {
+    "name": "原神角色面板",
+    "module": "genshin_role_info",
+    "module_path": ".",
+    "description": "原神角色面板",
+    "usage": "查询橱窗内角色的面板\n    指令：\n        原神绑定UID/uidXXX\n        原神解绑\n        米游社更新原神面板\n        角色面板 (例:刻晴面板、刻晴面板@XXX、刻晴面板+uid)\n        更新原神面板 (uid)\n        圣遗物导入\n        XX(花羽沙杯冠)适配\n        XX(花羽沙杯冠)推荐\n        XX(乐团/魔女/...)套推荐\n        XX(乐团/魔女/...)独立套推荐\n        推荐命令末尾可加伤害序号 (例:胡桃魔女套推荐2)\n        原神角色排行\n        最强XX (例:最强甘雨)\n        最菜XX\n        XX评分排行 (例:胡桃评分排行)\n        XX伤害排行序号 (例:胡桃伤害排行5)\n        圣遗物榜单\n        群圣遗物榜单",
+    "author": "CRAZYShimakaze",
+    "version": "4.3.5",
+    "plugin_type": "NORMAL",
+    "is_dir": true,
+    "github_url": "https://github.com/CRAZYShimakaze/zhenxun_plugin_genshin_role_info",
+    "ali_url": "https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/zhenxun_plugin_genshin_role_info"
   }
 ]
