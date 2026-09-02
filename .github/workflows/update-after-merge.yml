@@ -1,91 +1,213 @@
 name: Update JSON and README After Merge
 
 on:
-  push:
+  pull_request_target:
+    types: [closed]
     branches:
-      - "index"  # 请确保这里是你当前测试用的主分支名 (如 main 或 index)
+      - "index"
     paths:
       - "plugins.json"
+
+concurrency:
+  group: post-merge-${{ github.event.pull_request.base.ref }}
+  cancel-in-progress: false
 
 permissions:
   contents: write
 
 jobs:
-  auto-update:
+  finalize-and-sync:
+    if: ${{ github.event.pull_request.merged == true }}
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      TARGET_BRANCH: ${{ github.event.pull_request.base.ref }}
+      ALIYUN_ORG_ID: "67a361cf556e6cdab537117a"
+      ALIYUN_NAMESPACE_ID: "1638483"
+      ALIYUN_NAMESPACE_PATH: zhenxun_plugins
+      ALIYUN_INDEX_PATH: zhenxun-org/zhenxun_bot_plugins_index
     steps:
-      - name: Checkout code
+      - name: Checkout merged branch
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2  # 关键修改：必须拉取至少 2 个历史提交，以便能够对比 HEAD^1
+          ref: ${{ github.event.pull_request.base.ref }}
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: "3.x"
 
-      - name: Auto generate missing ali_url for CHANGED plugins
+      - name: Detect changed plugins and fill missing ali_url
+        id: changed-plugins
         shell: python
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: |
           import json
+          import os
           import subprocess
-          
-          # 1. 加载当前合并后的最新 plugins.json
-          with open("plugins.json", "r", encoding="utf-8") as f:
-              current_plugins = json.load(f)
 
-          # 2. 通过 Git 命令读取合并前（HEAD^1）的 plugins.json
+          with open("plugins.json", "r", encoding="utf-8") as file:
+              current_plugins = json.load(file)
+
+          base_sha = os.environ["BASE_SHA"]
           try:
-              old_json_str = subprocess.check_output(["git", "show", "HEAD^1:plugins.json"]).decode("utf-8")
-              old_plugins = json.loads(old_json_str)
-          except Exception as e:
-              print(f"⚠️ 无法读取上一个版本，可能是初次提交: {e}")
-              old_plugins = []
+              previous_json = subprocess.check_output(
+                  ["git", "show", f"{base_sha}:plugins.json"], text=True
+              )
+              previous_plugins = json.loads(previous_json)
+          except (subprocess.CalledProcessError, json.JSONDecodeError) as error:
+              raise RuntimeError(
+                  f"Unable to read plugins.json from base commit {base_sha}: {error}"
+              ) from error
 
-          old_map = {p.get("github_url"): p for p in old_plugins if p.get("github_url")}
-          updated = False
+          previous_by_url = {
+              plugin.get("github_url"): plugin
+              for plugin in previous_plugins
+              if plugin.get("github_url")
+          }
+          changed_plugins = []
+          metadata_updated = False
 
-          # 3. 遍历当前插件，找出本次用户提交的插件
-          for p in current_plugins:
-              github_url = p.get("github_url")
+          for plugin in current_plugins:
+              github_url = plugin.get("github_url")
               if not github_url:
                   continue
-                  
-              old_p = old_map.get(github_url)
-              
-              # 判断核心：只抓取本次“新增的”或“修改了版本号/名字的”插件
-              is_just_updated = (not old_p) or (p.get("version") != old_p.get("version")) or (p.get("name") != old_p.get("name"))
 
-              # 只有当它是本次更新的插件，且没有 ali_url 时，才补全
-              if is_just_updated and not p.get("ali_url"):
-                  repo_name = github_url.split('/tree/')[0].split('/blob/')[0].rstrip('/').split('/')[-1].replace('.git', '')
-                  # 请确保这里的组织 ID 和路径是你自己的
-                  p["ali_url"] = f"https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun-org/zhenxun_plugins/{repo_name}"
-                  updated = True
-                  print(f"✅ 检测到本次修改的插件，已生成 ali_url: {p.get('name', repo_name)}")
+              previous = previous_by_url.get(github_url)
+              is_changed = (
+                  previous is None
+                  or plugin.get("name") != previous.get("name")
+                  or plugin.get("version") != previous.get("version")
+              )
+              if not is_changed:
+                  continue
 
-          # 4. 如果有更新，保存文件
-          if updated:
-              with open("plugins.json", "w", encoding="utf-8") as f:
-                  json.dump(current_plugins, f, ensure_ascii=False, indent=2)
-          else:
-              print("ℹ️ 本次提交没有需要补全 ali_url 的新插件。")
+              repository_url = (
+                  github_url.split("/tree/", 1)[0]
+                  .split("/blob/", 1)[0]
+                  .rstrip("/")
+              )
+              repository_name = repository_url.rsplit("/", 1)[-1].removesuffix(".git")
+              changed_plugins.append(
+                  {
+                      "name": plugin.get("name", ""),
+                      "github_url": github_url,
+                      "repo_name": repository_name,
+                      "description": plugin.get("description", ""),
+                  }
+              )
+
+              if not plugin.get("ali_url"):
+                  plugin["ali_url"] = (
+                      f"https://codeup.aliyun.com/{os.environ['ALIYUN_ORG_ID']}/"
+                      f"{os.environ['ALIYUN_NAMESPACE_PATH']}/{repository_name}"
+                  )
+                  metadata_updated = True
+                  print(f"Filled ali_url for {plugin.get('name', repository_name)}")
+
+          if metadata_updated:
+              with open("plugins.json", "w", encoding="utf-8") as file:
+                  json.dump(current_plugins, file, ensure_ascii=False, indent=2)
+                  file.write("\n")
+
+          output = json.dumps(changed_plugins, ensure_ascii=False, separators=(",", ":"))
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output_file:
+              output_file.write(f"changed_plugins={output}\n")
+              output_file.write(f"has_changes={str(bool(changed_plugins)).lower()}\n")
+
+          print(f"Detected {len(changed_plugins)} changed plugin(s)")
 
       - name: Update README table
-        run: |
-          python scripts/update_readme_table.py
+        run: python scripts/update_readme_table.py
 
-      - name: Commit and push changes
+      - name: Commit all generated files to GitHub
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          
-          git add plugins.json
-          
+          git add plugins.json README.md
+
           if git diff --staged --quiet; then
-            echo "✅ 没有发现变动，跳过提交。"
+            echo "No generated changes to commit"
           else
-            git commit -m "chore: 自动补全 ali_url [skip ci]"
-            git push
-            echo "✅ 成功更新并推送。"
+            git commit -m "chore: finalize plugin metadata and README"
+            git push origin "HEAD:$TARGET_BRANCH"
+          fi
+
+          echo "Final GitHub commit: $(git rev-parse HEAD)"
+
+      - name: Install Aliyun API dependency
+        if: steps.changed-plugins.outputs.has_changes == 'true'
+        run: python -m pip install requests
+
+      - name: Create changed plugin repositories on Aliyun
+        if: steps.changed-plugins.outputs.has_changes == 'true'
+        env:
+          CHANGED_PLUGINS: ${{ steps.changed-plugins.outputs.changed_plugins }}
+          ALIYUN_TOKEN: ${{ secrets.ALIYUN_PERSONAL_ACCESS_TOKEN }}
+        run: |
+          python scripts/sync.py \
+            --changed-plugins "$CHANGED_PLUGINS" \
+            --org-id "$ALIYUN_ORG_ID" \
+            --access-token "$ALIYUN_TOKEN" \
+            --namespace-id "$ALIYUN_NAMESPACE_ID" \
+            --namespace-path "$ALIYUN_NAMESPACE_PATH" \
+            --visibility "internal"
+
+      - name: Sync changed plugin code to Aliyun
+        if: steps.changed-plugins.outputs.has_changes == 'true'
+        env:
+          CHANGED_PLUGINS: ${{ steps.changed-plugins.outputs.changed_plugins }}
+          ALIYUN_ACCOUNT: ${{ secrets.ALIYUN_ACCOUNT }}
+          ALIYUN_PASSWORD: ${{ secrets.ALIYUN_PASSWORD }}
+        run: |
+          set -euo pipefail
+
+          while IFS= read -r plugin; do
+            github_url=$(jq -r '.github_url' <<<"$plugin")
+            clone_url="${github_url%%/tree/*}"
+            clone_url="${clone_url%%/blob/*}"
+            clone_url="${clone_url%/}"
+
+            case "$clone_url" in
+              https://github.com/*) ;;
+              *)
+                echo "Unsupported plugin repository URL: $github_url"
+                exit 1
+                ;;
+            esac
+
+            repo_name="${clone_url##*/}"
+            repo_name="${repo_name%.git}"
+            plugin_dir=$(mktemp -d "$RUNNER_TEMP/aliyun-plugin-XXXXXX")
+
+            git clone -- "$clone_url" "$plugin_dir/repository"
+            cd "$plugin_dir/repository"
+            git remote add aliyun "https://${ALIYUN_ACCOUNT}:${ALIYUN_PASSWORD}@codeup.aliyun.com/${ALIYUN_ORG_ID}/${ALIYUN_NAMESPACE_PATH}/${repo_name}.git"
+            git push --force aliyun HEAD:main
+            cd "$GITHUB_WORKSPACE"
+          done < <(jq -c '.[]' <<<"$CHANGED_PLUGINS")
+
+      - name: Push final index state to Aliyun
+        env:
+          ALIYUN_ACCOUNT: ${{ secrets.ALIYUN_ACCOUNT }}
+          ALIYUN_PASSWORD: ${{ secrets.ALIYUN_PASSWORD }}
+        run: |
+          set -euo pipefail
+
+          git config --local http.postBuffer 524288000
+          git config --local core.compression 0
+          git remote remove aliyun-index 2>/dev/null || true
+          git remote add aliyun-index "https://${ALIYUN_ACCOUNT}:${ALIYUN_PASSWORD}@codeup.aliyun.com/${ALIYUN_ORG_ID}/${ALIYUN_INDEX_PATH}.git"
+
+          current_sha=$(git rev-parse HEAD)
+          remote_sha=$(git ls-remote --heads aliyun-index "$TARGET_BRANCH" | awk '{print $1}')
+
+          if [ -n "$remote_sha" ] && [ "$remote_sha" = "$current_sha" ]; then
+            echo "Aliyun already contains final commit $current_sha"
+          else
+            echo "Pushing final commit $current_sha to Aliyun $TARGET_BRANCH"
+            git push --progress --force aliyun-index "HEAD:$TARGET_BRANCH"
           fi
