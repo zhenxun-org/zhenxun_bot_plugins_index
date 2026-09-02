@@ -61,8 +61,7 @@
     "version": "1.0",
     "plugin_type": "NORMAL",
     "is_dir": true,
-    "github_url": "https://github.com/PackageInstaller/zhenxun_plugin_draw_painting/tree/master",
-    "ali_url": "https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/zhenxun_plugin_draw_painting"
+    "github_url": "https://github.com/PackageInstaller/zhenxun_plugin_draw_painting/tree/master"
   },
   {
     "name": "AI全家桶",
