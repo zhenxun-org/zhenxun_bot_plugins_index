@@ -12,6 +12,7 @@ permissions:
 
 jobs:
   auto-update:
+    if: ${{ github.actor != 'github-actions[bot]' && !contains(github.event.head_commit.message, '自动补全 ali_url') && !contains(github.event.head_commit.message, '自动更新 README.md 中的插件列表表格') }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code

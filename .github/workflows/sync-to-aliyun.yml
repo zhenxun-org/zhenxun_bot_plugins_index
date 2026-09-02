@@ -7,7 +7,7 @@ on:
 
 jobs:
   sync:
-    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'index' }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'index' && github.event.workflow_run.name == 'Update JSON and README After Merge' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
