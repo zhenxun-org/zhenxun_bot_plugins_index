@@ -21,7 +21,8 @@
     "version": "2.3",
     "plugin_type": "NORMAL",
     "is_dir": true,
-    "github_url": "https://github.com/molanp/zhenxun_plugin_mccheck"
+    "github_url": "https://github.com/molanp/zhenxun_plugin_mccheck",
+    "ali_url": "https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun-org/zhenxun_plugins/zhenxun_plugin_mccheck"
   },
   {
     "name": "明日方舟干员收集",
