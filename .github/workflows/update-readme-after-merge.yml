@@ -10,6 +10,7 @@ on:
 
 jobs:
   update-readme:
+    if: ${{ !contains(github.event.head_commit.message, '自动补全 ali_url') && !contains(github.event.head_commit.message, '自动更新 README.md 中的插件列表表格') }}
     runs-on: ubuntu-latest
     
     steps:
