@@ -55,7 +55,6 @@
 | [原神角色面板](https://github.com/CRAZYShimakaze/zhenxun_plugin_genshin_role_info) | [@CRAZYShimakaze](https://github.com/CRAZYShimakaze) | 原神角色面板 |
 | [星铁角色面板](https://github.com/CRAZYShimakaze/zhenxun_plugin_starrail_role_info) | [@CRAZYShimakaze](https://github.com/CRAZYShimakaze) | 星铁角色面板 |
 | [绝区零角色面板](https://github.com/CRAZYShimakaze/zhenxun_plugin_zenlesszonezero_role_info) | [@CRAZYShimakaze](https://github.com/CRAZYShimakaze) | 绝区零角色面板 |
-| [娶群友](https://github.com/ATTomatoo/zhenxun_groupmate_waifu/tree/main) | [@ATTomatoo](https://github.com/ATTomatoo) | 群内娶群友、透群友、分手等互动娱乐插件。 |
 <!-- PLUGIN_TABLE_END -->
 
 ## 💧 老版本插件
