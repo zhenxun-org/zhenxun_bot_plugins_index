@@ -460,17 +460,5 @@
     "is_dir": true,
     "github_url": "https://github.com/CRAZYShimakaze/zhenxun_plugin_zenlesszonezero_role_info",
     "ali_url": "https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/zhenxun_plugin_zenlesszonezero_role_info"
-  },
-  {
-    "name": "娶群友",
-    "module": "zhenxun_groupmate_waifu",
-    "module_path": "zhenxun_groupmate_waifu",
-    "description": "群内娶群友、透群友、分手等互动娱乐插件。\n    包含分手财产结算、闪离惩罚、小黑屋与连续闪离封禁机制。",
-    "usage": "指令：\n        娶群友 ?[@某人]\n        透群友 ?[@某人]\n        离婚 / 分手\n        查看群友卡池\n        本群cp",
-    "author": "ATTomatoo",
-    "version": "0.0.2",
-    "plugin_type": "NORMAL",
-    "is_dir": true,
-    "github_url": "https://github.com/ATTomatoo/zhenxun_groupmate_waifu/tree/main"
   }
 ]
