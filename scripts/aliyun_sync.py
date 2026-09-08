@@ -149,8 +149,10 @@ def repository_uses_git_lfs(repository: Path) -> bool:
         )
         for raw_line in attributes.splitlines():
             line = raw_line.strip()
-            if line and not line.startswith("#") and re.search(
-                r"(?:^|\s)filter\s*=\s*lfs(?:\s|$)", line
+            if (
+                line
+                and not line.startswith("#")
+                and re.search(r"(?:^|\s)filter\s*=\s*lfs(?:\s|$)", line)
             ):
                 return True
     return False

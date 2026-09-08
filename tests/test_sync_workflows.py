@@ -221,12 +221,8 @@ class DailySynchronizationTests(unittest.TestCase):
             ):
                 os.environ.pop("GITHUB_OUTPUT", None)
                 first_result = daily_sync_plugins.main()
-                first_plugins = json.loads(
-                    plugins_path.read_text(encoding="utf-8")
-                )
-                first_commits = json.loads(
-                    commits_path.read_text(encoding="utf-8")
-                )
+                first_plugins = json.loads(plugins_path.read_text(encoding="utf-8"))
+                first_commits = json.loads(commits_path.read_text(encoding="utf-8"))
                 second_result = daily_sync_plugins.main()
 
             plugins = json.loads(plugins_path.read_text(encoding="utf-8"))
