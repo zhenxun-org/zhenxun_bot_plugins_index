@@ -1,0 +1,185 @@
+name: ISS - Publish new plugin
+
+on:
+  issues:
+    types: [opened, reopened, edited]
+  issue_comment:
+    types: [created]
+
+concurrency:
+  group: issue-plugin-${{ github.event.issue.number || github.run_id }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  check:
+    name: Check issue event
+    runs-on: ubuntu-latest
+    if: ${{ !(github.event_name == 'issue_comment' && github.event.issue.pull_request) }}
+    steps:
+      - run: echo "Issue event accepted"
+
+  reaction:
+    name: Add reaction
+    runs-on: ubuntu-latest
+    needs: check
+    if: |
+      github.event_name == 'issue_comment' ||
+      (github.event_name == 'issues' && github.event.action == 'opened')
+    steps:
+      - name: Generate GitHub App token
+        id: app-token
+        uses: tibdex/github-app-token@v2
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_KEY }}
+
+      - name: React to issue
+        if: github.event_name == 'issues'
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          gh api --method POST \
+            "/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/reactions" \
+            -f "content=rocket"
+
+      - name: React to issue comment
+        if: github.event_name == 'issue_comment'
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          gh api --method POST \
+            "/repos/${{ github.repository }}/issues/comments/${{ github.event.comment.id }}/reactions" \
+            -f "content=rocket"
+
+  ensure-plugin-label:
+    name: Ensure Plugin label
+    runs-on: ubuntu-latest
+    needs: check
+    steps:
+      - name: Generate GitHub App token
+        id: app-token
+        uses: tibdex/github-app-token@v2
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_KEY }}
+
+      - name: Create and attach label
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          set -euo pipefail
+          if ! gh label list --repo "${{ github.repository }}" --limit 200 \
+            | awk '{print $1}' | grep -qx "Plugin"; then
+            gh label create "Plugin" \
+              --repo "${{ github.repository }}" \
+              --color "0366d6" \
+              --description "Plugin publication request" \
+              --force
+          fi
+          gh issue edit "${{ github.event.issue.number }}" \
+            --repo "${{ github.repository }}" \
+            --add-label "Plugin"
+
+  plugin-test:
+    name: Test new plugin
+    runs-on: ubuntu-latest
+    needs: check
+    permissions:
+      issues: read
+    outputs:
+      result: ${{ steps.plugin-test.outputs.RESULT }}
+      output: ${{ steps.plugin-test.outputs.OUTPUT }}
+      metadata: ${{ steps.plugin-test.outputs.METADATA }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libegl1 libgl1 libglib2.0-0
+
+      - name: Clone zhenxun bot
+        run: git clone --depth 1 --branch main https://github.com/zhenxun-org/zhenxun_bot.git
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+          cache-dependency-glob: "zhenxun_bot/pyproject.toml"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Test plugin and extract metadata
+        id: plugin-test
+        run: |
+          set -euo pipefail
+          cd zhenxun_bot
+          rm -rf ./zhenxun/plugins/* uv.lock
+          if grep -q "aliyun" pyproject.toml; then
+            sed -i '/\[\[tool.uv.index\]\]/,/url = ".*aliyun.*"/d' pyproject.toml
+          fi
+          uv sync --no-dev
+          uv pip install --upgrade "pydantic>=2"
+          curl --fail --silent --show-error --location \
+            https://github.com/zhenxun-org/zhenxunflow/releases/latest/download/plugin_test.py \
+            | uv run python -
+
+  create-or-update-pr:
+    name: Create or update plugin PR
+    runs-on: ubuntu-latest
+    needs: [check, ensure-plugin-label, plugin-test]
+    if: |
+      always() &&
+      needs.check.result == 'success' &&
+      needs.ensure-plugin-label.result == 'success' &&
+      needs.plugin-test.result == 'success'
+    steps:
+      - name: Generate GitHub App token
+        id: app-token
+        uses: tibdex/github-app-token@v2
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_KEY }}
+
+      - name: Checkout index repository
+        uses: actions/checkout@v4
+        with:
+          ref: index
+          token: ${{ steps.app-token.outputs.token }}
+
+      - name: Cache pre-commit hooks
+        uses: actions/cache@v4
+        with:
+          path: .cache/.pre-commit
+          key: zhenxunflow-${{ runner.os }}-${{ hashFiles('.pre-commit-config.yaml') }}
+
+      - name: Run zhenxunflow
+        uses: docker://ghcr.io/zhenxun-org/zhenxunflow:latest
+        with:
+          config: >
+            {
+              "base": "index",
+              "plugin_path": "plugins.json"
+            }
+        env:
+          PLUGIN_TEST_RESULT: ${{ needs.plugin-test.outputs.result }}
+          PLUGIN_TEST_OUTPUT: ${{ needs.plugin-test.outputs.output }}
+          PLUGIN_TEST_METADATA: ${{ needs.plugin-test.outputs.metadata }}
+          APP_ID: ${{ secrets.APP_ID }}
+          PRIVATE_KEY: ${{ secrets.APP_KEY }}
+          PRE_COMMIT_HOME: /github/workspace/.cache/.pre-commit
+
+      - name: Fix cache permissions
+        if: always()
+        run: |
+          if [ -d .cache/.pre-commit ]; then
+            sudo chown -R "$(whoami):$(id -ng)" .cache/.pre-commit
+          fi

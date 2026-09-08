@@ -1,0 +1,322 @@
+name: PR - Verify and sync plugin
+
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize, labeled, closed]
+    branches: ["index"]
+    paths: ["plugins.json"]
+  pull_request_review:
+    types: [submitted]
+
+concurrency:
+  group: aliyun-plugin-sync
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+env:
+  ALIYUN_ORG_ID: "67a361cf556e6cdab537117a"
+  ALIYUN_NAMESPACE_ID: "1638483"
+  ALIYUN_NAMESPACE_PATH: zhenxun_plugins
+  ALIYUN_INDEX_PATH: zhenxun-org/zhenxun_bot_plugins_index
+
+jobs:
+  authorize:
+    name: Accept authorized plugin pull request
+    runs-on: ubuntu-latest
+    if: |
+      (
+        github.event_name == 'pull_request_target' &&
+        github.event.action != 'closed' &&
+        (
+          github.event.pull_request.head.repo.full_name == github.repository ||
+          contains(github.event.pull_request.labels.*.name, 'Plugin')
+        )
+      ) || (
+        github.event_name == 'pull_request_review' &&
+        github.event.pull_request.base.ref == 'index' &&
+        (
+          github.event.pull_request.head.repo.full_name == github.repository ||
+          contains(github.event.pull_request.labels.*.name, 'Plugin')
+        )
+      )
+    steps:
+      - name: Accept plugins.json change
+        run: echo "Authorized plugins.json pull request accepted"
+  sync-pr:
+    name: Upload plugin code before merge
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    needs: authorize
+    outputs:
+      metadata_updated: ${{ steps.sync.outputs.metadata_updated }}
+      head_updated: ${{ steps.commit.outputs.head_updated }}
+    steps:
+      - name: Generate GitHub App token
+        id: app-token
+        uses: tibdex/github-app-token@v2
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_KEY }}
+
+      - name: Checkout trusted automation code
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }}
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: automation
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Checkout pull request content
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: pr
+          fetch-depth: 0
+          token: ${{ steps.app-token.outputs.token }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install API dependency
+        run: python -m pip install requests
+
+      - name: Synchronize changed plugins and verify Aliyun SHA
+        id: sync
+        working-directory: automation
+        env:
+          ALIYUN_TOKEN: ${{ secrets.ALIYUN_PERSONAL_ACCESS_TOKEN }}
+          ALIYUN_ACCOUNT: ${{ secrets.ALIYUN_ACCOUNT }}
+          ALIYUN_PASSWORD: ${{ secrets.ALIYUN_PASSWORD }}
+        run: |
+          python scripts/sync_pr_plugins.py \
+            --base plugins.json \
+            --head ../pr/plugins.json \
+            --org-id "$ALIYUN_ORG_ID" \
+            --namespace-id "$ALIYUN_NAMESPACE_ID" \
+            --namespace-path "$ALIYUN_NAMESPACE_PATH" \
+            --access-token "$ALIYUN_TOKEN" \
+            --account "$ALIYUN_ACCOUNT" \
+            --password "$ALIYUN_PASSWORD"
+
+      - name: Generate README from pull request manifest
+        working-directory: pr
+        run: python ../automation/scripts/update_readme_table.py
+
+      - name: Commit generated files to same-repository PR
+        id: commit
+        if: github.event.pull_request.head.repo.full_name == github.repository
+        working-directory: pr
+        env:
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+          EVENT_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          echo "head_updated=false" >> "$GITHUB_OUTPUT"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          git fetch --no-tags origin \
+            "+refs/heads/$HEAD_REF:refs/remotes/origin/pr-current"
+          remote_head=$(git rev-parse refs/remotes/origin/pr-current)
+          if [ "$remote_head" != "$EVENT_HEAD_SHA" ]; then
+            echo "PR branch advanced from $EVENT_HEAD_SHA to $remote_head; skip stale run"
+            echo "head_updated=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          git add plugins.json README.md
+          if git diff --staged --quiet; then
+            echo "No generated pull request changes"
+            exit 0
+          fi
+          git commit -m "chore: verify Aliyun mirror and update plugin index"
+          if git push origin "HEAD:refs/heads/$HEAD_REF"; then
+            echo "head_updated=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          git fetch --no-tags origin \
+            "+refs/heads/$HEAD_REF:refs/remotes/origin/pr-current"
+          remote_head=$(git rev-parse refs/remotes/origin/pr-current)
+          if [ "$remote_head" != "$EVENT_HEAD_SHA" ]; then
+            echo "PR branch changed during push; a newer workflow run will handle it"
+            echo "head_updated=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "Push failed although the PR branch did not advance"
+          exit 1
+
+      - name: Upload generated manifest for fork PR
+        if: |
+          github.event.pull_request.head.repo.full_name != github.repository &&
+          steps.sync.outputs.metadata_updated == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: plugins-with-aliyun-url
+          path: pr/plugins.json
+
+      - name: Explain required fork update
+        if: |
+          github.event.pull_request.head.repo.full_name != github.repository &&
+          steps.sync.outputs.metadata_updated == 'true'
+        uses: actions/github-script@v7
+        env:
+          GENERATED_URLS: ${{ steps.sync.outputs.generated_urls }}
+        with:
+          github-token: ${{ steps.app-token.outputs.token }}
+          script: |
+            const generated = JSON.parse(process.env.GENERATED_URLS || "[]");
+            const lines = generated.map(
+              item => `- ${item.name}: \`${item.ali_url}\``
+            );
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: [
+                "阿里云仓库已经上传并校验成功。由于此 PR 来自 fork，Bot 无法直接提交到该分支。",
+                "请把以下地址写入对应插件的 `ali_url` 后再次推送：",
+                ...lines,
+              ].join("\n"),
+            });
+
+      - name: Block fork PR until ali_url is committed
+        if: |
+          github.event.pull_request.head.repo.full_name != github.repository &&
+          steps.sync.outputs.metadata_updated == 'true'
+        run: |
+          echo "The contributor must commit the generated ali_url to the fork PR."
+          exit 1
+
+  review-and-merge:
+    name: Process approved plugin PR
+    runs-on: ubuntu-latest
+    needs: sync-pr
+    if: |
+      always() &&
+      github.event_name == 'pull_request_review' &&
+      github.event.pull_request.base.ref == 'index' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      needs.sync-pr.result == 'success' &&
+      needs.sync-pr.outputs.head_updated != 'true'
+    steps:
+      - name: Generate GitHub App token
+        id: app-token
+        uses: tibdex/github-app-token@v2
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_KEY }}
+
+      - name: Checkout index repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+
+      - name: Run zhenxunflow review handler
+        uses: docker://ghcr.io/zhenxun-org/zhenxunflow:latest
+        with:
+          config: >
+            {
+              "base": "index",
+              "plugin_path": "plugins.json"
+            }
+        env:
+          APP_ID: ${{ secrets.APP_ID }}
+          PRIVATE_KEY: ${{ secrets.APP_KEY }}
+
+  cleanup-app-pr:
+    name: Close issue and clean app branch
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'pull_request_target' &&
+      github.event.action == 'closed' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      contains(github.event.pull_request.labels.*.name, 'Plugin')
+    steps:
+      - name: Generate GitHub App token
+        id: app-token
+        uses: tibdex/github-app-token@v2
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_KEY }}
+
+      - name: Checkout index repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+
+      - name: Run zhenxunflow close handler
+        uses: docker://ghcr.io/zhenxun-org/zhenxunflow:latest
+        with:
+          config: >
+            {
+              "base": "index",
+              "plugin_path": "plugins.json"
+            }
+        env:
+          APP_ID: ${{ secrets.APP_ID }}
+          PRIVATE_KEY: ${{ secrets.APP_KEY }}
+
+  finalize-index:
+    name: Finalize merged index
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    if: |
+      github.event_name == 'pull_request_target' &&
+      github.event.action == 'closed' &&
+      github.event.pull_request.merged == true
+    env:
+      TARGET_BRANCH: ${{ github.event.pull_request.base.ref }}
+      ALIYUN_ACCOUNT: ${{ secrets.ALIYUN_ACCOUNT }}
+      ALIYUN_PASSWORD: ${{ secrets.ALIYUN_PASSWORD }}
+    steps:
+      - name: Generate GitHub App token
+        id: app-token
+        uses: tibdex/github-app-token@v2
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_KEY }}
+
+      - name: Checkout merged index
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+          fetch-depth: 0
+          token: ${{ steps.app-token.outputs.token }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Update README
+        run: python scripts/update_readme_table.py
+
+      - name: Commit generated README
+        run: |
+          set -euo pipefail
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add README.md
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: update plugin README after merge"
+            git push origin "HEAD:refs/heads/$TARGET_BRANCH"
+          fi
+
+      - name: Push final index commit to Aliyun
+        run: |
+          python scripts/sync_index_to_aliyun.py \
+            --repository . \
+            --org-id "$ALIYUN_ORG_ID" \
+            --repository-path "$ALIYUN_INDEX_PATH" \
+            --branch "$TARGET_BRANCH" \
+            --account "$ALIYUN_ACCOUNT" \
+            --password "$ALIYUN_PASSWORD"

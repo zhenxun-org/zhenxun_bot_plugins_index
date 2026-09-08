@@ -1,0 +1,101 @@
+name: AUTO - Daily plugin synchronization
+
+on:
+  schedule:
+    # Previous schedule: 16:00 UTC is 00:00 the next day in Asia/Shanghai.
+    # - cron: "0 16 * * *"
+    # 22:00 UTC is 06:00 the next day in Asia/Shanghai.
+    - cron: "0 22 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: aliyun-plugin-sync
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+env:
+  TARGET_BRANCH: index
+  ALIYUN_ORG_ID: "67a361cf556e6cdab537117a"
+  ALIYUN_NAMESPACE_ID: "1638483"
+  ALIYUN_NAMESPACE_PATH: zhenxun_plugins
+  ALIYUN_INDEX_PATH: zhenxun-org/zhenxun_bot_plugins_index
+
+jobs:
+  update-plugins:
+    name: Update changed plugin mirrors
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      ALIYUN_TOKEN: ${{ secrets.ALIYUN_PERSONAL_ACCESS_TOKEN }}
+      ALIYUN_ACCOUNT: ${{ secrets.ALIYUN_ACCOUNT }}
+      ALIYUN_PASSWORD: ${{ secrets.ALIYUN_PASSWORD }}
+    steps:
+      - name: Generate GitHub App token
+        id: app-token
+        uses: tibdex/github-app-token@v2
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_KEY }}
+
+      - name: Checkout index branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TARGET_BRANCH }}
+          fetch-depth: 0
+          token: ${{ steps.app-token.outputs.token }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install API dependency
+        run: python -m pip install requests
+
+      - name: Compare commits and synchronize changed plugins
+        id: daily-sync
+        continue-on-error: true
+        run: |
+          python scripts/daily_sync_plugins.py \
+            --plugins plugins.json \
+            --commits plugin_commits.json \
+            --org-id "$ALIYUN_ORG_ID" \
+            --namespace-id "$ALIYUN_NAMESPACE_ID" \
+            --namespace-path "$ALIYUN_NAMESPACE_PATH" \
+            --access-token "$ALIYUN_TOKEN" \
+            --account "$ALIYUN_ACCOUNT" \
+            --password "$ALIYUN_PASSWORD"
+
+      - name: Update README
+        run: python scripts/update_readme_table.py
+
+      - name: Commit successful synchronization results
+        run: |
+          set -euo pipefail
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add plugins.json plugin_commits.json README.md
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: update daily plugin mirrors"
+            git push origin "HEAD:refs/heads/$TARGET_BRANCH"
+          fi
+
+      - name: Push final index commit to Aliyun
+        run: |
+          python scripts/sync_index_to_aliyun.py \
+            --repository . \
+            --org-id "$ALIYUN_ORG_ID" \
+            --repository-path "$ALIYUN_INDEX_PATH" \
+            --branch "$TARGET_BRANCH" \
+            --account "$ALIYUN_ACCOUNT" \
+            --password "$ALIYUN_PASSWORD"
+
+      - name: Report plugin synchronization failures
+        if: steps.daily-sync.outcome == 'failure'
+        env:
+          FAILURES: ${{ steps.daily-sync.outputs.failures }}
+        run: |
+          echo "Some plugin mirrors failed to update: $FAILURES"
+          exit 1
