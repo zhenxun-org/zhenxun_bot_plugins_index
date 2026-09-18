@@ -58,10 +58,11 @@
     "description": "从本地图片库中随机抽取游戏人物立绘",
     "usage": "抽取老婆/老公\n    指令：\n    抽老婆/老公［游戏名参数可选］\n    我老婆/老公 [查看所有立绘]\n    老婆/老公改名 [修改单张立绘名称]\n    老婆/老公概率 ?[数量参数可选，默认全部] [查看各游戏占比]\n    这是男的/女的 [抽老婆抽到男的的时候可以用，另一个同理，只能处理自己的立绘]\n    投票删除 [回复抽到的图片，非男非女时可以使用]\n    请注意，如果出现乱用指令的情况，将会被永久封禁。",
     "author": "PackageInstaller",
-    "version": "1.0",
+    "version": "07851d",
     "plugin_type": "NORMAL",
     "is_dir": true,
-    "github_url": "https://github.com/PackageInstaller/zhenxun_plugin_draw_painting/tree/master"
+    "github_url": "https://github.com/PackageInstaller/zhenxun_plugin_draw_painting/tree/master",
+    "ali_url": "https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/zhenxun_plugin_draw_painting"
   },
   {
     "name": "AI全家桶",
@@ -395,7 +396,7 @@
     "description": "通用媒体链接分享解析",
     "usage": "发送支持平台的(BV号/链接/小程序/卡片)即可",
     "author": "sokoko-org",
-    "version": "1.3.7rc7",
+    "version": "1.3.7",
     "plugin_type": "NORMAL",
     "is_dir": true,
     "github_url": "https://github.com/sokoko-org/nonebot-plugin-parser-lite",
@@ -434,7 +435,7 @@
     "description": "小真寻的实用聊天插件OvO",
     "usage": "@bot、使用昵称触发或引用都可以哦",
     "author": "Jerryplusy",
-    "version": "bbdf21",
+    "version": "e090fd",
     "plugin_type": "NORMAL",
     "is_dir": true,
     "github_url": "https://github.com/Jerryplusy/zhenxun_plugin_leekchat",
