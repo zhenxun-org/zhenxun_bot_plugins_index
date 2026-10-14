@@ -503,6 +503,7 @@
     "version": "v2.10.2",
     "plugin_type": "NORMAL",
     "is_dir": true,
-    "github_url": "https://github.com/Shu-Ying/zhenxun-plugin-mystool"
+    "github_url": "https://github.com/Shu-Ying/zhenxun-plugin-mystool",
+    "ali_url": "https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/zhenxun-plugin-mystool"
   }
 ]
