@@ -492,5 +492,18 @@
     "is_dir": true,
     "github_url": "https://github.com/ATTomatoo/zhenxun_groupmate_waifu/tree/main",
     "ali_url": "https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/zhenxun_groupmate_waifu"
+  },
+  {
+    "name": "米游社小助手",
+    "module": "zhenxun-plugin-mystool",
+    "module_path": ".src.zhenxun_plugin_mystool",
+    "description": "米游社工具-每日米游币任务、游戏签到、商品兑换、免抓包登录\n",
+    "usage": "\n🔐 /米游社登录 ➢ 登录绑定米游社账户\n📦 /米游社地址 ➢ 设置收货地址ID\n🗓️ /米游社签到 ➢ 手动进行游戏签到\n📅 /米游社任务 ➢ 手动执行米游币任务\n🛒 /米游社兑换 ➢ 米游币商品兑换相关\n🎁 /米游社商品 ➢ 查看米游币商品信息(商品ID)\n📊 /米游社原神便笺 ➢ 查看原神实时便笺(原神树脂、洞天财瓮等)\n📊 /米游社铁道便笺 ➢ 查看星穹铁道实时便笺(开拓力、每日实训等)\n⚙️ /米游社设置 ➢ 设置是否开启通知、每日任务等相关选项\n🔑 /米游社账号设置 ➢ 设置设备平台、是否开启每日计划任务、频道任务\n🔔 /米游社通知设置 ➢ 设置是否开启每日米游币任务、游戏签到的结果通知\n🖨️ /米游社导出Cookies ➢ 导出绑定的米游社账号的Cookies数据\n🖇️ /米游社用户绑定 ➢ 绑定关联其他聊天平台或其他账号的用户数据\n📖 /米游社帮助 ➢ 查看帮助信息\n🔍 /米游社帮助 <功能名> ➢ 查看目标功能详细说明\n\n⚠️你的数据将经过机器人服务器，请确定你信任服务器所有者再使用。",
+    "author": "Shu-Ying",
+    "version": "v2.10.2",
+    "plugin_type": "NORMAL",
+    "is_dir": true,
+    "github_url": "https://github.com/Shu-Ying/zhenxun-plugin-mystool",
+    "ali_url": "https://codeup.aliyun.com/67a361cf556e6cdab537117a/zhenxun_plugins/zhenxun-plugin-mystool"
   }
 ]
